@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Chromium-4285F4?logo=googlechrome&logoColor=white)
+[![CI](https://github.com/SiyeW/doi-direct/actions/workflows/ci.yml/badge.svg)](https://github.com/SiyeW/doi-direct/actions/workflows/ci.yml)
 
 ---
 
