@@ -99,10 +99,10 @@
     "message": "Test input"
   },
   "testMatch": {
-    "message": "Matches: the search would be redirected."
+    "message": "Matches"
   },
   "testNoMatch": {
-    "message": "No match: the search is left alone."
+    "message": "No match"
   },
   "patternInvalid": {
     "message": "That is not a valid regular expression."
@@ -140,10 +140,7 @@
   "examplesReject": {
     "message": "Should be left alone"
   },
-  "exampleCorrect": {
-    "message": "As expected"
-  },
-  "exampleWrong": {
-    "message": "Unexpected"
+  "testInputPlaceholder": {
+    "message": "Type a query to check"
   }
 }

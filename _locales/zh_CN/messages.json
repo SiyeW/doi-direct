@@ -96,10 +96,10 @@
     "message": "测试输入"
   },
   "testMatch": {
-    "message": "匹配：这次搜索会被跳转。"
+    "message": "匹配"
   },
   "testNoMatch": {
-    "message": "不匹配：搜索不受影响。"
+    "message": "不匹配"
   },
   "patternInvalid": {
     "message": "这不是合法的正则表达式。"
@@ -137,10 +137,7 @@
   "examplesReject": {
     "message": "不应当被跳转"
   },
-  "exampleCorrect": {
-    "message": "符合预期"
-  },
-  "exampleWrong": {
-    "message": "与预期不符"
+  "testInputPlaceholder": {
+    "message": "输入一条查询，实时看结果"
   }
 }

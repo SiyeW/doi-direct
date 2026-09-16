@@ -203,20 +203,22 @@
 
   /* -------------------------------------------------------- pattern testing */
 
-  function resultBadge(correct, known) {
+  /* Shows what the pattern actually did - matched or did not - with no
+   * interpretation layered on top. Green means it matched, red means it did not. */
+  function resultBadge(matched, known) {
     var badge = document.createElement('span');
     if (!known) {
       badge.className = 'badge unknown';
       badge.textContent = '?';
+      badge.title = DOI18n.t('patternInvalid');
       return badge;
     }
-    badge.className = 'badge ' + (correct ? 'ok' : 'bad');
-    badge.textContent = correct ? '\u2713' : '\u2717';
-    badge.title = DOI18n.t(correct ? 'exampleCorrect' : 'exampleWrong');
+    badge.className = 'badge ' + (matched ? 'ok' : 'bad');
+    badge.textContent = (matched ? '\u2713 ' : '\u2717 ') + DOI18n.t(matched ? 'testMatch' : 'testNoMatch');
     return badge;
   }
 
-  function renderExamples(box, list, shouldMatch, patternValid, pattern) {
+  function renderExamples(box, list, patternValid, pattern) {
     box.textContent = '';
     list.forEach(function (text) {
       var row = document.createElement('div');
@@ -225,7 +227,7 @@
       code.textContent = text;
       row.appendChild(code);
       var matched = patternValid ? !!DOICore.parseDoi(text, pattern) : false;
-      row.appendChild(resultBadge(matched === shouldMatch, patternValid));
+      row.appendChild(resultBadge(matched, patternValid));
       box.appendChild(row);
     });
   }
@@ -238,8 +240,8 @@
     msg.textContent = check.ok ? '' : DOI18n.t('patternInvalid');
     msg.className = check.ok ? 'msg' : 'msg error';
 
-    renderExamples(el('acceptExamples'), DOICore.EXAMPLES.accept, true, check.ok, pattern);
-    renderExamples(el('rejectExamples'), DOICore.EXAMPLES.reject, false, check.ok, pattern);
+    renderExamples(el('acceptExamples'), DOICore.EXAMPLES.accept, check.ok, pattern);
+    renderExamples(el('rejectExamples'), DOICore.EXAMPLES.reject, check.ok, pattern);
     runTestInput();
   }
 
@@ -254,7 +256,7 @@
     }
     var doi = DOICore.parseDoi(typed, pattern);
     out.textContent = (doi ? '\u2713 ' : '\u2717 ') + DOI18n.t(doi ? 'testMatch' : 'testNoMatch');
-    out.className = 'msg';
+    out.className = doi ? 'msg' : 'msg error';
   }
 
   /* ---------------------------------------------------------------- wiring */
