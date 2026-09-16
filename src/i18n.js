@@ -77,26 +77,7 @@
     }
   }
 
-  /* Chrome injects its own font size into every extension page, and this reads it
-   * back into --measured so the interface can follow the browser instead of a
-   * number chosen here.
-   *
-   * The order matters. The stylesheets leave body's font-size alone, because
-   * anything set there would be what this read returns instead of Chrome's value.
-   * So the interface's own size goes on afterwards, inline, once the read is
-   * done. Without it every element that carries no size of its own - the engine
-   * rows, the buttons, the inputs, plain text - would keep Chrome's value while
-   * the headings followed --base, and the page would come out both small and
-   * inconsistent. */
-  function applyBaseFontSize() {
-    var body = document.body;
-    var measured = getComputedStyle(body).fontSize;
-    if (measured) document.documentElement.style.setProperty('--measured', measured);
-    body.style.fontSize = 'var(--base)';
-  }
-
   function paint() {
-    applyBaseFontSize();
     applyDocumentLocale();
     setText('[data-i18n]', 'data-i18n', 'text');
     setText('[data-i18n-placeholder]', 'data-i18n-placeholder', 'placeholder');
