@@ -15,10 +15,10 @@ function ok(cond, label) { eq(!!cond, true, label); }
 
 /* ---------- 1. DOI 匹配：应当接受 ---------- */
 const ACCEPT = [
-  '10.1038/s41586-026-12345-6',
-  '10.1016/j.cell.2026.01.001',
+  '10.1038/s41559-022-01925-6',
+  '10.1016/j.xgen.2025.100928',
   '10.21/FQSQT4T3',                                   // 2 位注册码
-  'DOI: 10.1126/science.abc123',                      // 前缀剥离
+  'DOI: 10.1126/sciadv.adh7912',                      // 前缀剥离
   'doi:10.1002/example',
   '  10.1038/nature12373  ',                          // 首尾空白
   '10.1002/1097-0142(195109)4:5<1036::aid-cncr2820040521>3.0.co;2-a',   // 含 < > 的真实 DOI
@@ -26,7 +26,7 @@ const ACCEPT = [
 ];
 ACCEPT.forEach(s => ok(C.parseDoi(s), '应当接受: ' + s));
 
-eq(C.parseDoi('DOI: 10.1126/science.abc123'), '10.1126/science.abc123', 'doi: 前缀被剥离');
+eq(C.parseDoi('DOI: 10.1126/sciadv.adh7912'), '10.1126/sciadv.adh7912', 'doi: 前缀被剥离');
 eq(C.parseDoi('  doi:10.1002/x  '), '10.1002/x', 'doi: 前缀 + 空白都处理');
 
 /* ---------- 2. 应当拒绝 ---------- */

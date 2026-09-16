@@ -95,9 +95,6 @@
   "testLabel": {
     "message": "测试输入"
   },
-  "test": {
-    "message": "测试"
-  },
   "testMatch": {
     "message": "匹配：这次搜索会被跳转。"
   },
@@ -124,5 +121,26 @@
   },
   "openOptions": {
     "message": "设置"
+  },
+  "enginePreview": {
+    "message": "预览"
+  },
+  "enginePreviewPermission": {
+    "message": "将申请的权限"
+  },
+  "enginePreviewExample": {
+    "message": "示例搜索"
+  },
+  "examplesAccept": {
+    "message": "应当被跳转"
+  },
+  "examplesReject": {
+    "message": "不应当被跳转"
+  },
+  "exampleCorrect": {
+    "message": "符合预期"
+  },
+  "exampleWrong": {
+    "message": "与预期不符"
   }
 }

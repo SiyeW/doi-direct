@@ -98,9 +98,6 @@
   "testLabel": {
     "message": "Test input"
   },
-  "test": {
-    "message": "Test"
-  },
   "testMatch": {
     "message": "Matches: the search would be redirected."
   },
@@ -127,5 +124,26 @@
   },
   "openOptions": {
     "message": "Settings"
+  },
+  "enginePreview": {
+    "message": "Preview"
+  },
+  "enginePreviewPermission": {
+    "message": "Permission requested"
+  },
+  "enginePreviewExample": {
+    "message": "Example search"
+  },
+  "examplesAccept": {
+    "message": "Should be redirected"
+  },
+  "examplesReject": {
+    "message": "Should be left alone"
+  },
+  "exampleCorrect": {
+    "message": "As expected"
+  },
+  "exampleWrong": {
+    "message": "Unexpected"
   }
 }

@@ -22,6 +22,30 @@
   var MAX_QUERY_LEN = 2048;
   var MAX_DOI_LEN = 2048;
 
+  /* Example queries shown in the options page and asserted by the test suite,
+   * so the two can never drift apart.
+   *
+   * The accepted ones are deliberately real, resolvable DOIs rather than
+   * invented ones. Made-up examples have a way of turning out to belong to
+   * somebody else's paper, and tweaking one digit to dodge that just moves the
+   * collision into the future. The rejected ones contain no DOI at all, which
+   * cannot collide with anything. */
+  var EXAMPLES = {
+    accept: [
+      '10.1038/s41559-022-01925-6',
+      '10.1016/j.xgen.2025.100928',
+      '10.1126/sciadv.adh7912',
+      'DOI: 10.1038/s41559-022-01925-6',
+      'doi:10.1002/example'
+    ],
+    reject: [
+      '10.1038/example pdf',
+      'read 10.1038/example',
+      'doi please',
+      '10.1038'
+    ]
+  };
+
   /* Characters that stay literal in a DOI URL, per the DOI Handbook.
    * Everything else is UTF-8 percent-encoded, which is why % " # space and ?
    * are always encoded - they are not in this list.
@@ -80,6 +104,7 @@
     DEFAULT_RESOLVER_BASE: DEFAULT_RESOLVER_BASE,
     MAX_QUERY_LEN: MAX_QUERY_LEN,
     KEEP: KEEP,
+    EXAMPLES: EXAMPLES,
     parseDoi: parseDoi,
     encodeDoi: encodeDoi,
     buildResolverUrl: buildResolverUrl

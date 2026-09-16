@@ -22,21 +22,23 @@ function eq(actual, expected, label) {
 function ok(cond, label) { eq(!!cond, true, label); }
 
 /* ---------- DOI matching ---------- */
+
+/* The shipped examples are asserted here too, so the options page and the test
+ * suite can never disagree about what the pattern is supposed to do. */
+DOICore.EXAMPLES.accept.forEach(s => ok(DOICore.parseDoi(s), 'shipped example should accept: ' + s));
+DOICore.EXAMPLES.reject.forEach(s => eq(DOICore.parseDoi(s), null, 'shipped example should reject: ' + JSON.stringify(s)));
+
 const ACCEPT = [
-  '10.1038/s41586-026-12345-6',
-  '10.1016/j.cell.2026.01.001',
-  '10.21/FQSQT4T3',
-  'DOI: 10.1126/science.abc123',
-  'doi:10.1002/example',
-  '  10.1038/nature12373  ',
+  '10.21/FQSQT4T3',                       /* a 2-digit registrant code really exists */
+  '  10.1038/nature12373  ',              /* surrounding whitespace */
   '10.1002/1097-0142(195109)4:5<1036::aid-cncr2820040521>3.0.co;2-a',
   '10.1016/0014-5793(88)81340-1'
 ];
 ACCEPT.forEach(s => ok(DOICore.parseDoi(s), 'should accept: ' + s));
 
 const REJECT = [
-  '10.1038/example pdf', '10.1038/example abstract', 'what is 10.1038/example',
-  'papers citing 10.1038/example', '10.1038', 'doi please', 'doi:', '', '   '
+  '10.1038/example abstract', 'what is 10.1038/example',
+  'papers citing 10.1038/example', 'doi:', '', '   '
 ];
 REJECT.forEach(s => eq(DOICore.parseDoi(s), null, 'should reject: ' + JSON.stringify(s)));
 

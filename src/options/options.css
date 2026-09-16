@@ -7,6 +7,7 @@ body {
 main { max-width: 680px; margin: 0 auto; }
 h1 { font-size: 20px; margin: 0 0 20px; }
 h2 { font-size: 14px; margin: 0 0 6px; text-transform: uppercase; letter-spacing: .04em; color: #4a5568; }
+h3 { font-size: 12.5px; margin: 16px 0 4px; color: #4a5568; font-weight: 600; }
 section { padding: 16px 0; border-top: 1px solid #e4e7ec; }
 section:first-of-type { border-top: 0; }
 .hint { color: #5b6572; font-size: 12.5px; margin: 4px 0 10px; }
@@ -15,9 +16,12 @@ section:first-of-type { border-top: 0; }
 .list .row { justify-content: flex-start; }
 .muted { color: #7b8494; font-size: 12px; margin-left: auto; }
 .badge {
-  font-size: 11px; padding: 1px 6px; border-radius: 999px;
+  font-size: 11px; padding: 1px 6px; border-radius: 999px; white-space: nowrap;
   background: #fdeccd; color: #8a5a00; border: 1px solid #f0d29a;
 }
+.badge.ok { background: #dff3e4; color: #1e6b33; border-color: #b6e0c2; }
+.badge.bad { background: #fde3e1; color: #a3231b; border-color: #f3c0bc; }
+.badge.unknown { background: #eceff4; color: #6b7488; border-color: #dadee6; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
 .grid label { display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; color: #4a5568; }
 input[type=text] {
@@ -33,13 +37,26 @@ button:hover { background: #f0f3f8; }
 .msg { font-size: 12.5px; margin: 8px 0 0; min-height: 1.2em; color: #2f7a3f; }
 .msg.error { color: #b3261e; }
 .empty { color: #7b8494; font-size: 12.5px; }
+.preview {
+  background: #f4f6fa; border: 1px solid #e4e7ec; border-radius: 6px;
+  padding: 8px 10px; margin: 0 0 10px; font-size: 12.5px; min-height: 40px;
+}
+.preview div { margin: 1px 0; word-break: break-all; }
+.preview .k { color: #7b8494; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+.examples .row { gap: 8px; cursor: default; }
+.examples code { flex: 1; word-break: break-all; }
 @media (prefers-color-scheme: dark) {
   body { color: #e6e6e6; background: #16181d; }
-  h2 { color: #98a2b3; }
+  h2, h3 { color: #98a2b3; }
   section { border-top-color: #2a2f3a; }
   .hint, .empty { color: #8b93a1; }
   input[type=text] { background: #1e2128; border-color: #3a4150; }
   button { background: #1e2128; border-color: #3a4150; }
   button:hover { background: #262b34; }
+  .preview { background: #1b1e24; border-color: #2a2f3a; }
   .muted { color: #7b8494; }
 }
