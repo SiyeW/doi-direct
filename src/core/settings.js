@@ -19,8 +19,7 @@
     doiPattern: DOICore.DEFAULT_PATTERN,
     resolverBase: DOICore.DEFAULT_RESOLVER_BASE,
     engineStates: {},   /* engine id -> boolean; absent means "use the rule default" */
-    customEngines: [],  /* { id, name, host, path, param, enabled } */
-    exceptions: []      /* URL globs, e.g. "example.com/*" */
+    customEngines: []   /* { id, name, host, path, param, enabled } */
   };
 
   function isPlainObject(v) {
@@ -51,15 +50,6 @@
     return { ok: true, value: build.slice(0, build.length - '10.1000/x'.length) };
   }
 
-  /* Stored exactly as typed, minus a scheme if one was pasted in. What a bare
-   * host means is decided at match time - see Decide.matchesException - so the
-   * list never shows something the user did not write. */
-  function normalizeException(input) {
-    var s = String(input == null ? '' : input).trim();
-    if (!s) return null;
-    return s.replace(/^https?:\/\//i, '');
-  }
-
   function normalizeCustomEngine(raw, index) {
     if (!isPlainObject(raw)) return null;
     var host = String(raw.host || '').trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '');
@@ -85,8 +75,7 @@
       doiPattern: DEFAULTS.doiPattern,
       resolverBase: DEFAULTS.resolverBase,
       engineStates: {},
-      customEngines: [],
-      exceptions: []
+      customEngines: []
     };
     if (!isPlainObject(raw)) return out;
 
@@ -111,12 +100,6 @@
       });
     }
 
-    if (Array.isArray(raw.exceptions)) {
-      raw.exceptions.forEach(function (e) {
-        var n = normalizeException(e);
-        if (n && out.exceptions.indexOf(n) === -1) out.exceptions.push(n);
-      });
-    }
     return out;
   }
 
@@ -147,7 +130,6 @@
     normalize: normalize,
     validatePattern: validatePattern,
     validateResolverBase: validateResolverBase,
-    normalizeException: normalizeException,
     normalizeCustomEngine: normalizeCustomEngine,
     load: load,
     save: save

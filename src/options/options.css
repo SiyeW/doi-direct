@@ -14,6 +14,8 @@ section:first-of-type { border-top: 0; }
 .row { display: flex; align-items: center; gap: 8px; padding: 3px 0; cursor: pointer; }
 .list { margin: 6px 0 10px; }
 .list .row { justify-content: flex-start; }
+.row-main { display: flex; align-items: center; gap: 8px; flex: 1; cursor: pointer; min-width: 0; }
+.row-main span { overflow: hidden; text-overflow: ellipsis; }
 .muted { color: #7b8494; font-size: 12px; margin-left: auto; }
 .badge {
   font-size: 11px; padding: 1px 6px; border-radius: 999px; white-space: nowrap;

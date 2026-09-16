@@ -53,7 +53,7 @@
   },
   "add": {
     "message": "Add",
-    "description": "Button that adds an engine or an exception."
+    "description": "Button that adds a custom search engine."
   },
   "remove": {
     "message": "Remove",
@@ -70,22 +70,6 @@
   "noCustom": {
     "message": "No custom engines yet.",
     "description": "Empty-state line when no custom engine has been added."
-  },
-  "secExceptions": {
-    "message": "Exceptions",
-    "description": "Settings section heading."
-  },
-  "exceptionsHint": {
-    "message": "Sites listed here are never redirected. A domain covers the whole site and its subdomains; add a path to cover only that page.",
-    "description": "One line explaining what an exception covers."
-  },
-  "exceptionPlaceholder": {
-    "message": "google.com",
-    "description": "Placeholder inside the exception input box."
-  },
-  "noExceptions": {
-    "message": "No exceptions.",
-    "description": "Empty-state line when no exception has been added."
   },
   "secResolver": {
     "message": "Resolver",

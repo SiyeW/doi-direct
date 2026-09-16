@@ -49,33 +49,6 @@
 
   /* ------------------------------------------------------------- rendering */
 
-  function makeRow(text, badgeText, badgeClass, mutedText, onRemove) {
-    var row = document.createElement('div');
-    row.className = 'row';
-    var label = document.createElement('span');
-    label.textContent = text;
-    row.appendChild(label);
-    if (badgeText) {
-      var badge = document.createElement('span');
-      badge.className = 'badge' + (badgeClass ? ' ' + badgeClass : '');
-      badge.textContent = badgeText;
-      row.appendChild(badge);
-    }
-    if (mutedText) {
-      var muted = document.createElement('span');
-      muted.className = 'muted';
-      muted.textContent = mutedText;
-      row.appendChild(muted);
-    }
-    if (onRemove) {
-      var btn = document.createElement('button');
-      btn.textContent = DOI18n.t('remove');
-      btn.addEventListener('click', onRemove);
-      row.appendChild(btn);
-    }
-    return row;
-  }
-
   function renderEngines() {
     var box = el('engineList');
     box.textContent = '';
@@ -112,39 +85,41 @@
       return;
     }
     current.customEngines.forEach(function (engine) {
-      box.appendChild(makeRow(
-        engine.name + '  ' + engine.host + engine.path + '?' + engine.param,
-        null, null, null,
-        function () {
-          current.customEngines = current.customEngines.filter(function (e) { return e.id !== engine.id; });
-          save(false);
-        }
-      ));
-    });
-  }
+      var row = document.createElement('div');
+      row.className = 'row';
 
-  function renderExceptions() {
-    var box = el('exceptionList');
-    box.textContent = '';
-    if (!current.exceptions.length) {
-      var empty = document.createElement('p');
-      empty.className = 'empty';
-      empty.textContent = DOI18n.t('noExceptions');
-      box.appendChild(empty);
-      return;
-    }
-    current.exceptions.forEach(function (pattern) {
-      box.appendChild(makeRow(pattern, null, null, null, function () {
-        current.exceptions = current.exceptions.filter(function (p) { return p !== pattern; });
+      /* The checkbox and the label sit in their own <label> so that the Remove
+       * button next to them is not part of the click target. */
+      var toggle = document.createElement('label');
+      toggle.className = 'row-main';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = engine.enabled !== false;
+      cb.addEventListener('change', function () {
+        engine.enabled = cb.checked;
         save(false);
-      }));
+      });
+      toggle.appendChild(cb);
+      var name = document.createElement('span');
+      name.textContent = engine.name + '  ' + engine.host + engine.path + '?' + engine.param;
+      toggle.appendChild(name);
+      row.appendChild(toggle);
+
+      var btn = document.createElement('button');
+      btn.textContent = DOI18n.t('remove');
+      btn.addEventListener('click', function () {
+        current.customEngines = current.customEngines.filter(function (e) { return e.id !== engine.id; });
+        save(false);
+      });
+      row.appendChild(btn);
+
+      box.appendChild(row);
     });
   }
 
   function renderLists() {
     renderEngines();
     renderCustom();
-    renderExceptions();
   }
 
   /* ------------------------------------------------------- engine preview */
@@ -260,14 +235,6 @@
       save(false);
       updateEnginePreview();
     });
-  });
-
-  el('addException').addEventListener('click', function () {
-    var pattern = Settings.normalizeException(el('exInput').value);
-    if (!pattern) return;
-    if (current.exceptions.indexOf(pattern) === -1) current.exceptions.push(pattern);
-    el('exInput').value = '';
-    save(false);
   });
 
   el('resolverBase').addEventListener('change', function () {

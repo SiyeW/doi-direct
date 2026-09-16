@@ -62,7 +62,7 @@ node tests/core.test.js
 ```
 
 No browser needed. The suite covers DOI matching, the percent-encoding rules, the
-resolver URL, engine URL matching, exceptions, settings normalisation, the message
+resolver URL, engine URL matching, settings normalisation, the message
 catalogues, and a check that `manifest.json` stays in sync with the built-in
 engine list.
 
