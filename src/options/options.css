@@ -1,27 +1,19 @@
 :root { color-scheme: light dark; }
-html { font-family: system-ui, sans-serif; }
-/* The CJK fonts are named on purpose.
+/* No system-ui, and no generic family before the named ones, on purpose.
  *
- * A generic family like sans-serif is resolved through the browser's per-script
- * font settings, and those settings on a system whose locale is Chinese point
- * every CJK script at the same Simplified face. The font is then found at that
- * step, so the language-aware installed-font-fallback that Blink documents never
- * runs and lang="ja" makes no difference to the glyphs.
+ * A font list is walked per character, and a generic family is resolved through
+ * the browser's per-script font settings - on a system whose locale is Chinese
+ * those point every CJK script at the same Simplified face. A font that has Han
+ * glyphs therefore answers for the character, and the language-aware installed
+ * font fallback, which is the part that reads lang and would pick the right Han
+ * variant, is never reached.
  *
- * Naming the font skips that lookup. The generic stays at the end so a system
- * without any of the named fonts still gets something usable, and the base rule
- * above still covers every other language. */
-html:lang(zh-CN), html:lang(zh-SG), html:lang(zh-Hans) {
-  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
-}
-html:lang(zh-TW), html:lang(zh-HK), html:lang(zh-Hant) {
-  font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC", sans-serif;
-}
-html:lang(ja) {
-  font-family: "Yu Gothic UI", "Hiragino Kaku Gothic ProN", Meiryo, "Noto Sans CJK JP", sans-serif;
-}
-html:lang(ko) {
-  font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR", sans-serif;
+ * Naming only fonts without CJK coverage keeps the list walking, so lang decides
+ * where the Han characters come from. This is the stack GitHub uses, and it is
+ * why lang="ja" in a README renders Japanese glyphs. */
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+               Helvetica, Arial, sans-serif;
 }
 body {
   margin: 0; padding: 24px 20px 60px;
@@ -33,6 +25,7 @@ main { max-width: 680px; margin: 0 auto; }
   display: flex; align-items: center; justify-content: flex-end;
   gap: 6px; margin: 0 0 14px; color: #7b8494;
 }
+.font-sample { margin-right: auto; color: #5b6572; font-size: 14px; }
 .preview-locale select {
   font: inherit; font-size: 12.5px; padding: 3px 6px; border-radius: 6px;
   border: 1px solid #cfd5de; background: #fff; color: inherit; max-width: 180px;
