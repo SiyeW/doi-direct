@@ -1,7 +1,12 @@
 :root { color-scheme: light dark; }
+html { font-family: system-ui, sans-serif; }
+/* system-ui does not always pick a face that matches the document language, so
+ * CJK is left to the generic family, which the browser resolves from the lang
+ * attribute and from the user's own font settings. */
+html:lang(zh), html:lang(ja), html:lang(ko) { font-family: sans-serif; }
 body {
   margin: 0; padding: 24px 20px 60px;
-  font: 14px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 14px; line-height: 1.6;
   color: #1b1f24; background: #fbfbfd;
 }
 main { max-width: 680px; margin: 0 auto; }

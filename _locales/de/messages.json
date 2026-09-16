@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "DOI-Suchen automatisch an einen DOI-Resolver weiterleiten."
+  },
+  "optionsTitle": {
+    "message": "DOI Direct – Einstellungen"
+  },
+  "secGeneral": {
+    "message": "Allgemein"
+  },
+  "masterSwitch": {
+    "message": "DOI-Suchen weiterleiten"
+  },
+  "masterSwitchHint": {
+    "message": "Änderungen werden sofort wirksam. Ist die Funktion deaktiviert, werden Suchanfragen nicht an einen DOI-Resolver weitergeleitet."
+  },
+  "secEngines": {
+    "message": "Suchmaschinen"
+  },
+  "secCustom": {
+    "message": "Benutzerdefinierte Suchmaschinen"
+  },
+  "customHint": {
+    "message": "Beim Hinzufügen einer Suchmaschine wird der Zugriff auf die zugehörige Website angefordert."
+  },
+  "fieldName": {
+    "message": "Bezeichnung"
+  },
+  "fieldNamePlaceholder": {
+    "message": "Beispiel"
+  },
+  "fieldHost": {
+    "message": "Domain"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "Pfad"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "Suchparameter"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "Hinzufügen"
+  },
+  "remove": {
+    "message": "Entfernen"
+  },
+  "invalidEngine": {
+    "message": "Domain und Suchparameter sind erforderlich."
+  },
+  "permissionDenied": {
+    "message": "Der Zugriff auf die Website konnte nicht gewährt werden."
+  },
+  "noCustom": {
+    "message": "Keine benutzerdefinierten Suchmaschinen."
+  },
+  "secResolver": {
+    "message": "Resolver"
+  },
+  "resolverHint": {
+    "message": "Die DOI wird an die Basis-URL des Resolvers angehängt."
+  },
+  "resolverBase": {
+    "message": "Resolver-Basis-URL"
+  },
+  "resolverInvalid": {
+    "message": "Die URL muss http(s) verwenden und darf weder Query-String noch Fragment enthalten."
+  },
+  "secAdvanced": {
+    "message": "Erweitert"
+  },
+  "patternLabel": {
+    "message": "Regulärer Ausdruck für DOI-Abgleich"
+  },
+  "patternHint": {
+    "message": "Regulärer Ausdruck zum Abgleich des Suchinhalts. Groß- und Kleinschreibung werden nicht unterschieden; ein vorangestelltes „doi:“ wird automatisch entfernt."
+  },
+  "testLabel": {
+    "message": "Testeingabe"
+  },
+  "testInputPlaceholder": {
+    "message": "Beispiel"
+  },
+  "testMatch": {
+    "message": "Treffer"
+  },
+  "testNoMatch": {
+    "message": "Kein Treffer"
+  },
+  "patternInvalid": {
+    "message": "Ungültiger regulärer Ausdruck."
+  },
+  "restoreDefault": {
+    "message": "Standard wiederherstellen"
+  },
+  "examplesAccept": {
+    "message": "Erwartete Treffer"
+  },
+  "examplesReject": {
+    "message": "Erwartete Nicht-Treffer"
+  },
+  "popupOn": {
+    "message": "DOI-Suchweiterleitung ist aktiviert"
+  },
+  "popupOff": {
+    "message": "DOI-Suchweiterleitung ist pausiert"
+  },
+  "popupEngines": {
+    "message": "Enthaltene Suchmaschinen:"
+  },
+  "openOptions": {
+    "message": "Einstellungen"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "DOI 검색을 DOI 리졸버로 자동 리디렉션합니다."
+  },
+  "optionsTitle": {
+    "message": "DOI Direct 설정"
+  },
+  "secGeneral": {
+    "message": "일반"
+  },
+  "masterSwitch": {
+    "message": "DOI 검색 리디렉션 사용"
+  },
+  "masterSwitchHint": {
+    "message": "변경 사항은 즉시 적용됩니다. 사용하지 않으면 검색이 DOI 리졸버로 리디렉션되지 않습니다."
+  },
+  "secEngines": {
+    "message": "검색 엔진"
+  },
+  "secCustom": {
+    "message": "사용자 지정 검색 엔진"
+  },
+  "customHint": {
+    "message": "검색 엔진을 추가하면 해당 사이트에 대한 접근 권한이 요청됩니다."
+  },
+  "fieldName": {
+    "message": "표시 이름"
+  },
+  "fieldNamePlaceholder": {
+    "message": "예시"
+  },
+  "fieldHost": {
+    "message": "도메인"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "경로"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "검색 매개변수"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "추가"
+  },
+  "remove": {
+    "message": "삭제"
+  },
+  "invalidEngine": {
+    "message": "도메인과 검색 매개변수는 필수입니다."
+  },
+  "permissionDenied": {
+    "message": "사이트 접근 권한을 얻지 못했습니다."
+  },
+  "noCustom": {
+    "message": "사용자 지정 검색 엔진이 없습니다."
+  },
+  "secResolver": {
+    "message": "리졸버"
+  },
+  "resolverHint": {
+    "message": "DOI는 리졸버 기본 URL 뒤에 추가됩니다."
+  },
+  "resolverBase": {
+    "message": "리졸버 기본 URL"
+  },
+  "resolverInvalid": {
+    "message": "http(s) URL이어야 하며 쿼리 문자열이나 프래그먼트를 포함할 수 없습니다."
+  },
+  "secAdvanced": {
+    "message": "고급"
+  },
+  "patternLabel": {
+    "message": "DOI 일치 정규식"
+  },
+  "patternHint": {
+    "message": "검색 내용을 확인하는 데 사용하는 정규식입니다. 대소문자를 구분하지 않으며 앞의 “doi:”는 자동으로 제거됩니다."
+  },
+  "testLabel": {
+    "message": "테스트 입력"
+  },
+  "testInputPlaceholder": {
+    "message": "예시"
+  },
+  "testMatch": {
+    "message": "일치"
+  },
+  "testNoMatch": {
+    "message": "불일치"
+  },
+  "patternInvalid": {
+    "message": "유효하지 않은 정규식입니다."
+  },
+  "restoreDefault": {
+    "message": "기본값 복원"
+  },
+  "examplesAccept": {
+    "message": "일치 예상"
+  },
+  "examplesReject": {
+    "message": "불일치 예상"
+  },
+  "popupOn": {
+    "message": "DOI 검색 리디렉션이 켜져 있습니다"
+  },
+  "popupOff": {
+    "message": "DOI 검색 리디렉션이 일시 중지되었습니다"
+  },
+  "popupEngines": {
+    "message": "포함된 검색 엔진:"
+  },
+  "openOptions": {
+    "message": "설정"
+  }
+}

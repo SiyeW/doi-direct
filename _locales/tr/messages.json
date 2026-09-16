@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "DOI aramalarını otomatik olarak bir DOI çözümleyicisine yönlendirir."
+  },
+  "optionsTitle": {
+    "message": "DOI Direct ayarları"
+  },
+  "secGeneral": {
+    "message": "Genel"
+  },
+  "masterSwitch": {
+    "message": "DOI arama yönlendirmesini etkinleştir"
+  },
+  "masterSwitchHint": {
+    "message": "Değişiklikler anında uygulanır. Devre dışıyken aramalar DOI çözümleyicisine yönlendirilmez."
+  },
+  "secEngines": {
+    "message": "Arama motorları"
+  },
+  "secCustom": {
+    "message": "Özel arama motorları"
+  },
+  "customHint": {
+    "message": "Bir arama motoru eklendiğinde ilgili site için erişim izni istenir."
+  },
+  "fieldName": {
+    "message": "Etiket"
+  },
+  "fieldNamePlaceholder": {
+    "message": "örnek"
+  },
+  "fieldHost": {
+    "message": "Alan adı"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "Yol"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "Arama parametresi"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "Ekle"
+  },
+  "remove": {
+    "message": "Kaldır"
+  },
+  "invalidEngine": {
+    "message": "Alan adı ve arama parametresi zorunludur."
+  },
+  "permissionDenied": {
+    "message": "Site erişim izni alınamadı."
+  },
+  "noCustom": {
+    "message": "Özel arama motoru yok."
+  },
+  "secResolver": {
+    "message": "Çözümleyici"
+  },
+  "resolverHint": {
+    "message": "DOI, çözümleyicinin temel URL’sinin sonuna eklenir."
+  },
+  "resolverBase": {
+    "message": "Çözümleyici temel URL’si"
+  },
+  "resolverInvalid": {
+    "message": "URL http(s) kullanmalı ve sorgu dizesi veya parça içermemelidir."
+  },
+  "secAdvanced": {
+    "message": "Gelişmiş"
+  },
+  "patternLabel": {
+    "message": "DOI eşleştirme düzenli ifadesi"
+  },
+  "patternHint": {
+    "message": "Arama içeriğini eşleştirmek için kullanılan düzenli ifade. Büyük/küçük harf ayrımı yapılmaz ve baştaki “doi:” otomatik olarak kaldırılır."
+  },
+  "testLabel": {
+    "message": "Test girdisi"
+  },
+  "testInputPlaceholder": {
+    "message": "örnek"
+  },
+  "testMatch": {
+    "message": "Eşleşiyor"
+  },
+  "testNoMatch": {
+    "message": "Eşleşmiyor"
+  },
+  "patternInvalid": {
+    "message": "Geçersiz düzenli ifade."
+  },
+  "restoreDefault": {
+    "message": "Varsayılanı geri yükle"
+  },
+  "examplesAccept": {
+    "message": "Beklenen eşleşmeler"
+  },
+  "examplesReject": {
+    "message": "Beklenen eşleşmeme durumları"
+  },
+  "popupOn": {
+    "message": "DOI arama yönlendirmesi etkin"
+  },
+  "popupOff": {
+    "message": "DOI arama yönlendirmesi duraklatıldı"
+  },
+  "popupEngines": {
+    "message": "Dahil edilen arama motorları:"
+  },
+  "openOptions": {
+    "message": "Ayarlar"
+  }
+}

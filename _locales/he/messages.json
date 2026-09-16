@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "הפניה אוטומטית של חיפושי DOI לרזולבר DOI."
+  },
+  "optionsTitle": {
+    "message": "הגדרות DOI Direct"
+  },
+  "secGeneral": {
+    "message": "כללי"
+  },
+  "masterSwitch": {
+    "message": "הפעלת הפניה של חיפושי DOI"
+  },
+  "masterSwitchHint": {
+    "message": "השינויים נכנסים לתוקף מיד. כשהאפשרות כבויה, החיפושים אינם מופנים לרזולבר DOI."
+  },
+  "secEngines": {
+    "message": "מנועי חיפוש"
+  },
+  "secCustom": {
+    "message": "מנועי חיפוש מותאמים"
+  },
+  "customHint": {
+    "message": "בעת הוספת מנוע חיפוש מתבקשת הרשאת גישה לאתר המתאים."
+  },
+  "fieldName": {
+    "message": "תווית"
+  },
+  "fieldNamePlaceholder": {
+    "message": "דוגמה"
+  },
+  "fieldHost": {
+    "message": "דומיין"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "נתיב"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "פרמטר חיפוש"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "הוספה"
+  },
+  "remove": {
+    "message": "הסרה"
+  },
+  "invalidEngine": {
+    "message": "דומיין ופרמטר חיפוש הם שדות חובה."
+  },
+  "permissionDenied": {
+    "message": "לא ניתן לקבל הרשאת גישה לאתר."
+  },
+  "noCustom": {
+    "message": "אין מנועי חיפוש מותאמים."
+  },
+  "secResolver": {
+    "message": "רזולבר"
+  },
+  "resolverHint": {
+    "message": "ה-DOI נוסף לסוף כתובת הבסיס של הרזולבר."
+  },
+  "resolverBase": {
+    "message": "כתובת בסיס של הרזולבר"
+  },
+  "resolverInvalid": {
+    "message": "הכתובת חייבת להשתמש ב-http(s) ואינה יכולה לכלול מחרוזת שאילתה או מקטע."
+  },
+  "secAdvanced": {
+    "message": "מתקדם"
+  },
+  "patternLabel": {
+    "message": "ביטוי רגולרי להתאמת DOI"
+  },
+  "patternHint": {
+    "message": "ביטוי רגולרי המשמש להתאמת תוכן החיפוש. ההתאמה אינה תלוית רישיות, והקידומת “doi:” בתחילת הטקסט מוסרת אוטומטית."
+  },
+  "testLabel": {
+    "message": "קלט לבדיקה"
+  },
+  "testInputPlaceholder": {
+    "message": "דוגמה"
+  },
+  "testMatch": {
+    "message": "מתאים"
+  },
+  "testNoMatch": {
+    "message": "לא מתאים"
+  },
+  "patternInvalid": {
+    "message": "הביטוי הרגולרי אינו תקין."
+  },
+  "restoreDefault": {
+    "message": "שחזור ברירת המחדל"
+  },
+  "examplesAccept": {
+    "message": "התאמות צפויות"
+  },
+  "examplesReject": {
+    "message": "אי-התאמות צפויות"
+  },
+  "popupOn": {
+    "message": "הפניית חיפושי DOI פעילה"
+  },
+  "popupOff": {
+    "message": "הפניית חיפושי DOI מושהית"
+  },
+  "popupEngines": {
+    "message": "מנועי חיפוש כלולים:"
+  },
+  "openOptions": {
+    "message": "הגדרות"
+  }
+}

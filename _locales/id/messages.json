@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "Mengalihkan pencarian DOI secara otomatis ke resolver DOI."
+  },
+  "optionsTitle": {
+    "message": "Setelan DOI Direct"
+  },
+  "secGeneral": {
+    "message": "Umum"
+  },
+  "masterSwitch": {
+    "message": "Aktifkan pengalihan pencarian DOI"
+  },
+  "masterSwitchHint": {
+    "message": "Perubahan langsung berlaku. Saat dinonaktifkan, pencarian tidak dialihkan ke resolver DOI."
+  },
+  "secEngines": {
+    "message": "Mesin telusur"
+  },
+  "secCustom": {
+    "message": "Mesin telusur khusus"
+  },
+  "customHint": {
+    "message": "Saat mesin telusur ditambahkan, akses ke situs terkait akan diminta."
+  },
+  "fieldName": {
+    "message": "Label"
+  },
+  "fieldNamePlaceholder": {
+    "message": "contoh"
+  },
+  "fieldHost": {
+    "message": "Domain"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "Jalur"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "Parameter pencarian"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "Tambahkan"
+  },
+  "remove": {
+    "message": "Hapus"
+  },
+  "invalidEngine": {
+    "message": "Domain dan parameter pencarian wajib diisi."
+  },
+  "permissionDenied": {
+    "message": "Akses ke situs tidak dapat diperoleh."
+  },
+  "noCustom": {
+    "message": "Tidak ada mesin telusur khusus."
+  },
+  "secResolver": {
+    "message": "Resolver"
+  },
+  "resolverHint": {
+    "message": "DOI ditambahkan ke bagian akhir URL dasar resolver."
+  },
+  "resolverBase": {
+    "message": "URL dasar resolver"
+  },
+  "resolverInvalid": {
+    "message": "URL harus menggunakan http(s) dan tidak boleh memuat string kueri atau fragmen."
+  },
+  "secAdvanced": {
+    "message": "Lanjutan"
+  },
+  "patternLabel": {
+    "message": "Regex pencocokan DOI"
+  },
+  "patternHint": {
+    "message": "Ekspresi reguler untuk mencocokkan isi pencarian. Pencocokan tidak membedakan huruf besar-kecil, dan awalan “doi:” akan dihapus otomatis."
+  },
+  "testLabel": {
+    "message": "Input uji"
+  },
+  "testInputPlaceholder": {
+    "message": "contoh"
+  },
+  "testMatch": {
+    "message": "Cocok"
+  },
+  "testNoMatch": {
+    "message": "Tidak cocok"
+  },
+  "patternInvalid": {
+    "message": "Ekspresi reguler tidak valid."
+  },
+  "restoreDefault": {
+    "message": "Pulihkan default"
+  },
+  "examplesAccept": {
+    "message": "Kecocokan yang diharapkan"
+  },
+  "examplesReject": {
+    "message": "Ketidakcocokan yang diharapkan"
+  },
+  "popupOn": {
+    "message": "Pengalihan pencarian DOI aktif"
+  },
+  "popupOff": {
+    "message": "Pengalihan pencarian DOI dijeda"
+  },
+  "popupEngines": {
+    "message": "Mesin telusur yang disertakan:"
+  },
+  "openOptions": {
+    "message": "Setelan"
+  }
+}

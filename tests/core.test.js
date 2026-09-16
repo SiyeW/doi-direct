@@ -165,8 +165,14 @@ ok(!(manifest.host_permissions || []).some(p => p === '<all_urls>' || p === '*:/
 /* These checks exist so that hand-editing a translation cannot silently break
  * the extension: a stray comma, a key that only exists in one language, or a
  * message referenced from the UI but missing from the catalogue all fail here. */
-const LOCALES = ['en', 'zh_CN'];
+const LOCALE_ROOT = path.join(__dirname, '..', '_locales');
+/* Discovered rather than listed, so adding a language is a matter of copying a
+ * folder and nothing else. */
+const LOCALES = fs.readdirSync(LOCALE_ROOT)
+  .filter(function (name) { return fs.statSync(path.join(LOCALE_ROOT, name)).isDirectory(); })
+  .sort();
 const catalogues = {};
+ok(LOCALES.indexOf('en') !== -1, 'an English catalogue exists');
 
 LOCALES.forEach(function (loc) {
   const file = path.join(__dirname, '..', '_locales', loc, 'messages.json');

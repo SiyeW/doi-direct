@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "Automatycznie przekierowuje wyszukiwania DOI do resolvera DOI."
+  },
+  "optionsTitle": {
+    "message": "Ustawienia DOI Direct"
+  },
+  "secGeneral": {
+    "message": "Ogólne"
+  },
+  "masterSwitch": {
+    "message": "Włącz przekierowanie wyszukiwań DOI"
+  },
+  "masterSwitchHint": {
+    "message": "Zmiany są stosowane od razu. Po wyłączeniu wyszukiwania nie są przekierowywane do resolvera DOI."
+  },
+  "secEngines": {
+    "message": "Wyszukiwarki"
+  },
+  "secCustom": {
+    "message": "Niestandardowe wyszukiwarki"
+  },
+  "customHint": {
+    "message": "Przy dodawaniu wyszukiwarki wymagany jest dostęp do odpowiedniej witryny."
+  },
+  "fieldName": {
+    "message": "Etykieta"
+  },
+  "fieldNamePlaceholder": {
+    "message": "przykład"
+  },
+  "fieldHost": {
+    "message": "Domena"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "Ścieżka"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "Parametr wyszukiwania"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "Dodaj"
+  },
+  "remove": {
+    "message": "Usuń"
+  },
+  "invalidEngine": {
+    "message": "Domena i parametr wyszukiwania są wymagane."
+  },
+  "permissionDenied": {
+    "message": "Nie udało się uzyskać dostępu do witryny."
+  },
+  "noCustom": {
+    "message": "Brak niestandardowych wyszukiwarek."
+  },
+  "secResolver": {
+    "message": "Resolver"
+  },
+  "resolverHint": {
+    "message": "DOI jest dopisywany na końcu bazowego adresu URL resolvera."
+  },
+  "resolverBase": {
+    "message": "Bazowy adres URL resolvera"
+  },
+  "resolverInvalid": {
+    "message": "Adres URL musi używać http(s) i nie może zawierać ciągu zapytania ani fragmentu."
+  },
+  "secAdvanced": {
+    "message": "Zaawansowane"
+  },
+  "patternLabel": {
+    "message": "Wyrażenie regularne dopasowania DOI"
+  },
+  "patternHint": {
+    "message": "Wyrażenie regularne używane do dopasowania treści wyszukiwania. Wielkość liter nie ma znaczenia, a początkowe „doi:” jest usuwane automatycznie."
+  },
+  "testLabel": {
+    "message": "Dane testowe"
+  },
+  "testInputPlaceholder": {
+    "message": "przykład"
+  },
+  "testMatch": {
+    "message": "Pasuje"
+  },
+  "testNoMatch": {
+    "message": "Nie pasuje"
+  },
+  "patternInvalid": {
+    "message": "Nieprawidłowe wyrażenie regularne."
+  },
+  "restoreDefault": {
+    "message": "Przywróć domyślne"
+  },
+  "examplesAccept": {
+    "message": "Oczekiwane dopasowania"
+  },
+  "examplesReject": {
+    "message": "Oczekiwane braki dopasowania"
+  },
+  "popupOn": {
+    "message": "Przekierowanie wyszukiwań DOI jest włączone"
+  },
+  "popupOff": {
+    "message": "Przekierowanie wyszukiwań DOI jest wstrzymane"
+  },
+  "popupEngines": {
+    "message": "Uwzględnione wyszukiwarki:"
+  },
+  "openOptions": {
+    "message": "Ustawienia"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "Автоматически перенаправляет поиск по DOI в DOI-резолвер."
+  },
+  "optionsTitle": {
+    "message": "Настройки DOI Direct"
+  },
+  "secGeneral": {
+    "message": "Общие"
+  },
+  "masterSwitch": {
+    "message": "Включить перенаправление поиска по DOI"
+  },
+  "masterSwitchHint": {
+    "message": "Изменения применяются сразу. Если функция отключена, поисковые запросы не перенаправляются в DOI-резолвер."
+  },
+  "secEngines": {
+    "message": "Поисковые системы"
+  },
+  "secCustom": {
+    "message": "Пользовательские поисковые системы"
+  },
+  "customHint": {
+    "message": "При добавлении поисковой системы запрашивается доступ к соответствующему сайту."
+  },
+  "fieldName": {
+    "message": "Метка"
+  },
+  "fieldNamePlaceholder": {
+    "message": "пример"
+  },
+  "fieldHost": {
+    "message": "Домен"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "Путь"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "Параметр поиска"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "Добавить"
+  },
+  "remove": {
+    "message": "Удалить"
+  },
+  "invalidEngine": {
+    "message": "Домен и параметр поиска обязательны."
+  },
+  "permissionDenied": {
+    "message": "Не удалось получить доступ к сайту."
+  },
+  "noCustom": {
+    "message": "Пользовательских поисковых систем нет."
+  },
+  "secResolver": {
+    "message": "Резолвер"
+  },
+  "resolverHint": {
+    "message": "DOI добавляется в конец базового URL резолвера."
+  },
+  "resolverBase": {
+    "message": "Базовый URL резолвера"
+  },
+  "resolverInvalid": {
+    "message": "URL должен использовать http(s) и не должен содержать строку запроса или фрагмент."
+  },
+  "secAdvanced": {
+    "message": "Расширенные"
+  },
+  "patternLabel": {
+    "message": "Регулярное выражение для DOI"
+  },
+  "patternHint": {
+    "message": "Регулярное выражение для сопоставления с содержимым поиска. Регистр не учитывается, а префикс «doi:» в начале удаляется автоматически."
+  },
+  "testLabel": {
+    "message": "Тестовая строка"
+  },
+  "testInputPlaceholder": {
+    "message": "пример"
+  },
+  "testMatch": {
+    "message": "Совпадает"
+  },
+  "testNoMatch": {
+    "message": "Не совпадает"
+  },
+  "patternInvalid": {
+    "message": "Недопустимое регулярное выражение."
+  },
+  "restoreDefault": {
+    "message": "Восстановить значение по умолчанию"
+  },
+  "examplesAccept": {
+    "message": "Ожидаемые совпадения"
+  },
+  "examplesReject": {
+    "message": "Ожидаемые несовпадения"
+  },
+  "popupOn": {
+    "message": "Перенаправление поиска по DOI включено"
+  },
+  "popupOff": {
+    "message": "Перенаправление поиска по DOI приостановлено"
+  },
+  "popupEngines": {
+    "message": "Включённые поисковые системы:"
+  },
+  "openOptions": {
+    "message": "Настройки"
+  }
+}

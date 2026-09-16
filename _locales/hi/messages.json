@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "DOI खोजों को अपने-आप DOI रिज़ॉल्वर पर रीडायरेक्ट करता है।"
+  },
+  "optionsTitle": {
+    "message": "DOI Direct सेटिंग"
+  },
+  "secGeneral": {
+    "message": "सामान्य"
+  },
+  "masterSwitch": {
+    "message": "DOI खोज रीडायरेक्शन चालू करें"
+  },
+  "masterSwitchHint": {
+    "message": "बदलाव तुरंत लागू होते हैं। बंद होने पर खोजें DOI रिज़ॉल्वर पर रीडायरेक्ट नहीं होतीं।"
+  },
+  "secEngines": {
+    "message": "सर्च इंजन"
+  },
+  "secCustom": {
+    "message": "कस्टम सर्च इंजन"
+  },
+  "customHint": {
+    "message": "सर्च इंजन जोड़ने पर संबंधित साइट की एक्सेस अनुमति मांगी जाती है।"
+  },
+  "fieldName": {
+    "message": "लेबल"
+  },
+  "fieldNamePlaceholder": {
+    "message": "उदाहरण"
+  },
+  "fieldHost": {
+    "message": "डोमेन"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "पाथ"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "सर्च पैरामीटर"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "जोड़ें"
+  },
+  "remove": {
+    "message": "हटाएँ"
+  },
+  "invalidEngine": {
+    "message": "डोमेन और सर्च पैरामीटर आवश्यक हैं।"
+  },
+  "permissionDenied": {
+    "message": "साइट की एक्सेस अनुमति नहीं मिल सकी।"
+  },
+  "noCustom": {
+    "message": "कोई कस्टम सर्च इंजन नहीं है।"
+  },
+  "secResolver": {
+    "message": "रिज़ॉल्वर"
+  },
+  "resolverHint": {
+    "message": "DOI को रिज़ॉल्वर के बेस URL के अंत में जोड़ा जाता है।"
+  },
+  "resolverBase": {
+    "message": "रिज़ॉल्वर बेस URL"
+  },
+  "resolverInvalid": {
+    "message": "URL http(s) का होना चाहिए और उसमें query string या fragment नहीं हो सकता।"
+  },
+  "secAdvanced": {
+    "message": "उन्नत"
+  },
+  "patternLabel": {
+    "message": "DOI मैचिंग रेगुलर एक्सप्रेशन"
+  },
+  "patternHint": {
+    "message": "खोज सामग्री को मिलाने के लिए इस्तेमाल होने वाला रेगुलर एक्सप्रेशन। मिलान में बड़े-छोटे अक्षरों का अंतर नहीं माना जाता और शुरुआत का “doi:” अपने-आप हटा दिया जाता है।"
+  },
+  "testLabel": {
+    "message": "टेस्ट इनपुट"
+  },
+  "testInputPlaceholder": {
+    "message": "उदाहरण"
+  },
+  "testMatch": {
+    "message": "मेल खाता है"
+  },
+  "testNoMatch": {
+    "message": "मेल नहीं खाता"
+  },
+  "patternInvalid": {
+    "message": "रेगुलर एक्सप्रेशन मान्य नहीं है।"
+  },
+  "restoreDefault": {
+    "message": "डिफ़ॉल्ट बहाल करें"
+  },
+  "examplesAccept": {
+    "message": "अपेक्षित मिलान"
+  },
+  "examplesReject": {
+    "message": "अपेक्षित गैर-मिलान"
+  },
+  "popupOn": {
+    "message": "DOI खोज रीडायरेक्शन चालू है"
+  },
+  "popupOff": {
+    "message": "DOI खोज रीडायरेक्शन रुका हुआ है"
+  },
+  "popupEngines": {
+    "message": "शामिल सर्च इंजन:"
+  },
+  "openOptions": {
+    "message": "सेटिंग"
+  }
+}

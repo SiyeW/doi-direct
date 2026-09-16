@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "Автоматично перенаправляє пошук за DOI до DOI-резолвера."
+  },
+  "optionsTitle": {
+    "message": "Налаштування DOI Direct"
+  },
+  "secGeneral": {
+    "message": "Загальні"
+  },
+  "masterSwitch": {
+    "message": "Увімкнути перенаправлення пошуку за DOI"
+  },
+  "masterSwitchHint": {
+    "message": "Зміни застосовуються одразу. Якщо функцію вимкнено, пошукові запити не перенаправляються до DOI-резолвера."
+  },
+  "secEngines": {
+    "message": "Пошукові системи"
+  },
+  "secCustom": {
+    "message": "Власні пошукові системи"
+  },
+  "customHint": {
+    "message": "Під час додавання пошукової системи запитується доступ до відповідного сайту."
+  },
+  "fieldName": {
+    "message": "Позначка"
+  },
+  "fieldNamePlaceholder": {
+    "message": "приклад"
+  },
+  "fieldHost": {
+    "message": "Домен"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "Шлях"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "Параметр пошуку"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "Додати"
+  },
+  "remove": {
+    "message": "Видалити"
+  },
+  "invalidEngine": {
+    "message": "Домен і параметр пошуку є обов’язковими."
+  },
+  "permissionDenied": {
+    "message": "Не вдалося отримати доступ до сайту."
+  },
+  "noCustom": {
+    "message": "Власних пошукових систем немає."
+  },
+  "secResolver": {
+    "message": "Резолвер"
+  },
+  "resolverHint": {
+    "message": "DOI додається в кінець базової URL-адреси резолвера."
+  },
+  "resolverBase": {
+    "message": "Базова URL-адреса резолвера"
+  },
+  "resolverInvalid": {
+    "message": "URL-адреса має використовувати http(s) і не може містити рядок запиту або фрагмент."
+  },
+  "secAdvanced": {
+    "message": "Розширені"
+  },
+  "patternLabel": {
+    "message": "Регулярний вираз для DOI"
+  },
+  "patternHint": {
+    "message": "Регулярний вираз для зіставлення з вмістом пошуку. Регістр не враховується, а початковий префікс «doi:» видаляється автоматично."
+  },
+  "testLabel": {
+    "message": "Тестове введення"
+  },
+  "testInputPlaceholder": {
+    "message": "приклад"
+  },
+  "testMatch": {
+    "message": "Збігається"
+  },
+  "testNoMatch": {
+    "message": "Не збігається"
+  },
+  "patternInvalid": {
+    "message": "Некоректний регулярний вираз."
+  },
+  "restoreDefault": {
+    "message": "Відновити типове значення"
+  },
+  "examplesAccept": {
+    "message": "Очікувані збіги"
+  },
+  "examplesReject": {
+    "message": "Очікувані незбіги"
+  },
+  "popupOn": {
+    "message": "Перенаправлення пошуку за DOI увімкнено"
+  },
+  "popupOff": {
+    "message": "Перенаправлення пошуку за DOI призупинено"
+  },
+  "popupEngines": {
+    "message": "Включені пошукові системи:"
+  },
+  "openOptions": {
+    "message": "Налаштування"
+  }
+}

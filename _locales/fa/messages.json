@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "جست‌وجوهای DOI را به‌طور خودکار به حل‌گر DOI هدایت می‌کند."
+  },
+  "optionsTitle": {
+    "message": "تنظیمات DOI Direct"
+  },
+  "secGeneral": {
+    "message": "عمومی"
+  },
+  "masterSwitch": {
+    "message": "فعال‌سازی هدایت جست‌وجوی DOI"
+  },
+  "masterSwitchHint": {
+    "message": "تغییرات بلافاصله اعمال می‌شوند. در حالت غیرفعال، جست‌وجوها به حل‌گر DOI هدایت نمی‌شوند."
+  },
+  "secEngines": {
+    "message": "موتورهای جست‌وجو"
+  },
+  "secCustom": {
+    "message": "موتورهای جست‌وجوی سفارشی"
+  },
+  "customHint": {
+    "message": "هنگام افزودن موتور جست‌وجو، دسترسی به وب‌سایت مربوط درخواست می‌شود."
+  },
+  "fieldName": {
+    "message": "برچسب"
+  },
+  "fieldNamePlaceholder": {
+    "message": "نمونه"
+  },
+  "fieldHost": {
+    "message": "دامنه"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "مسیر"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "پارامتر جست‌وجو"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "افزودن"
+  },
+  "remove": {
+    "message": "حذف"
+  },
+  "invalidEngine": {
+    "message": "دامنه و پارامتر جست‌وجو الزامی هستند."
+  },
+  "permissionDenied": {
+    "message": "دسترسی به وب‌سایت دریافت نشد."
+  },
+  "noCustom": {
+    "message": "موتور جست‌وجوی سفارشی وجود ندارد."
+  },
+  "secResolver": {
+    "message": "حل‌گر"
+  },
+  "resolverHint": {
+    "message": "DOI به انتهای نشانی پایهٔ حل‌گر افزوده می‌شود."
+  },
+  "resolverBase": {
+    "message": "نشانی پایهٔ حل‌گر"
+  },
+  "resolverInvalid": {
+    "message": "نشانی باید از http(s) استفاده کند و شامل رشتهٔ پرس‌وجو یا fragment نباشد."
+  },
+  "secAdvanced": {
+    "message": "پیشرفته"
+  },
+  "patternLabel": {
+    "message": "عبارت منظم تطبیق DOI"
+  },
+  "patternHint": {
+    "message": "عبارت منظم برای تطبیق محتوای جست‌وجو. بزرگی و کوچکی حروف نادیده گرفته می‌شود و «doi:» ابتدای متن به‌طور خودکار حذف می‌شود."
+  },
+  "testLabel": {
+    "message": "ورودی آزمایشی"
+  },
+  "testInputPlaceholder": {
+    "message": "نمونه"
+  },
+  "testMatch": {
+    "message": "مطابق"
+  },
+  "testNoMatch": {
+    "message": "نامطابق"
+  },
+  "patternInvalid": {
+    "message": "عبارت منظم معتبر نیست."
+  },
+  "restoreDefault": {
+    "message": "بازگردانی پیش‌فرض"
+  },
+  "examplesAccept": {
+    "message": "تطبیق‌های مورد انتظار"
+  },
+  "examplesReject": {
+    "message": "عدم تطبیق‌های مورد انتظار"
+  },
+  "popupOn": {
+    "message": "هدایت جست‌وجوی DOI فعال است"
+  },
+  "popupOff": {
+    "message": "هدایت جست‌وجوی DOI متوقف شده است"
+  },
+  "popupEngines": {
+    "message": "موتورهای جست‌وجوی شامل‌شده:"
+  },
+  "openOptions": {
+    "message": "تنظیمات"
+  }
+}

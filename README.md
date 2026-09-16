@@ -71,19 +71,25 @@ engine list.
 
 ## Translating
 
-UI strings live in `_locales/<locale>/messages.json`. English is the source locale
-and carries a `description` on every key; `zh_CN` is a full translation.
+Twenty-three catalogues live in `_locales/`. English is the source locale and carries
+a `description` on every key.
 
-- **Editing an existing translation**: change the `message` values only, never the
-  keys.
-- **Adding a language**: copy `_locales/en` to `_locales/<code>` (for example `de`
-  or `pt_BR`), translate the `message` values, and leave everything else alone.
-  Chrome picks the catalogue matching the browser language and falls back to
-  English.
+- **Editing a translation**: change the `message` values only, never the keys.
+- **Adding a language**: copy `_locales/en` to `_locales/<code>` (for example `sv`),
+  translate the `message` values, and leave everything else alone. Chrome picks
+  the catalogue matching the browser language and falls back to English.
+- **Wording**: idiom over literalism. Technical terms - DOI, http(s), URL, query
+  string, fragment - follow normal usage in the target language, and placeholders
+  that are real URL syntax (`google.com`, `/search`, `q`) stay as they are.
 - **After any edit**, run the tests. A malformed `messages.json` stops the
   extension from loading at all, and the suite catches that as well as a key that
-  exists in one language only, an empty message, or a message the UI asks for that
-  the catalogue does not have.
+  exists in one language only, an empty message, or a message that nothing uses.
+
+No language needs CSS of its own. Every page takes its `lang` from
+`chrome.i18n.getUILanguage()` and its `dir` from Chrome's `@@bidi_dir`, so the browser
+picks a font for the writing system by itself - including the right Chinese,
+Japanese or Korean form of a shared Han character - and a right-to-left language
+lays itself out with no extra rules. There is no language-to-font table to keep.
 
 ## Permissions
 

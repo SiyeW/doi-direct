@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "Stuurt DOI-zoekopdrachten automatisch door naar een DOI-resolver."
+  },
+  "optionsTitle": {
+    "message": "Instellingen voor DOI Direct"
+  },
+  "secGeneral": {
+    "message": "Algemeen"
+  },
+  "masterSwitch": {
+    "message": "DOI-zoekopdrachten doorsturen"
+  },
+  "masterSwitchHint": {
+    "message": "Wijzigingen gaan direct in. Wanneer dit is uitgeschakeld, worden zoekopdrachten niet doorgestuurd naar een DOI-resolver."
+  },
+  "secEngines": {
+    "message": "Zoekmachines"
+  },
+  "secCustom": {
+    "message": "Aangepaste zoekmachines"
+  },
+  "customHint": {
+    "message": "Bij het toevoegen van een zoekmachine wordt toegang tot de bijbehorende website gevraagd."
+  },
+  "fieldName": {
+    "message": "Label"
+  },
+  "fieldNamePlaceholder": {
+    "message": "voorbeeld"
+  },
+  "fieldHost": {
+    "message": "Domein"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "Pad"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "Zoekparameter"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "Toevoegen"
+  },
+  "remove": {
+    "message": "Verwijderen"
+  },
+  "invalidEngine": {
+    "message": "Domein en zoekparameter zijn verplicht."
+  },
+  "permissionDenied": {
+    "message": "Toegang tot de website kon niet worden verkregen."
+  },
+  "noCustom": {
+    "message": "Geen aangepaste zoekmachines."
+  },
+  "secResolver": {
+    "message": "Resolver"
+  },
+  "resolverHint": {
+    "message": "De DOI wordt achter de basis-URL van de resolver geplaatst."
+  },
+  "resolverBase": {
+    "message": "Basis-URL van resolver"
+  },
+  "resolverInvalid": {
+    "message": "De URL moet http(s) gebruiken en mag geen querystring of fragment bevatten."
+  },
+  "secAdvanced": {
+    "message": "Geavanceerd"
+  },
+  "patternLabel": {
+    "message": "Reguliere expressie voor DOI-matching"
+  },
+  "patternHint": {
+    "message": "Reguliere expressie voor het vergelijken van de zoekinhoud. Hoofdletters en kleine letters worden niet onderscheiden en een voorafgaand ‘doi:’ wordt automatisch verwijderd."
+  },
+  "testLabel": {
+    "message": "Testinvoer"
+  },
+  "testInputPlaceholder": {
+    "message": "voorbeeld"
+  },
+  "testMatch": {
+    "message": "Komt overeen"
+  },
+  "testNoMatch": {
+    "message": "Komt niet overeen"
+  },
+  "patternInvalid": {
+    "message": "Ongeldige reguliere expressie."
+  },
+  "restoreDefault": {
+    "message": "Standaard herstellen"
+  },
+  "examplesAccept": {
+    "message": "Verwachte overeenkomsten"
+  },
+  "examplesReject": {
+    "message": "Verwachte niet-overeenkomsten"
+  },
+  "popupOn": {
+    "message": "DOI-zoekopdrachten worden doorgestuurd"
+  },
+  "popupOff": {
+    "message": "Doorsturen van DOI-zoekopdrachten is gepauzeerd"
+  },
+  "popupEngines": {
+    "message": "Opgenomen zoekmachines:"
+  },
+  "openOptions": {
+    "message": "Instellingen"
+  }
+}

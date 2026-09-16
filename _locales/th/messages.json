@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "เปลี่ยนเส้นทางการค้นหา DOI ไปยัง DOI resolver โดยอัตโนมัติ"
+  },
+  "optionsTitle": {
+    "message": "การตั้งค่า DOI Direct"
+  },
+  "secGeneral": {
+    "message": "ทั่วไป"
+  },
+  "masterSwitch": {
+    "message": "เปิดการเปลี่ยนเส้นทางการค้นหา DOI"
+  },
+  "masterSwitchHint": {
+    "message": "การเปลี่ยนแปลงมีผลทันที เมื่อปิดใช้งาน การค้นหาจะไม่ถูกเปลี่ยนเส้นทางไปยัง DOI resolver"
+  },
+  "secEngines": {
+    "message": "เครื่องมือค้นหา"
+  },
+  "secCustom": {
+    "message": "เครื่องมือค้นหาแบบกำหนดเอง"
+  },
+  "customHint": {
+    "message": "เมื่อเพิ่มเครื่องมือค้นหา ระบบจะขอสิทธิ์เข้าถึงเว็บไซต์ที่เกี่ยวข้อง"
+  },
+  "fieldName": {
+    "message": "ป้ายกำกับ"
+  },
+  "fieldNamePlaceholder": {
+    "message": "ตัวอย่าง"
+  },
+  "fieldHost": {
+    "message": "โดเมน"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "พาธ"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "พารามิเตอร์การค้นหา"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "เพิ่ม"
+  },
+  "remove": {
+    "message": "ลบ"
+  },
+  "invalidEngine": {
+    "message": "ต้องระบุโดเมนและพารามิเตอร์การค้นหา"
+  },
+  "permissionDenied": {
+    "message": "ไม่สามารถรับสิทธิ์เข้าถึงเว็บไซต์ได้"
+  },
+  "noCustom": {
+    "message": "ไม่มีเครื่องมือค้นหาแบบกำหนดเอง"
+  },
+  "secResolver": {
+    "message": "DOI resolver"
+  },
+  "resolverHint": {
+    "message": "DOI จะถูกต่อท้าย URL ฐานของ resolver"
+  },
+  "resolverBase": {
+    "message": "URL ฐานของ resolver"
+  },
+  "resolverInvalid": {
+    "message": "URL ต้องใช้ http(s) และต้องไม่มี query string หรือ fragment"
+  },
+  "secAdvanced": {
+    "message": "ขั้นสูง"
+  },
+  "patternLabel": {
+    "message": "Regex สำหรับจับคู่ DOI"
+  },
+  "patternHint": {
+    "message": "นิพจน์ทั่วไปที่ใช้จับคู่เนื้อหาการค้นหา โดยไม่แยกตัวพิมพ์ใหญ่-เล็ก และจะตัด “doi:” ที่อยู่ต้นข้อความออกโดยอัตโนมัติ"
+  },
+  "testLabel": {
+    "message": "ข้อมูลทดสอบ"
+  },
+  "testInputPlaceholder": {
+    "message": "ตัวอย่าง"
+  },
+  "testMatch": {
+    "message": "ตรงกัน"
+  },
+  "testNoMatch": {
+    "message": "ไม่ตรงกัน"
+  },
+  "patternInvalid": {
+    "message": "นิพจน์ทั่วไปไม่ถูกต้อง"
+  },
+  "restoreDefault": {
+    "message": "คืนค่าเริ่มต้น"
+  },
+  "examplesAccept": {
+    "message": "ตัวอย่างที่คาดว่าจะตรงกัน"
+  },
+  "examplesReject": {
+    "message": "ตัวอย่างที่คาดว่าจะไม่ตรงกัน"
+  },
+  "popupOn": {
+    "message": "การเปลี่ยนเส้นทางการค้นหา DOI เปิดอยู่"
+  },
+  "popupOff": {
+    "message": "การเปลี่ยนเส้นทางการค้นหา DOI หยุดชั่วคราว"
+  },
+  "popupEngines": {
+    "message": "เครื่องมือค้นหาที่รวมไว้:"
+  },
+  "openOptions": {
+    "message": "การตั้งค่า"
+  }
+}

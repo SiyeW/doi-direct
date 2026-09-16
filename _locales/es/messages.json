@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "Redirige automáticamente las búsquedas de DOI a un resolutor DOI."
+  },
+  "optionsTitle": {
+    "message": "Configuración de DOI Direct"
+  },
+  "secGeneral": {
+    "message": "General"
+  },
+  "masterSwitch": {
+    "message": "Activar la redirección de búsquedas de DOI"
+  },
+  "masterSwitchHint": {
+    "message": "Los cambios se aplican de inmediato. Al desactivarla, las búsquedas dejan de redirigirse a un resolutor DOI."
+  },
+  "secEngines": {
+    "message": "Motores de búsqueda"
+  },
+  "secCustom": {
+    "message": "Motores de búsqueda personalizados"
+  },
+  "customHint": {
+    "message": "Al añadir un motor de búsqueda se solicita acceso al sitio correspondiente."
+  },
+  "fieldName": {
+    "message": "Etiqueta"
+  },
+  "fieldNamePlaceholder": {
+    "message": "ejemplo"
+  },
+  "fieldHost": {
+    "message": "Dominio"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "Ruta"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "Parámetro de búsqueda"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "Añadir"
+  },
+  "remove": {
+    "message": "Eliminar"
+  },
+  "invalidEngine": {
+    "message": "El dominio y el parámetro de búsqueda son obligatorios."
+  },
+  "permissionDenied": {
+    "message": "No se pudo obtener acceso al sitio."
+  },
+  "noCustom": {
+    "message": "No hay motores de búsqueda personalizados."
+  },
+  "secResolver": {
+    "message": "Resolutor"
+  },
+  "resolverHint": {
+    "message": "El DOI se añade al final de la URL base del resolutor."
+  },
+  "resolverBase": {
+    "message": "URL base del resolutor"
+  },
+  "resolverInvalid": {
+    "message": "La URL debe usar http(s) y no puede contener una cadena de consulta ni un fragmento."
+  },
+  "secAdvanced": {
+    "message": "Avanzado"
+  },
+  "patternLabel": {
+    "message": "Expresión regular para DOI"
+  },
+  "patternHint": {
+    "message": "Expresión regular utilizada para comprobar el contenido de la búsqueda. No distingue entre mayúsculas y minúsculas y elimina automáticamente un «doi:» inicial."
+  },
+  "testLabel": {
+    "message": "Entrada de prueba"
+  },
+  "testInputPlaceholder": {
+    "message": "ejemplo"
+  },
+  "testMatch": {
+    "message": "Coincide"
+  },
+  "testNoMatch": {
+    "message": "No coincide"
+  },
+  "patternInvalid": {
+    "message": "La expresión regular no es válida."
+  },
+  "restoreDefault": {
+    "message": "Restaurar valor predeterminado"
+  },
+  "examplesAccept": {
+    "message": "Coincidencias esperadas"
+  },
+  "examplesReject": {
+    "message": "No coincidencias esperadas"
+  },
+  "popupOn": {
+    "message": "La redirección de búsquedas de DOI está activada"
+  },
+  "popupOff": {
+    "message": "La redirección de búsquedas de DOI está en pausa"
+  },
+  "popupEngines": {
+    "message": "Motores de búsqueda incluidos:"
+  },
+  "openOptions": {
+    "message": "Configuración"
+  }
+}

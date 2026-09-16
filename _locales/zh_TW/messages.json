@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "自動將 DOI 搜尋重新導向至 DOI 解析器。"
+  },
+  "optionsTitle": {
+    "message": "DOI Direct 設定"
+  },
+  "secGeneral": {
+    "message": "一般"
+  },
+  "masterSwitch": {
+    "message": "啟用 DOI 搜尋重新導向"
+  },
+  "masterSwitchHint": {
+    "message": "設定會立即生效；停用後，搜尋不會重新導向至 DOI 解析器。"
+  },
+  "secEngines": {
+    "message": "搜尋引擎"
+  },
+  "secCustom": {
+    "message": "自訂搜尋引擎"
+  },
+  "customHint": {
+    "message": "新增搜尋引擎時，會要求取得對應網站的權限。"
+  },
+  "fieldName": {
+    "message": "備註"
+  },
+  "fieldNamePlaceholder": {
+    "message": "範例"
+  },
+  "fieldHost": {
+    "message": "網域"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "路徑"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "搜尋參數"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "新增"
+  },
+  "remove": {
+    "message": "刪除"
+  },
+  "invalidEngine": {
+    "message": "網域和搜尋參數為必填項目。"
+  },
+  "permissionDenied": {
+    "message": "無法取得網站權限。"
+  },
+  "noCustom": {
+    "message": "沒有自訂搜尋引擎。"
+  },
+  "secResolver": {
+    "message": "解析器"
+  },
+  "resolverHint": {
+    "message": "DOI 會附加在解析器網址前綴之後。"
+  },
+  "resolverBase": {
+    "message": "解析器網址前綴"
+  },
+  "resolverInvalid": {
+    "message": "必須是 http(s) 網址，且不得包含查詢字串 (query string) 或片段 (fragment)。"
+  },
+  "secAdvanced": {
+    "message": "進階"
+  },
+  "patternLabel": {
+    "message": "DOI 比對正規表示式"
+  },
+  "patternHint": {
+    "message": "用於比對搜尋內容的正規表示式，不區分大小寫，並會自動移除開頭的「doi:」。"
+  },
+  "testLabel": {
+    "message": "測試輸入"
+  },
+  "testInputPlaceholder": {
+    "message": "範例"
+  },
+  "testMatch": {
+    "message": "符合"
+  },
+  "testNoMatch": {
+    "message": "不符合"
+  },
+  "patternInvalid": {
+    "message": "正規表示式無效。"
+  },
+  "restoreDefault": {
+    "message": "還原預設值"
+  },
+  "examplesAccept": {
+    "message": "預期符合"
+  },
+  "examplesReject": {
+    "message": "預期不符合"
+  },
+  "popupOn": {
+    "message": "DOI 搜尋重新導向已啟用"
+  },
+  "popupOff": {
+    "message": "DOI 搜尋重新導向已暫停"
+  },
+  "popupEngines": {
+    "message": "包含的搜尋引擎："
+  },
+  "openOptions": {
+    "message": "設定"
+  }
+}

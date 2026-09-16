@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "DOI の検索を DOI リゾルバーへ自動的にリダイレクトします。"
+  },
+  "optionsTitle": {
+    "message": "DOI Direct の設定"
+  },
+  "secGeneral": {
+    "message": "一般"
+  },
+  "masterSwitch": {
+    "message": "DOI 検索のリダイレクトを有効にする"
+  },
+  "masterSwitchHint": {
+    "message": "変更はすぐに反映されます。無効にすると、検索は DOI リゾルバーへリダイレクトされません。"
+  },
+  "secEngines": {
+    "message": "検索エンジン"
+  },
+  "secCustom": {
+    "message": "カスタム検索エンジン"
+  },
+  "customHint": {
+    "message": "検索エンジンを追加すると、そのサイトへのアクセス権限が求められます。"
+  },
+  "fieldName": {
+    "message": "表示名"
+  },
+  "fieldNamePlaceholder": {
+    "message": "例"
+  },
+  "fieldHost": {
+    "message": "ドメイン"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "パス"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "検索パラメーター"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "追加"
+  },
+  "remove": {
+    "message": "削除"
+  },
+  "invalidEngine": {
+    "message": "ドメインと検索パラメーターは必須です。"
+  },
+  "permissionDenied": {
+    "message": "サイトへのアクセス権限を取得できませんでした。"
+  },
+  "noCustom": {
+    "message": "カスタム検索エンジンはありません。"
+  },
+  "secResolver": {
+    "message": "リゾルバー"
+  },
+  "resolverHint": {
+    "message": "DOI はリゾルバーのベース URL の末尾に追加されます。"
+  },
+  "resolverBase": {
+    "message": "リゾルバーのベース URL"
+  },
+  "resolverInvalid": {
+    "message": "http(s) URL である必要があり、クエリ文字列やフラグメントは使用できません。"
+  },
+  "secAdvanced": {
+    "message": "詳細設定"
+  },
+  "patternLabel": {
+    "message": "DOI マッチング正規表現"
+  },
+  "patternHint": {
+    "message": "検索内容との照合に使う正規表現です。大文字と小文字は区別されず、先頭の「doi:」は自動的に削除されます。"
+  },
+  "testLabel": {
+    "message": "テスト入力"
+  },
+  "testInputPlaceholder": {
+    "message": "例"
+  },
+  "testMatch": {
+    "message": "一致"
+  },
+  "testNoMatch": {
+    "message": "不一致"
+  },
+  "patternInvalid": {
+    "message": "正規表現が無効です。"
+  },
+  "restoreDefault": {
+    "message": "既定値に戻す"
+  },
+  "examplesAccept": {
+    "message": "一致する例"
+  },
+  "examplesReject": {
+    "message": "一致しない例"
+  },
+  "popupOn": {
+    "message": "DOI 検索のリダイレクトは有効です"
+  },
+  "popupOff": {
+    "message": "DOI 検索のリダイレクトは一時停止中です"
+  },
+  "popupEngines": {
+    "message": "対象の検索エンジン："
+  },
+  "openOptions": {
+    "message": "設定"
+  }
+}

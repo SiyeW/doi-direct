@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "Tự động chuyển hướng tìm kiếm DOI đến trình phân giải DOI."
+  },
+  "optionsTitle": {
+    "message": "Cài đặt DOI Direct"
+  },
+  "secGeneral": {
+    "message": "Chung"
+  },
+  "masterSwitch": {
+    "message": "Bật chuyển hướng tìm kiếm DOI"
+  },
+  "masterSwitchHint": {
+    "message": "Thay đổi có hiệu lực ngay. Khi tắt, tìm kiếm sẽ không được chuyển hướng đến trình phân giải DOI."
+  },
+  "secEngines": {
+    "message": "Công cụ tìm kiếm"
+  },
+  "secCustom": {
+    "message": "Công cụ tìm kiếm tùy chỉnh"
+  },
+  "customHint": {
+    "message": "Khi thêm công cụ tìm kiếm, quyền truy cập vào trang tương ứng sẽ được yêu cầu."
+  },
+  "fieldName": {
+    "message": "Nhãn"
+  },
+  "fieldNamePlaceholder": {
+    "message": "ví dụ"
+  },
+  "fieldHost": {
+    "message": "Tên miền"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "Đường dẫn"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "Tham số tìm kiếm"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "Thêm"
+  },
+  "remove": {
+    "message": "Xóa"
+  },
+  "invalidEngine": {
+    "message": "Tên miền và tham số tìm kiếm là bắt buộc."
+  },
+  "permissionDenied": {
+    "message": "Không thể lấy quyền truy cập trang."
+  },
+  "noCustom": {
+    "message": "Không có công cụ tìm kiếm tùy chỉnh."
+  },
+  "secResolver": {
+    "message": "Trình phân giải"
+  },
+  "resolverHint": {
+    "message": "DOI được nối vào cuối URL cơ sở của trình phân giải."
+  },
+  "resolverBase": {
+    "message": "URL cơ sở của trình phân giải"
+  },
+  "resolverInvalid": {
+    "message": "URL phải dùng http(s) và không được chứa chuỗi truy vấn hoặc phân đoạn."
+  },
+  "secAdvanced": {
+    "message": "Nâng cao"
+  },
+  "patternLabel": {
+    "message": "Biểu thức chính quy khớp DOI"
+  },
+  "patternHint": {
+    "message": "Biểu thức chính quy dùng để khớp nội dung tìm kiếm. Không phân biệt chữ hoa chữ thường và tiền tố “doi:” ở đầu sẽ tự động bị loại bỏ."
+  },
+  "testLabel": {
+    "message": "Dữ liệu thử"
+  },
+  "testInputPlaceholder": {
+    "message": "ví dụ"
+  },
+  "testMatch": {
+    "message": "Khớp"
+  },
+  "testNoMatch": {
+    "message": "Không khớp"
+  },
+  "patternInvalid": {
+    "message": "Biểu thức chính quy không hợp lệ."
+  },
+  "restoreDefault": {
+    "message": "Khôi phục mặc định"
+  },
+  "examplesAccept": {
+    "message": "Trường hợp dự kiến khớp"
+  },
+  "examplesReject": {
+    "message": "Trường hợp dự kiến không khớp"
+  },
+  "popupOn": {
+    "message": "Chuyển hướng tìm kiếm DOI đang bật"
+  },
+  "popupOff": {
+    "message": "Chuyển hướng tìm kiếm DOI đang tạm dừng"
+  },
+  "popupEngines": {
+    "message": "Công cụ tìm kiếm được bao gồm:"
+  },
+  "openOptions": {
+    "message": "Cài đặt"
+  }
+}

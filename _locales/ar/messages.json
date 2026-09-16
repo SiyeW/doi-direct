@@ -1,0 +1,125 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "إعادة توجيه عمليات البحث عن DOI تلقائيًا إلى مُحلِّل DOI."
+  },
+  "optionsTitle": {
+    "message": "إعدادات DOI Direct"
+  },
+  "secGeneral": {
+    "message": "عام"
+  },
+  "masterSwitch": {
+    "message": "تفعيل إعادة توجيه بحث DOI"
+  },
+  "masterSwitchHint": {
+    "message": "تُطبَّق التغييرات فورًا. عند التعطيل، لا تُعاد توجيه عمليات البحث إلى مُحلِّل DOI."
+  },
+  "secEngines": {
+    "message": "محركات البحث"
+  },
+  "secCustom": {
+    "message": "محركات بحث مخصصة"
+  },
+  "customHint": {
+    "message": "عند إضافة محرك بحث، سيُطلب إذن الوصول إلى الموقع المقابل."
+  },
+  "fieldName": {
+    "message": "تسمية"
+  },
+  "fieldNamePlaceholder": {
+    "message": "مثال"
+  },
+  "fieldHost": {
+    "message": "النطاق"
+  },
+  "fieldHostPlaceholder": {
+    "message": "example.com"
+  },
+  "fieldPath": {
+    "message": "المسار"
+  },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
+  "fieldParam": {
+    "message": "معلّمة البحث"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
+  },
+  "add": {
+    "message": "إضافة"
+  },
+  "remove": {
+    "message": "حذف"
+  },
+  "invalidEngine": {
+    "message": "النطاق ومعلّمة البحث مطلوبان."
+  },
+  "permissionDenied": {
+    "message": "تعذّر الحصول على إذن الوصول إلى الموقع."
+  },
+  "noCustom": {
+    "message": "لا توجد محركات بحث مخصصة."
+  },
+  "secResolver": {
+    "message": "المُحلِّل"
+  },
+  "resolverHint": {
+    "message": "يُضاف DOI إلى نهاية عنوان URL الأساسي للمُحلِّل."
+  },
+  "resolverBase": {
+    "message": "عنوان URL الأساسي للمُحلِّل"
+  },
+  "resolverInvalid": {
+    "message": "يجب أن يستخدم العنوان http(s)، وألا يحتوي على سلسلة استعلام أو جزء."
+  },
+  "secAdvanced": {
+    "message": "متقدم"
+  },
+  "patternLabel": {
+    "message": "تعبير نمطي لمطابقة DOI"
+  },
+  "patternHint": {
+    "message": "تعبير نمطي يُستخدم لمطابقة محتوى البحث. لا تتأثر المطابقة بحالة الأحرف، وتُزال البادئة «doi:» تلقائيًا."
+  },
+  "testLabel": {
+    "message": "إدخال الاختبار"
+  },
+  "testInputPlaceholder": {
+    "message": "مثال"
+  },
+  "testMatch": {
+    "message": "مطابق"
+  },
+  "testNoMatch": {
+    "message": "غير مطابق"
+  },
+  "patternInvalid": {
+    "message": "التعبير النمطي غير صالح."
+  },
+  "restoreDefault": {
+    "message": "استعادة الإعداد الافتراضي"
+  },
+  "examplesAccept": {
+    "message": "حالات المطابقة المتوقعة"
+  },
+  "examplesReject": {
+    "message": "حالات عدم المطابقة المتوقعة"
+  },
+  "popupOn": {
+    "message": "إعادة توجيه بحث DOI مفعّلة"
+  },
+  "popupOff": {
+    "message": "إعادة توجيه بحث DOI متوقفة مؤقتًا"
+  },
+  "popupEngines": {
+    "message": "محركات البحث المشمولة:"
+  },
+  "openOptions": {
+    "message": "الإعدادات"
+  }
+}
