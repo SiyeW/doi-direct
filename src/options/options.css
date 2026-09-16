@@ -26,6 +26,7 @@ main { max-width: 680px; margin: 0 auto; }
   gap: 6px; margin: 0 0 14px; color: #7b8494;
 }
 .font-sample { margin-right: auto; color: #5b6572; font-size: 14px; }
+.preview-info { margin: -8px 0 14px; font-size: 11.5px; color: #8b93a1; text-align: right; word-break: break-all; }
 .preview-locale select {
   font: inherit; font-size: 12.5px; padding: 3px 6px; border-radius: 6px;
   border: 1px solid #cfd5de; background: #fff; color: inherit; max-width: 180px;

@@ -50,6 +50,7 @@
   ];
 
   var preview = null;   /* { locale, messages } while a preview catalogue is loaded */
+  var loadFailed = null;
 
   function t(key) {
     if (preview && preview.messages[key]) return preview.messages[key].message;
@@ -101,7 +102,7 @@
       fetch(chrome.runtime.getURL('_locales/' + locale + '/messages.json'))
         .then(function (response) { return response.json(); })
         .then(function (messages) { preview = { locale: locale, messages: messages }; })
-        .catch(function () { preview = null; })
+        .catch(function () { preview = null; loadFailed = locale; })
         .then(function () { paint(); if (cb) cb(); });
     });
   }
@@ -118,8 +119,16 @@
     });
   }
 
+  /* Where the strings actually came from, for the debug readout. */
+  function source() {
+    if (loadFailed) return 'load failed: ' + loadFailed;
+    if (preview) return 'file: _locales/' + preview.locale;
+    return 'chrome.i18n: ' + (chrome.i18n.getUILanguage() || '?');
+  }
+
   window.DOI18n = {
     AUTO: AUTO,
+    source: source,
     CATALOGUES: CATALOGUES,
     apply: apply,
     t: t,
