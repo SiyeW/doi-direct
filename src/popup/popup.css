@@ -1,9 +1,28 @@
 :root { color-scheme: light dark; }
 html { font-family: system-ui, sans-serif; }
-/* system-ui does not always pick a face that matches the document language, so
- * CJK is left to the generic family, which the browser resolves from the lang
- * attribute and from the user's own font settings. */
-html:lang(zh), html:lang(ja), html:lang(ko) { font-family: sans-serif; }
+/* The CJK fonts are named on purpose.
+ *
+ * A generic family like sans-serif is resolved through the browser's per-script
+ * font settings, and those settings on a system whose locale is Chinese point
+ * every CJK script at the same Simplified face. The font is then found at that
+ * step, so the language-aware installed-font-fallback that Blink documents never
+ * runs and lang="ja" makes no difference to the glyphs.
+ *
+ * Naming the font skips that lookup. The generic stays at the end so a system
+ * without any of the named fonts still gets something usable, and the base rule
+ * above still covers every other language. */
+html:lang(zh-CN), html:lang(zh-SG), html:lang(zh-Hans) {
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+}
+html:lang(zh-TW), html:lang(zh-HK), html:lang(zh-Hant) {
+  font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans CJK TC", sans-serif;
+}
+html:lang(ja) {
+  font-family: "Yu Gothic UI", "Hiragino Kaku Gothic ProN", Meiryo, "Noto Sans CJK JP", sans-serif;
+}
+html:lang(ko) {
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR", sans-serif;
+}
 body {
   width: 230px; margin: 0; padding: 14px;
   font-size: 13px; line-height: 1.6;

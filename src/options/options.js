@@ -306,6 +306,9 @@
   /* Rendering happens inside the callback: the strings it produces have to come
    * from the catalogue that was actually loaded. */
   DOI18n.apply(function () {
+    /* Hovering the picker shows the lang and dir actually in effect, which is
+     * the first thing worth knowing when a font looks wrong. */
+    el('previewLocale').title = document.documentElement.lang + ' \u00b7 ' + document.documentElement.dir;
     Settings.load(function (loaded) {
       current = loaded;
       fillInputsFromSettings();
