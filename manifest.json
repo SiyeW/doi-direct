@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "description": "__MSG_extDescription__",
   "default_locale": "en",
+  "homepage_url": "https://github.com/SiyeW/doi-direct",
+  "minimum_chrome_version": "108",
   "permissions": [
     "webRequest",
     "storage",

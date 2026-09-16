@@ -33,12 +33,16 @@ It acts only when the whole query is a DOI. `10.1038/xxxxx pdf` is left alone.
 
 ### Installation
 
+Download the `doi-direct-v*.zip` asset from [Releases](https://github.com/SiyeW/doi-direct/releases/latest) and extract it. Then:
+
 1. Open `chrome://extensions`
 2. Turn on **Developer mode**
-3. Select **Load unpacked** and choose the root of this repository
+3. Select **Load unpacked** and choose the extracted folder
 4. Pin the extension, then choose which search engines to watch in its settings
 
 Chromium-based browsers only (Chrome, Edge, and similar).
+
+Installed this way, the extension counts as a developer extension: Chrome warns about it at startup, and a new version has to be installed the same way.
 
 ### Use
 
@@ -78,11 +82,13 @@ The project is still under development, and the interface and workflows may chan
 node tests/core.test.js
 ```
 
-A pre-commit hook that runs that suite lives in `tools/hooks/pre-commit`:
+A pre-commit hook that runs both suites lives in `tools/hooks/pre-commit`:
 
 ```powershell
 Copy-Item tools/hooks/pre-commit .git/hooks/pre-commit
 ```
+
+`node tools/build-release.js` runs both suites and writes `dist/doi-direct-v<version>.zip`.
 
 ```text
 manifest.json
@@ -93,6 +99,7 @@ src/options/       settings page
 src/popup/         toolbar popup
 _locales/          interface text in 23 languages
 tests/             unit tests for src/core
+tools/             pre-commit hook and the release build
 poc/               an earlier measurement harness
 ```
 
@@ -135,12 +142,16 @@ Ctrl+L
 
 ### 安装
 
+前往 [Releases](https://github.com/SiyeW/doi-direct/releases/latest) 下载 `doi-direct-v*.zip` 并解压，然后：
+
 1. 打开 `chrome://extensions`
 2. 打开「开发者模式」
-3. 点击「加载已解压的扩展程序」，选择本仓库根目录
+3. 点击「加载已解压的扩展程序」，选择解压出的文件夹
 4. 固定扩展，然后在设置页选择要监视的搜索引擎
 
 仅支持 Chromium 内核浏览器（Chrome、Edge 等）。
+
+这样安装的扩展会被 Chrome 当作开发者扩展：启动时会提示，新版本也需要用同样的方式安装。
 
 ### 使用
 
@@ -180,11 +191,13 @@ Ctrl+L
 node tests/core.test.js
 ```
 
-`tools/hooks/pre-commit` 在提交时运行上述测试：
+`tools/hooks/pre-commit` 在提交时运行两套测试：
 
 ```powershell
 Copy-Item tools/hooks/pre-commit .git/hooks/pre-commit
 ```
+
+`node tools/build-release.js` 会跑两套测试并生成 `dist/doi-direct-v<版本>.zip`。
 
 ```text
 manifest.json
@@ -195,6 +208,7 @@ src/options/       设置页
 src/popup/         工具栏弹窗
 _locales/          23 种语言的界面文案
 tests/             src/core 的单元测试
+tools/             提交钩子和发布打包
 poc/               早期测量工具
 ```
 
