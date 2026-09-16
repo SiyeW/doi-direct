@@ -89,7 +89,7 @@ A pre-commit hook that runs both suites lives in `tools/hooks/pre-commit`:
 Copy-Item tools/hooks/pre-commit .git/hooks/pre-commit
 ```
 
-`node tools/build-release.js` runs both suites and writes `dist/doi-direct-v<version>.zip`.
+`node tools/build-release.js` runs both suites and writes `dist/doi-direct-v<version>.zip`. Pushing a `v*` tag builds that archive and creates the release; the tag has to match the version in `manifest.json`, and the release notes come from the matching entry in `CHANGELOG.md`.
 
 ```text
 manifest.json
@@ -198,7 +198,7 @@ node tests/core.test.js
 Copy-Item tools/hooks/pre-commit .git/hooks/pre-commit
 ```
 
-`node tools/build-release.js` 会跑两套测试并生成 `dist/doi-direct-v<版本>.zip`。
+`node tools/build-release.js` 会跑两套测试并生成 `dist/doi-direct-v<版本>.zip`。推送 `v*` tag 会用这个包建立 Release；tag 必须与 `manifest.json` 里的版本一致，Release 正文取自 `CHANGELOG.md` 中对应的条目。
 
 ```text
 manifest.json
