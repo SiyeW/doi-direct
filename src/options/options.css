@@ -1,13 +1,13 @@
 :root {
   color-scheme: light dark;
-  /* The anchor for every size in this file, and the smallest text in the
-   * interface: 1rem, the reader's base size, left alone. Nothing here is ever
-   * smaller than that, and every larger size is a multiple of it.
+  /* Paragraph text is 1rem: the reader's base size, left alone. The two sizes
+   * below it and the two above are multiples of it, and everything that states no
+   * size of its own inherits it from body.
    *
-   * Being in rem is what makes the whole ladder follow the browser's font size
-   * setting, since nothing sets a size on html and rem therefore measures the
-   * browser's own default. */
-  --small: 1rem;
+   * Nothing sets a size on html, so rem measures the browser's own default and the
+   * whole ladder follows the browser's font size setting. */
+  --small: 0.9rem;
+  --quiet: 0.95rem;
 }
 /* Two things about this rule are deliberate.
  *
@@ -30,7 +30,7 @@ html body {
 }
 body {
   margin: 0; padding: 24px 20px 60px;
-  font-size: calc(var(--small) * 7 / 6);
+  font-size: 1rem;
   line-height: 1.6;
   color: #1b1f24; background: #fbfbfd;
 }
@@ -44,22 +44,21 @@ main { max-width: 680px; margin: 0 auto; }
 .preview-locale label { display: flex; align-items: center; }
 .preview-locale svg { display: block; }
 .preview-locale select {
-  font: inherit; font-size: calc(var(--small) * 11 / 10);
-  padding: 3px 6px; border-radius: 6px;
+  font: inherit; padding: 3px 6px; border-radius: 6px;
   border: 1px solid #cfd5de; background: #fff; color: inherit; max-width: 180px;
 }
-h1 { font-size: calc(var(--small) * 5 / 3); margin: 0 0 20px; }
-h2 { font-size: calc(var(--small) * 7 / 6); margin: 0 0 6px; text-transform: uppercase; letter-spacing: .04em; color: #4a5568; }
-h3 { font-size: calc(var(--small) * 11 / 10); margin: 16px 0 4px; color: #4a5568; font-weight: 600; }
+h1 { font-size: 1.5rem; margin: 0 0 20px; }
+h2 { font-size: 1.05rem; margin: 0 0 6px; text-transform: uppercase; letter-spacing: .04em; color: #4a5568; }
+h3 { margin: 16px 0 4px; color: #4a5568; font-weight: 600; }
 section { padding: 16px 0; border-top: 1px solid #e4e7ec; }
 section:first-of-type { border-top: 0; }
-.hint { color: #5b6572; font-size: calc(var(--small) * 11 / 10); margin: 4px 0 10px; }
+.hint { color: #5b6572; margin: 4px 0 10px; }
 .row { display: flex; align-items: center; gap: 8px; padding: 3px 0; cursor: pointer; }
 .list { margin: 6px 0 10px; }
 .list .row { justify-content: flex-start; }
 .row-main { display: flex; align-items: center; gap: 8px; flex: 1; cursor: pointer; min-width: 0; }
 .row-main span { overflow: hidden; text-overflow: ellipsis; }
-.muted { color: #7b8494; font-size: calc(var(--small) * 21 / 20); margin-left: auto; }
+.muted { color: #7b8494; font-size: var(--quiet); margin-left: auto; }
 .badge {
   font-size: var(--small); padding: 1px 6px; border-radius: 999px;
   white-space: nowrap;
@@ -69,7 +68,7 @@ section:first-of-type { border-top: 0; }
 .badge.bad { background: #fde3e1; color: #a3231b; border-color: #f3c0bc; }
 .badge.unknown { background: #eceff4; color: #6b7488; border-color: #dadee6; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
-.grid label { display: flex; flex-direction: column; gap: 4px; font-size: calc(var(--small) * 11 / 10); color: #4a5568; }
+.grid label { display: flex; flex-direction: column; gap: 4px; color: #4a5568; }
 input[type=text] {
   font: inherit; padding: 6px 8px; border: 1px solid #cfd5de; border-radius: 6px;
   background: #fff; color: inherit; min-width: 0;
@@ -83,17 +82,17 @@ button {
   border: 1px solid #cfd5de; background: #fff; color: inherit; cursor: pointer;
 }
 button:hover { background: #f0f3f8; }
-.msg { font-size: calc(var(--small) * 11 / 10); margin: 8px 0 0; min-height: 1.2em; color: #2f7a3f; }
+.msg { margin: 8px 0 0; min-height: 1.2em; color: #2f7a3f; }
 .msg.error { color: #b3261e; }
-.empty { color: #7b8494; font-size: calc(var(--small) * 11 / 10); }
+.empty { color: #7b8494; }
 .preview {
   background: #f4f6fa; border: 1px solid #e4e7ec; border-radius: 6px;
-  padding: 8px 10px; margin: 0 0 10px; font-size: calc(var(--small) * 11 / 10); min-height: 40px;
+  padding: 8px 10px; margin: 0 0 10px; min-height: 40px;
 }
 .preview div { margin: 1px 0; word-break: break-all; }
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: calc(var(--small) * 21 / 20);
+  font-size: var(--quiet);
 }
 .examples .row { gap: 8px; cursor: default; }
 .examples code { flex: 1; word-break: break-all; }
