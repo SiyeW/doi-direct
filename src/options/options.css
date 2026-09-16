@@ -30,9 +30,9 @@ html body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
                Helvetica, Arial, sans-serif;
 }
-/* body deliberately carries no font-size: the injected stylesheet sets one, and
- * the script reads it back out to fill in --base. Sizing it here would make that
- * read return our own number instead. */
+/* body carries no font-size here on purpose. The injected stylesheet sets one and
+ * the script has to read that value before the interface's own size replaces it,
+ * so the script applies --base to body itself once the read is done. */
 body {
   margin: 0; padding: 24px 20px 60px;
   line-height: 1.6;

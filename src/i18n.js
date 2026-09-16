@@ -77,15 +77,22 @@
     }
   }
 
-  /* Chrome injects its own font size into every extension page. Reading it back
-   * into --measured is what lets the interface follow the browser instead of a
-   * number chosen here. The stylesheets deliberately leave body's font-size alone
-   * so this read returns Chrome's value rather than one of ours, and they apply a
-   * floor to it, since that injected value is smaller than what the chrome://
-   * pages themselves end up using. */
+  /* Chrome injects its own font size into every extension page, and this reads it
+   * back into --measured so the interface can follow the browser instead of a
+   * number chosen here.
+   *
+   * The order matters. The stylesheets leave body's font-size alone, because
+   * anything set there would be what this read returns instead of Chrome's value.
+   * So the interface's own size goes on afterwards, inline, once the read is
+   * done. Without it every element that carries no size of its own - the engine
+   * rows, the buttons, the inputs, plain text - would keep Chrome's value while
+   * the headings followed --base, and the page would come out both small and
+   * inconsistent. */
   function applyBaseFontSize() {
-    var size = getComputedStyle(document.body).fontSize;
-    if (size) document.documentElement.style.setProperty('--measured', size);
+    var body = document.body;
+    var measured = getComputedStyle(body).fontSize;
+    if (measured) document.documentElement.style.setProperty('--measured', measured);
+    body.style.fontSize = 'var(--base)';
   }
 
   function paint() {
