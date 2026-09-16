@@ -39,17 +39,33 @@
     "message": "Name",
     "description": "Form label for the engine's display name."
   },
+  "fieldNamePlaceholder": {
+    "message": "Google",
+    "description": "Placeholder inside the name box. An example the reader will recognise."
+  },
   "fieldHost": {
     "message": "Host",
     "description": "Form label for the engine's domain, e.g. search.example.edu."
+  },
+  "fieldHostPlaceholder": {
+    "message": "google.com",
+    "description": "Placeholder inside the host box."
   },
   "fieldPath": {
     "message": "Path",
     "description": "Form label for the URL path, e.g. /query."
   },
+  "fieldPathPlaceholder": {
+    "message": "/search",
+    "description": "Placeholder inside the path box."
+  },
   "fieldParam": {
     "message": "Search parameter",
     "description": "Form label for the query parameter name, e.g. q."
+  },
+  "fieldParamPlaceholder": {
+    "message": "q",
+    "description": "Placeholder inside the query parameter box."
   },
   "add": {
     "message": "Add",

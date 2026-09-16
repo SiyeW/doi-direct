@@ -60,7 +60,7 @@
     "message": "DOI 将追加到解析器地址前缀之后。"
   },
   "resolverBase": {
-    "message": "DOI 解析器地址前缀"
+    "message": "解析器地址前缀"
   },
   "resolverInvalid": {
     "message": "必须是 http(s) 地址，且不能包含查询串 (query string) 或片段 (fragment)。"
@@ -72,7 +72,7 @@
     "message": "DOI 匹配正则"
   },
   "patternHint": {
-    "message": "用于匹配搜索内容的正则表达式。开头的 doi: 会在匹配前被自动去掉，大小写不限。"
+    "message": "用于匹配搜索内容的正则表达式，大小写不限，前缀“doi:”会被自动去除。"
   },
   "testLabel": {
     "message": "测试输入"
