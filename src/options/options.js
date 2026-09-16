@@ -1,12 +1,8 @@
 /* Options page.
  *
- * Everything previews as you type: the custom engine block shows the entry it
- * would create (and the permission it would ask for), and the DOI pattern block
- * evaluates the shipped examples plus whatever you type, live. Nothing has to be
- * submitted to find out what it does.
- *
- * Saving itself is debounced for the pattern field and immediate elsewhere.
- */
+ * Every field previews as you type: the custom engine block shows the entry it would
+ * create, and the pattern block evaluates the shipped examples plus whatever is typed.
+ * Saving is debounced for the pattern field and immediate elsewhere. */
 (function () {
   'use strict';
 

@@ -1,10 +1,8 @@
 /* DOI Direct - DOI matching, encoding and resolver URL construction.
  *
- * Pure functions only: this file must never touch chrome.* so it can be unit
- * tested in Node. Loaded as a classic script everywhere (service worker via
- * importScripts, content script via the manifest, pages via a script tag).
- *
- * UMD wrapper: attaches to the global in a browser, exports under Node.
+ * Pure functions only: no chrome.* access, so it can be unit tested in Node. Loaded
+ * as a classic script everywhere. UMD wrapper: global in a browser, exports under
+ * Node.
  */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) { module.exports = factory(); }
@@ -12,24 +10,19 @@
 })(typeof self !== 'undefined' ? self : globalThis, function () {
   'use strict';
 
-  /* A redirect matching pattern, NOT a DOI syntax validator.
-   * Deliberately conservative: it would rather miss an exotic but legal DOI
-   * than hijack "10.1038/foo pdf". Note that spaces are legal inside a DOI
-   * suffix, which is exactly why \S+ is used here. */
+  /* A redirect matching pattern, not a DOI syntax validator. Conservative on
+   * purpose: a query containing a space fails it, so "10.1038/foo pdf" is left
+   * alone. */
   var DEFAULT_PATTERN = '^10\\.\\d+(?:\\.\\d+)*\\/\\S+$';
 
   var DEFAULT_RESOLVER_BASE = 'https://doi.org/';
   var MAX_QUERY_LEN = 2048;
   var MAX_DOI_LEN = 2048;
 
-  /* Example queries shown in the options page and asserted by the test suite,
-   * so the two can never drift apart.
-   *
-   * The accepted ones are real, resolvable DOIs and they are ours, which is what
-   * makes them safe to use here: an example can never turn out to belong to
-   * somebody else's paper. A reserved prefix is no way out of that - both
-   * 10.1000/182 and 10.5555/12345678 are registered documents too. The rejected
-   * ones contain no DOI at all, which cannot collide with anything. */
+  /* Example queries shown in the options page and asserted by the test suite, so the
+   * two can never drift apart. The accepted ones are registered DOIs belonging to this
+   * project; reserved example prefixes such as 10.1000/182 are registered documents as
+   * well. */
   var EXAMPLES = {
     accept: [
       '10.1038/s41559-022-01925-6',
@@ -46,10 +39,8 @@
     ]
   };
 
-  /* Characters that stay literal in a DOI URL, per the DOI Handbook.
-   * Everything else is UTF-8 percent-encoded, which is why % " # space and ?
-   * are always encoded - they are not in this list.
-   * The slash is the prefix/suffix separator and stays literal. */
+  /* Characters that stay literal in a DOI URL, per the DOI Handbook. Everything else
+   * is UTF-8 percent-encoded. The slash is the prefix/suffix separator. */
   var KEEP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789' +
              "-._~!$&'()*+;=:@/";
 
@@ -80,10 +71,9 @@
     return out;
   }
 
-  /* Only "base URL with the DOI appended as a path" is supported.
-   * A base carrying a query or fragment is rejected outright rather than
-   * guessed at, because appending a DOI there needs a different encoding
-   * rule. Returning null means "do not redirect" (fail open). */
+  /* Only "base URL with the DOI appended as a path" is supported. A base carrying a
+   * query or fragment needs a different encoding and is rejected rather than guessed.
+   * Returning null means "do not redirect". */
   function buildResolverUrl(base, doi) {
     if (typeof doi !== 'string' || doi.length === 0) return null;
     var b = (typeof base === 'string' && base.trim()) ? base.trim() : DEFAULT_RESOLVER_BASE;

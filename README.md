@@ -1,9 +1,17 @@
-# DOI Direct
+### [English](#english) | [中文](#%E4%B8%AD%E6%96%87)
 
-A browser extension that resolves a DOI the moment you search for it.
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+![Platform](https://img.shields.io/badge/platform-Chromium-4285F4?logo=googlechrome&logoColor=white)
 
-Type or paste a DOI into the address bar and press Enter, and DOI Direct sends you
-straight to the resolver instead of a page of search results:
+---
+
+<div lang="en-US">
+
+## English
+
+### DOI Direct
+
+A browser extension that goes straight to a DOI's resolver when you search for a DOI, instead of a page of search results.
 
 ```text
 Ctrl+L
@@ -12,125 +20,189 @@ Enter
 ->     https://doi.org/10.1038/s41586-026-xxxxx
 ```
 
-It only acts when the **entire** query is a DOI. `10.1038/xxxxx pdf` is left alone.
+It acts only when the whole query is a DOI. `10.1038/xxxxx pdf` is left alone.
 
-## Status
+### Main features
 
-Early but working. The extension loads and runs, and every built-in search engine
-has had its URL shape confirmed against the live site.
+- Resolve DOI-only searches from the address bar
+- Built-in support for Google, Bing, Baidu, DuckDuckGo, Sogou, 360, Brave, Yahoo, and Ecosia, each switchable on its own
+- Add your own search engine; only that one site is requested
+- Point at a different resolver; the DOI is appended to it as a path
+- Change the DOI matching pattern, with the shipped examples and your own input checked as you type
+- Interface available in 23 languages and previewable from the settings page
 
-## Install (unpacked)
+### Installation
 
 1. Open `chrome://extensions`
 2. Turn on **Developer mode**
-3. Click **Load unpacked** and select the root of this repository
-4. Pin the extension, then open its settings to choose which search engines to watch
+3. Select **Load unpacked** and choose the root of this repository
+4. Pin the extension, then choose which search engines to watch in its settings
 
 Chromium-based browsers only (Chrome, Edge, and similar).
 
-## How it works
+### Use
 
-Two independent interception paths, both driven by the same decision function in
-`src/core/decide.js`, so they can never disagree:
+- **On/off:** Turning it off stops the redirection. No other setting changes.
+- **Search engines:** Switch each built-in engine on or off. An engine you do not watch does not redirect.
+- **Custom search engines:** Enter a name, host, path, and query parameter. The entry that would be created is shown first, and adding it asks for permission for that site alone.
+- **Resolver:** `https://doi.org/` by default. Point it at a library or another resolver; the DOI is appended to that address as a path.
+- **Matching pattern:** The default matches a query that starts with `10.` and contains a slash. The examples that should and should not match are listed below it, and a text box checks anything you type.
 
-| Path | Trigger | Behaviour |
-|---|---|---|
-| **A** | `webRequest.onBeforeRequest` | Sends the tab to the resolver with `chrome.tabs.update`. Fires while the request is about to go out, so it works even when the search engine is unreachable. |
-| **B** | `document_start` content script | Runs on the search page itself and calls `location.replace`. Covers the case where path A reacted too late because the service worker had to wake up first. |
+### Permissions
 
-Only one of them ever acts: if path A redirects in time the search page is never
-loaded, and path B never runs.
+- `webRequest` - read main-frame navigation requests
+- `storage` - keep your settings
+- `scripting` - register a content script for search engines you add yourself
+- Site access for the built-in search engines only
 
-## Repository layout
+The `tabs` permission and access to all sites are not requested. A custom search engine asks for exactly one site, and that permission is given back when you remove it.
 
-```text
-manifest.json
-src/core/          matching, encoding, engine rules, settings - pure and unit tested
-src/background.js  interception path A (service worker)
-src/content.js     interception path B (content script)
-src/options/       settings page
-src/popup/         toolbar popup
-_locales/          UI strings: English plus 22 translations
-tests/             unit tests for src/core
-poc/               an earlier measurement harness, kept for reference
-```
+### Privacy
 
-## Tests
+All matching happens locally. The extension collects and transmits nothing.
+
+It does not stop the search request from reaching the search engine: by the time it reacts, the request has usually been sent already. What it saves you is the page of search results.
+
+### Known limitations
+
+- **Address-bar behaviour depends on the browser.** Chromium currently treats input like `10.1038/xxx` as a search query rather than a hostname. That is browser behaviour, not a contract an extension can rely on.
+- **Firefox is not supported.**
+- **Engines that submit searches with POST cannot be supported**, because the query never reaches the URL. Startpage and DuckDuckGo's no-JavaScript version are both like that.
+- **Engines that swap results with `history.pushState` are not covered.**
+
+### Development
+
+The project is still under development, and the interface and workflows may change.
 
 ```text
 node tests/core.test.js
 ```
 
-A pre-commit hook that runs the suite lives in `tools/hooks/pre-commit`. Install it with
-`cp tools/hooks/pre-commit .git/hooks/pre-commit`.
+A pre-commit hook that runs that suite lives in `tools/hooks/pre-commit`:
 
-No browser needed. The suite covers DOI matching, the percent-encoding rules, the
-resolver URL, engine URL matching, settings normalisation, the message
-catalogues, and a check that `manifest.json` stays in sync with the built-in
-engine list.
+```powershell
+Copy-Item tools/hooks/pre-commit .git/hooks/pre-commit
+```
 
-## Translating
+```text
+manifest.json
+src/core/          matching, encoding, search engine rules, settings
+src/background.js  service worker
+src/content.js     content script
+src/options/       settings page
+src/popup/         toolbar popup
+_locales/          interface text in 23 languages
+tests/             unit tests for src/core
+poc/               an earlier measurement harness
+```
 
-Twenty-three catalogues live in `_locales/`. English is the source locale and carries
-a `description` on every key.
+`poc/` is a separate tool; the extension does not depend on it. See [poc/README.md](poc/README.md).
 
-- **Editing a translation**: change the `message` values only, never the keys.
-- **Adding a language**: copy `_locales/en` to `_locales/<code>` (for example `sv`),
-  translate the `message` values, and leave everything else alone. Chrome picks
-  the catalogue matching the browser language and falls back to English.
-- **Wording**: idiom over literalism. Technical terms - DOI, http(s), URL, query
-  string, fragment - follow normal usage in the target language, and placeholders
-  that are real URL syntax (`google.com`, `/search`, `q`) stay as they are.
-- **After any edit**, run the tests. A malformed `messages.json` stops the
-  extension from loading at all, and the suite catches that as well as a key that
-  exists in one language only, an empty message, or a message that nothing uses.
-
-No language needs CSS of its own. A page takes its `lang` and `dir` from
-`chrome.i18n.getUILanguage()` and Chrome's `@@bidi_dir`, so the browser picks a font
-for the writing system by itself - including the right Chinese, Japanese or Korean
-form of a shared Han character - and a right-to-left language lays itself out with no
-extra rules. There is no language-to-font table to keep.
-
-The globe at the top of the settings page previews the interface in any of the
-catalogues, which is how the translations get checked. Chrome picks the catalogue
-from the browser's UI language and offers no way to override that, so the picker
-loads a catalogue itself. The extension keeps running in the browser's language
-whatever the picker happens to show.
-
-## Permissions
-
-- `webRequest` - to see main-frame navigation requests
-- `storage` - to keep your settings
-- `scripting` - to add a content script for search engines you add yourself
-- Host permissions for the built-in search engines only
-
-The `tabs` permission is deliberately not requested, and neither is broad access
-to all sites. A custom search engine asks for exactly that one host when you add it.
-
-## Privacy
-
-All matching happens locally in the browser. DOI Direct does not collect or
-transmit anything, and it has no analytics.
-
-Note that it does not stop the search request from reaching the search engine: the
-request is usually already on its way by the time the extension reacts. What it
-saves you is the page of search results.
-
-## Limitations
-
-- **Address-bar support depends on browser behaviour.** Chromium currently treats
-  input like `10.1038/xxx` as a search query rather than a hostname. That is
-  browser behaviour, not something an extension can rely on as a contract.
-- **Firefox is not supported.** Its URL handling differs and would need its own
-  verification.
-- **Search engines that submit with POST cannot be supported**, because the query
-  never reaches the URL. Startpage and DuckDuckGo's no-JavaScript version are both
-  like that. A quick way to check any engine: search for something and look at the
-  address bar - if there is no query parameter there, this extension has nothing
-  to read.
-- Search engines that update results without reloading the page (`history.pushState`)
-  are not covered.
-
-## License
+### License
 
 MIT
+
+
+</div>
+
+---
+
+<div lang="zh-CN">
+
+## 中文
+
+### DOI Direct
+
+一款浏览器扩展：在地址栏搜索纯 DOI 时直接前往解析地址，而不是先经过一页搜索结果。
+
+```text
+Ctrl+L
+粘贴  10.1038/s41586-026-xxxxx
+回车
+→     https://doi.org/10.1038/s41586-026-xxxxx
+```
+
+只有整个搜索内容都是 DOI 时才跳转。`10.1038/xxxxx pdf` 保持原样。
+
+### 主要功能
+
+- 地址栏搜索纯 DOI 时直接跳转
+- 内置 Google、Bing、百度、DuckDuckGo、搜狗、360、Brave、Yahoo、Ecosia，可以逐个开关
+- 可以添加自定义搜索引擎，只为所填站点请求一次权限
+- 可以改用其他解析地址，DOI 作为路径追加在其后
+- 可以调整 DOI 匹配规则，示例和自填内容会实时显示匹配结果
+- 界面支持 23 种语言，可在设置页切换预览
+
+### 安装
+
+1. 打开 `chrome://extensions`
+2. 打开「开发者模式」
+3. 点击「加载已解压的扩展程序」，选择本仓库根目录
+4. 固定扩展，然后在设置页选择要监视的搜索引擎
+
+仅支持 Chromium 内核浏览器（Chrome、Edge 等）。
+
+### 使用
+
+- **开关：** 关闭后不再跳转，其余设置不变。
+- **搜索引擎：** 在内置列表中逐个开关，不监视的引擎不会触发跳转。
+- **自定义搜索引擎：** 填写名称、域名、路径和查询参数，页面先显示将要生成的条目。添加时浏览器为该站点请求一次权限。
+- **解析地址：** 默认为 `https://doi.org/`，可以换成图书馆或其他解析服务。DOI 作为路径追加到该地址之后。
+- **匹配规则：** 默认规则匹配以 `10.` 开头并含斜杠的搜索内容。规则下方列出应匹配和不应匹配的示例，另有输入框可以试验任意内容。
+
+### 权限
+
+- `webRequest`：读取主框架导航请求
+- `storage`：保存设置
+- `scripting`：为自行添加的搜索引擎注册内容脚本
+- 仅内置搜索引擎的站点权限
+
+不申请 `tabs` 权限，也不申请所有网站的访问权限。添加自定义搜索引擎时只为该站点请求权限，删除后归还。
+
+### 隐私
+
+匹配全部在本地完成，不收集也不发送任何数据。
+
+扩展不阻止搜索请求到达搜索引擎：等到它响应时，请求通常已经发出。省掉的是搜索结果页。
+
+### 已知限制
+
+- **地址栏的行为取决于浏览器。** Chromium 目前把 `10.1038/xxx` 这类输入当作搜索内容而非主机名。这是浏览器行为，不是扩展可以依赖的约定。
+- **不支持 Firefox。**
+- **以 POST 提交搜索的引擎无法支持**，查询内容不会出现在地址里。Startpage 和 DuckDuckGo 的免 JavaScript 版本都属于此类。
+- **不覆盖用 `history.pushState` 换页的搜索引擎。**
+
+### 开发
+
+目前仍在开发中，界面和操作可能调整。
+
+```text
+node tests/core.test.js
+```
+
+`tools/hooks/pre-commit` 在提交时运行上述测试：
+
+```powershell
+Copy-Item tools/hooks/pre-commit .git/hooks/pre-commit
+```
+
+```text
+manifest.json
+src/core/          匹配、编码、搜索引擎规则、设置
+src/background.js  服务进程
+src/content.js     内容脚本
+src/options/       设置页
+src/popup/         工具栏弹窗
+_locales/          23 种语言的界面文案
+tests/             src/core 的单元测试
+poc/               早期测量工具
+```
+
+`poc/` 是独立工具，扩展不依赖它，说明见 [poc/README.md](poc/README.md)。
+
+### 许可证
+
+MIT
+
+
+</div>

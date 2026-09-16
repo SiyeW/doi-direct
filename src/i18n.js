@@ -1,11 +1,8 @@
 /* Localisation and page environment for extension pages.
  *
- * Chrome chooses the catalogue from the browser's UI language and offers no way
- * to override that at runtime, so the language picker at the top of the settings
- * page loads a catalogue itself and this module prefers it while one is loaded.
- *
- * The default stays chrome.i18n, and the picker's own strings come from the
- * catalogues like every other string in the interface.
+ * Chrome chooses the catalogue from the browser's UI language with no runtime
+ * override, so the language picker loads a catalogue itself and this module prefers
+ * it while one is loaded. The default stays chrome.i18n.
  */
 (function () {
   'use strict';
@@ -13,14 +10,11 @@
   var PREVIEW_KEY = 'previewLocale';
   var AUTO = 'auto';
 
-  /* Every language without a region is written left to right. The preview needs
-   * to know this because Chrome's @@bidi_dir describes the browser's language,
-   * not the one being previewed. */
+  /* The preview needs this because Chrome's @@bidi_dir describes the browser's
+   * language, not the one being previewed. */
   var RTL = ['ar', 'fa', 'he', 'ur'];
 
-  /* Mirrors the _locales directory, paired with each language's own name, which
-   * is what a language picker should show. A test keeps this list and the
-   * directory in step. */
+  /* Mirrors the _locales directory. A test keeps the two in step. */
   var CATALOGUES = [
     ['ar', 'العربية'],
     ['de', 'Deutsch'],
@@ -84,9 +78,8 @@
     setText('[data-i18n-title]', 'data-i18n-title', 'title');
   }
 
-  /* Reads the stored preview locale, loads that catalogue if there is one, then
-   * paints and calls back. Callers must render inside the callback, not before
-   * it, or their dynamic strings would come out in the browser's language. */
+  /* Callers must render inside the callback: their dynamic strings come from the
+   * catalogue that was loaded. */
   function apply(cb) {
     chrome.storage.local.get(PREVIEW_KEY, function (stored) {
       var locale = stored && stored[PREVIEW_KEY];

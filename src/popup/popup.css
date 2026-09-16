@@ -1,6 +1,6 @@
 :root {
   color-scheme: light dark;
-  /* See options.css: the type ladder is anchored on paragraph text at 1rem. */
+  /* See options.css for the type ladder. */
 }
 html body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",

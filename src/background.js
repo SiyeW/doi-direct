@@ -1,16 +1,8 @@
-/* DOI Direct - service worker (interception path A).
+/* DOI Direct - service worker.
  *
- * Observes main-frame navigation requests with webRequest.onBeforeRequest and
- * sends the tab to the resolver with chrome.tabs.update. The request may
- * already be on its way by the time this runs; path B in content.js is the
- * fallback for exactly that case.
- *
- * Notes that matter:
- *  - The tabs permission is deliberately NOT requested: tabs.update does not need it.
- *  - Listeners are registered synchronously at the top level so a sleeping
- *    service worker is woken by them.
- *  - Settings are read once and cached; if an event arrives before the read
- *    completes, the decision waits for it rather than guessing.
+ * Redirects from webRequest.onBeforeRequest with chrome.tabs.update, which needs no
+ * tabs permission. Listeners are registered at the top level so a sleeping worker is
+ * woken by them; content.js covers the case where this reacts too late.
  */
 importScripts('/src/core/doi.js', '/src/core/engines.js', '/src/core/settings.js', '/src/core/decide.js');
 
@@ -87,9 +79,8 @@ function applyFilter(settings) {
 
 /* ------------------------------------------------- path B, custom engines */
 
-/* Built-in engines are covered by the static content_scripts entry in the
- * manifest. Custom engines are only known at runtime, so they are registered
- * dynamically here - and removed again when the last one goes away. */
+/* Custom engines are only known at runtime, so their content script is registered
+ * here rather than in the manifest. */
 var currentScriptMatches = null;
 
 function syncContentScripts(settings) {

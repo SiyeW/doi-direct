@@ -1,15 +1,8 @@
-/* DOI Direct - content script (interception path B).
+/* DOI Direct - content script.
  *
- * Runs at document_start on the search engine hosts. This is the fallback for
- * the case path A could not win: a cold service worker takes long enough that
- * the search page may already be loading by the time it reacts.
- *
- * Two details that are easy to get wrong:
- *  - Settings live in chrome.storage and reading them is asynchronous, so the
- *    decision is made in a callback rather than synchronously.
- *  - A prerendered document has to wait for prerenderingchange before acting,
- *    otherwise the tab would be hijacked while the user is still typing.
- */
+ * Runs at document_start on the search engine hosts and reloads the tab with
+ * location.replace. This is the path that still works when the service worker was
+ * too slow to start. */
 (function () {
   'use strict';
 

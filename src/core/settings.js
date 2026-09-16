@@ -56,10 +56,9 @@
     if (!host || !/^[a-z0-9.-]+$/.test(host)) return null;
     if (!param || !/^[A-Za-z0-9_.\-\[\]]+$/.test(param)) return null;
     if (path.charAt(0) !== '/') path = '/' + path;
-    /* The id is derived, never stored independently. Two engines can share a host
-     * and a path and differ only in their query parameter, and an id built from
-     * host and path alone would make them the same engine: removing one would
-     * take the other with it. */
+    /* Derived, never stored: two engines can share a host and path and differ only in
+     * their query parameter, and an id from host and path alone would make them one
+     * engine, so removing either would remove both. */
     return {
       id: 'custom:' + host + path + '?' + param,
       name: String(raw.name || host).trim().slice(0, 60),

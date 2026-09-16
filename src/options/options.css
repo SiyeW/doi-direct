@@ -1,29 +1,14 @@
 :root {
   color-scheme: light dark;
-  /* Paragraph text is 1rem: the reader's base size, left alone. The two sizes
-   * below it and the two above are multiples of it, and everything that states no
-   * size of its own inherits it from body.
-   *
-   * Nothing sets a size on html, so rem measures the browser's own default and the
-   * whole ladder follows the browser's font size setting. */
+  /* The type ladder. Paragraph text is 1rem; --small and --quiet are the two sizes
+   * below it, and everything stating no size of its own inherits 1rem from body. */
   --small: 0.9rem;
   --quiet: 0.95rem;
 }
-/* Two things about this rule are deliberate.
- *
- * It goes on body, not html. Chrome injects a stylesheet into every extension
- * page - extensions/renderer/resources/extension_fonts.css - which sets
- * font-family on body to the system font. A rule on html never competes: body
- * carries its own, and everything inside inherits from body. The two-part
- * selector is what beats the injected rule no matter which sheet came first.
- *
- * It names only fonts without CJK coverage, and no generic family before them. A
- * font list is walked per character, and a generic family is resolved through the
- * browser's per-script font settings - on a system whose locale is Chinese those
- * point every CJK script at the same Simplified face. Naming a font that has Han
- * glyphs, or using system-ui, lets it answer for the character, and the
- * language-aware installed font fallback that reads lang never runs. This is the
- * stack GitHub uses, and it is why lang="ja" in a README renders Japanese. */
+/* Chrome injects a font-family rule for body into every extension page, so this needs
+ * the two-part selector to win. No CJK-capable font and no generic family is named
+ * ahead of the system fallback, which is what lets lang pick the right face for a
+ * shared Han character. */
 html body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
                Helvetica, Arial, sans-serif;
