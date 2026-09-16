@@ -25,30 +25,32 @@ jobs:
       - name: Verify the tag matches the manifest version
         run: |
           version=$(node -p "require('./manifest.json').version")
-          if [ "$GITHUB_REF_NAME" != "v$version" ]; then
+          tag_version="${GITHUB_REF_NAME#v}"
+          if [ "${tag_version%-*}" != "$version" ]; then
             echo "Tag $GITHUB_REF_NAME does not match manifest version $version." >&2
             exit 1
           fi
 
       - name: Build the release archive
-        run: node tools/build-release.js
+        run: node tools/build-release.js "${GITHUB_REF_NAME#v}"
 
       - name: Write the release notes
-        run: node tools/release-notes.js > dist/release-notes.md
+        run: node tools/release-notes.js "${GITHUB_REF_NAME#v}" > dist/release-notes.md
 
       - name: Create the GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           version=$(node -p "require('./manifest.json').version")
+          tag_version="${GITHUB_REF_NAME#v}"
           release_args=(
             --verify-tag
             --target "$GITHUB_SHA"
-            --title "DOI Direct $version"
+            --title "DOI Direct $tag_version"
             --notes-file dist/release-notes.md
           )
-          if [[ "$version" == *-* ]]; then
-            gh release create "$GITHUB_REF_NAME" dist/doi-direct-v*.zip "${release_args[@]}" --prerelease
+          if [ "$tag_version" != "$version" ]; then
+            gh release create "$GITHUB_REF_NAME" "dist/doi-direct-v$tag_version.zip" "${release_args[@]}" --prerelease
           else
-            gh release create "$GITHUB_REF_NAME" dist/doi-direct-v*.zip "${release_args[@]}" --latest
+            gh release create "$GITHUB_REF_NAME" "dist/doi-direct-v$tag_version.zip" "${release_args[@]}" --latest
           fi

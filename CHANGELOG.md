@@ -5,7 +5,7 @@ incompatible changes.
 
 ## [Unreleased]
 
-## [0.1.0] - 2026-09-17
+## [0.1.0-dev.1] - 2026-09-17
 
 <div lang="en-US">
 

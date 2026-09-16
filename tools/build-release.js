@@ -108,8 +108,12 @@ function zip(entries) {
 }
 
 const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'manifest.json'), 'utf8'));
-const version = manifest.version;
-if (!/^\d+(\.\d+){1,3}$/.test(String(version))) fail('manifest version is not a release version: ' + version);
+if (!/^\d+(\.\d+){1,3}$/.test(String(manifest.version))) {
+  fail('manifest version is not a Chrome version: ' + manifest.version);
+}
+/* Chrome accepts only a numeric version, so a pre-release carries its suffix in the
+ * archive name and the git tag instead. */
+const version = process.argv[2] || manifest.version;
 
 for (const suite of SUITES) run(suite);
 

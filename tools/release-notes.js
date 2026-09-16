@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /* Prints one version's entry from CHANGELOG.md, for use as GitHub release notes.
  *
- *   node tools/release-notes.js          # the version in manifest.json
- *   node tools/release-notes.js 0.2.0
+ *   node tools/release-notes.js            # the version in manifest.json
+ *   node tools/release-notes.js 0.1.0-dev.1
  *
  * Exits non-zero when the version has no entry, so a release cannot be published
  * without one.
