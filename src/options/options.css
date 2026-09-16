@@ -10,6 +10,14 @@ body {
   color: #1b1f24; background: #fbfbfd;
 }
 main { max-width: 680px; margin: 0 auto; }
+.preview-locale {
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: 6px; margin: 0 0 14px; color: #7b8494;
+}
+.preview-locale select {
+  font: inherit; font-size: 12.5px; padding: 3px 6px; border-radius: 6px;
+  border: 1px solid #cfd5de; background: #fff; color: inherit; max-width: 180px;
+}
 h1 { font-size: 20px; margin: 0 0 20px; }
 h2 { font-size: 14px; margin: 0 0 6px; text-transform: uppercase; letter-spacing: .04em; color: #4a5568; }
 h3 { font-size: 12.5px; margin: 16px 0 4px; color: #4a5568; font-weight: 600; }
@@ -68,5 +76,6 @@ code {
   button { background: #1e2128; border-color: #3a4150; }
   button:hover { background: #262b34; }
   .preview { background: #1b1e24; border-color: #2a2f3a; }
+  .preview-locale select { background: #1e2128; border-color: #3a4150; }
   .muted { color: #7b8494; }
 }

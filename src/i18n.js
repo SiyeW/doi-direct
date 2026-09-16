@@ -1,35 +1,129 @@
-/* Fills elements carrying data-i18n / data-i18n-placeholder / data-i18n-title,
- * and stamps the document with the language and direction Chrome is running in.
+/* Localisation for extension pages.
  *
- * The lang attribute is what lets the browser choose fonts for the writing
- * system: the Chinese, Japanese and Korean forms of the same Han character are
- * picked from it, not from CSS. Nothing here needs to know which languages
- * exist, and no language-to-font table has to be maintained. */
+ * Chrome chooses the catalogue from the browser's UI language and offers no way
+ * to override that at runtime, so the language picker at the top of the settings
+ * page loads a catalogue itself and this module prefers it while one is loaded.
+ *
+ * That picker is a debugging aid: it is how the other catalogues get looked at
+ * without changing the browser language. Taking it out means removing the picker
+ * markup and its wiring, the preview branches in this file, and nothing else. No
+ * catalogue carries a string for it.
+ */
 (function () {
   'use strict';
 
-  function applyDocumentLocale() {
-    var root = document.documentElement;
-    var ui = chrome.i18n.getUILanguage();
-    if (ui) root.lang = ui;
-    root.dir = chrome.i18n.getMessage('@@bidi_dir') || 'ltr';
+  var PREVIEW_KEY = 'previewLocale';
+  var AUTO = 'auto';
+
+  /* Every language without a region is written left to right. The preview needs
+   * to know this because Chrome's @@bidi_dir describes the browser's language,
+   * not the one being previewed. */
+  var RTL = ['ar', 'fa', 'he', 'ur'];
+
+  /* Mirrors the _locales directory, paired with each language's own name, which
+   * is what a language picker should show. A test keeps this list and the
+   * directory in step. */
+  var CATALOGUES = [
+    ['ar', 'العربية'],
+    ['de', 'Deutsch'],
+    ['en', 'English'],
+    ['es', 'Español'],
+    ['fa', 'فارسی'],
+    ['fr', 'Français'],
+    ['he', 'עברית'],
+    ['hi', 'हिन्दी'],
+    ['id', 'Bahasa Indonesia'],
+    ['it', 'Italiano'],
+    ['ja', '日本語'],
+    ['ko', '한국어'],
+    ['nl', 'Nederlands'],
+    ['pl', 'Polski'],
+    ['pt_BR', 'Português (Brasil)'],
+    ['pt_PT', 'Português (Portugal)'],
+    ['ru', 'Русский'],
+    ['th', 'ไทย'],
+    ['tr', 'Türkçe'],
+    ['uk', 'Українська'],
+    ['vi', 'Tiếng Việt'],
+    ['zh_CN', '简体中文'],
+    ['zh_TW', '繁體中文']
+  ];
+
+  var preview = null;   /* { locale, messages } while a preview catalogue is loaded */
+
+  function t(key) {
+    if (preview && preview.messages[key]) return preview.messages[key].message;
+    return chrome.i18n.getMessage(key) || key;
   }
-  function setText(sel, attr, target) {
-    var nodes = document.querySelectorAll(sel);
+
+  function setText(selector, attr, target) {
+    var nodes = document.querySelectorAll(selector);
     for (var i = 0; i < nodes.length; i++) {
-      var msg = chrome.i18n.getMessage(nodes[i].getAttribute(attr));
-      if (!msg) continue;
-      if (target === 'text') nodes[i].textContent = msg;
-      else nodes[i].setAttribute(target, msg);
+      var message = t(nodes[i].getAttribute(attr));
+      if (!message) continue;
+      if (target === 'text') nodes[i].textContent = message;
+      else nodes[i].setAttribute(target, message);
     }
   }
+
+  /* lang is what lets the browser choose fonts for the writing system, so it
+   * follows the previewed language rather than the browser's. */
+  function applyDocumentLocale() {
+    var root = document.documentElement;
+    if (preview) {
+      root.lang = preview.locale.replace('_', '-');
+      root.dir = RTL.indexOf(preview.locale) !== -1 ? 'rtl' : 'ltr';
+    } else {
+      root.lang = chrome.i18n.getUILanguage() || 'en';
+      root.dir = chrome.i18n.getMessage('@@bidi_dir') || 'ltr';
+    }
+  }
+
+  function paint() {
+    applyDocumentLocale();
+    setText('[data-i18n]', 'data-i18n', 'text');
+    setText('[data-i18n-placeholder]', 'data-i18n-placeholder', 'placeholder');
+    setText('[data-i18n-title]', 'data-i18n-title', 'title');
+  }
+
+  /* Reads the stored preview locale, loads that catalogue if there is one, then
+   * paints and calls back. Callers must render inside the callback, not before
+   * it, or their dynamic strings would come out in the browser's language. */
+  function apply(cb) {
+    chrome.storage.local.get(PREVIEW_KEY, function (stored) {
+      var locale = stored && stored[PREVIEW_KEY];
+      if (!locale || locale === AUTO) {
+        preview = null;
+        paint();
+        if (cb) cb();
+        return;
+      }
+      fetch(chrome.runtime.getURL('_locales/' + locale + '/messages.json'))
+        .then(function (response) { return response.json(); })
+        .then(function (messages) { preview = { locale: locale, messages: messages }; })
+        .catch(function () { preview = null; })
+        .then(function () { paint(); if (cb) cb(); });
+    });
+  }
+
+  function setPreviewLocale(locale, cb) {
+    var patch = {};
+    patch[PREVIEW_KEY] = locale || AUTO;
+    chrome.storage.local.set(patch, function () { if (cb) cb(); });
+  }
+
+  function previewLocale(cb) {
+    chrome.storage.local.get(PREVIEW_KEY, function (stored) {
+      cb((stored && stored[PREVIEW_KEY]) || AUTO);
+    });
+  }
+
   window.DOI18n = {
-    apply: function () {
-      applyDocumentLocale();
-      setText('[data-i18n]', 'data-i18n', 'text');
-      setText('[data-i18n-placeholder]', 'data-i18n-placeholder', 'placeholder');
-      setText('[data-i18n-title]', 'data-i18n-title', 'title');
-    },
-    t: function (key) { return chrome.i18n.getMessage(key) || key; }
+    AUTO: AUTO,
+    CATALOGUES: CATALOGUES,
+    apply: apply,
+    t: t,
+    setPreviewLocale: setPreviewLocale,
+    previewLocale: previewLocale
   };
 })();

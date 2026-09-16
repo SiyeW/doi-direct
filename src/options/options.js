@@ -276,12 +276,42 @@
     save(true);
   });
 
-  DOI18n.apply();
-  Settings.load(function (loaded) {
-    current = loaded;
-    fillInputsFromSettings();
-    renderLists();
-    updateEnginePreview();
-    runPatternTests();
+  /* Debugging aid: previews a catalogue without changing the browser's language.
+   * Its own wording is deliberately not translated, and no catalogue carries a
+   * string for it. */
+  function fillLocalePicker() {
+    var select = el('previewLocale');
+    select.textContent = '';
+
+    var auto = document.createElement('option');
+    auto.value = DOI18n.AUTO;
+    auto.textContent = 'Automatic';
+    select.appendChild(auto);
+
+    DOI18n.CATALOGUES.forEach(function (entry) {
+      var option = document.createElement('option');
+      option.value = entry[0];
+      option.textContent = entry[1];
+      select.appendChild(option);
+    });
+
+    DOI18n.previewLocale(function (locale) { select.value = locale; });
+    select.addEventListener('change', function () {
+      DOI18n.setPreviewLocale(select.value, function () { location.reload(); });
+    });
+  }
+
+  fillLocalePicker();
+
+  /* Rendering happens inside the callback: the strings it produces have to come
+   * from the catalogue that was actually loaded. */
+  DOI18n.apply(function () {
+    Settings.load(function (loaded) {
+      current = loaded;
+      fillInputsFromSettings();
+      renderLists();
+      updateEnginePreview();
+      runPatternTests();
+    });
   });
 })();

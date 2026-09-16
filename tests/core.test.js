@@ -255,6 +255,15 @@ eq(baseKeys.filter(k => !referenced.has(k)).sort(), [], 'no unused message keys'
 
 ok(LOCALES.indexOf(manifest.default_locale) !== -1, 'default_locale points at a shipped catalogue');
 
+/* The language picker carries its own list of catalogue names. */
+const i18nSource = fs.readFileSync(path.join(__dirname, '..', 'src', 'i18n.js'), 'utf8');
+const listed = [];
+const entryRe = /^\s*\['([A-Za-z_]+)',\s*'[^']*'\],?\s*$/gm;
+let entryMatch;
+while ((entryMatch = entryRe.exec(i18nSource)) !== null) listed.push(entryMatch[1]);
+eq(listed.slice().sort(), LOCALES, 'the language picker lists every catalogue');
+eq(listed.length, new Set(listed).size, 'the language picker lists none of them twice');
+
 /* ---------- report ---------- */
 console.log('');
 console.log(pass + ' passed, ' + fail + ' failed');

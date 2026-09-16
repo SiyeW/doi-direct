@@ -36,9 +36,10 @@
     window.close();
   });
 
-  DOI18n.apply();
-  Settings.load(function (loaded) {
-    current = loaded;
-    render();
+  DOI18n.apply(function () {
+    Settings.load(function (loaded) {
+      current = loaded;
+      render();
+    });
   });
 })();
