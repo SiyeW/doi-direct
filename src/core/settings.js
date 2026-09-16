@@ -14,6 +14,10 @@
 
   var KEY = 'settings';
 
+  /* A throwaway DOI, fed to buildResolverUrl only to normalise a resolver base.
+   * It is never resolved and is not registered. */
+  var PROBE_DOI = '10.1000/x';
+
   var DEFAULTS = {
     enabled: true,
     doiPattern: DOICore.DEFAULT_PATTERN,
@@ -26,31 +30,25 @@
     return !!v && typeof v === 'object' && !Array.isArray(v);
   }
 
+  /* Both validators answer yes or no. The page shows its own translated wording,
+   * so there is nothing here for it to read but the verdict. */
   function validatePattern(pattern) {
-    if (typeof pattern !== 'string' || pattern.trim() === '') {
-      return { ok: false, error: 'Pattern is empty.' };
-    }
-    if (pattern.length > 512) {
-      return { ok: false, error: 'Pattern is too long (max 512 characters).' };
-    }
+    if (typeof pattern !== 'string' || pattern.trim() === '') return { ok: false };
+    if (pattern.length > 512) return { ok: false };
     try { new RegExp(pattern); }
-    catch (e) { return { ok: false, error: e.message }; }
+    catch (e) { return { ok: false }; }
     return { ok: true };
   }
 
   function validateResolverBase(input) {
-    if (typeof input !== 'string' || input.trim() === '') {
-      return { ok: false, error: 'Resolver base is empty.' };
-    }
-    var build = DOICore.buildResolverUrl(input, '10.1000/x');
-    if (!build) {
-      return { ok: false, error: 'Must be an http(s) URL with no query string or fragment.' };
-    }
-    /* store the normalised form so the user sees what will actually be used */
-    return { ok: true, value: build.slice(0, build.length - '10.1000/x'.length) };
+    if (typeof input !== 'string' || input.trim() === '') return { ok: false };
+    var build = DOICore.buildResolverUrl(input, PROBE_DOI);
+    if (!build) return { ok: false };
+    /* hand back the normalised form, so the user sees what will actually be used */
+    return { ok: true, value: build.slice(0, build.length - PROBE_DOI.length) };
   }
 
-  function normalizeCustomEngine(raw, index) {
+  function normalizeCustomEngine(raw) {
     if (!isPlainObject(raw)) return null;
     var host = String(raw.host || '').trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '');
     var path = String(raw.path || '/').trim();
@@ -58,14 +56,17 @@
     if (!host || !/^[a-z0-9.-]+$/.test(host)) return null;
     if (!param || !/^[A-Za-z0-9_.\-\[\]]+$/.test(param)) return null;
     if (path.charAt(0) !== '/') path = '/' + path;
+    /* The id is derived, never stored independently. Two engines can share a host
+     * and a path and differ only in their query parameter, and an id built from
+     * host and path alone would make them the same engine: removing one would
+     * take the other with it. */
     return {
-      id: raw.id || ('custom:' + host + path),
+      id: 'custom:' + host + path + '?' + param,
       name: String(raw.name || host).trim().slice(0, 60),
       host: host,
       path: path,
       param: param,
-      enabled: raw.enabled !== false,
-      builtIn: false
+      enabled: raw.enabled !== false
     };
   }
 
@@ -94,9 +95,12 @@
     }
 
     if (Array.isArray(raw.customEngines)) {
-      raw.customEngines.forEach(function (e, i) {
-        var n = normalizeCustomEngine(e, i);
-        if (n) out.customEngines.push(n);
+      var seen = Object.create(null);
+      raw.customEngines.forEach(function (e) {
+        var n = normalizeCustomEngine(e);
+        if (!n || seen[n.id]) return;   /* the same engine twice is still one engine */
+        seen[n.id] = 1;
+        out.customEngines.push(n);
       });
     }
 

@@ -110,6 +110,12 @@
       btn.addEventListener('click', function () {
         current.customEngines = current.customEngines.filter(function (e) { return e.id !== engine.id; });
         save(false);
+        /* Give the host back, unless another engine still needs it. */
+        var shared = current.customEngines.some(function (e) { return e.host === engine.host; });
+        if (shared) return;
+        chrome.permissions.remove({ origins: ['*://*.' + engine.host + '/*'] }, function () {
+          void chrome.runtime.lastError;
+        });
       });
       row.appendChild(btn);
 
@@ -222,6 +228,10 @@
       param: el('ceParam').value
     });
     if (!entry) { flash('customMsg', DOI18n.t('invalidEngine'), true); return; }
+    if (current.customEngines.some(function (e) { return e.id === entry.id; })) {
+      flash('customMsg', DOI18n.t('engineExists'), true);
+      return;
+    }
 
     /* The permissions API has to be called from a user gesture, which this is. */
     chrome.permissions.request({ origins: ['*://*.' + entry.host + '/*'] }, function (granted) {
@@ -233,7 +243,6 @@
       el('cePath').value = '';
       el('ceParam').value = '';
       save(false);
-      updateEnginePreview();
     });
   });
 

@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "النطاق ومعلّمة البحث مطلوبان."
   },
+  "engineExists": {
+    "message": "محرك البحث هذا موجود في القائمة بالفعل."
+  },
   "permissionDenied": {
     "message": "تعذّر الحصول على إذن الوصول إلى الموقع."
   },

@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "網域和搜尋參數為必填項目。"
   },
+  "engineExists": {
+    "message": "這個搜尋引擎已經在清單裡了。"
+  },
   "permissionDenied": {
     "message": "無法取得網站權限。"
   },

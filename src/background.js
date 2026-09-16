@@ -90,10 +90,22 @@ function applyFilter(settings) {
 /* Built-in engines are covered by the static content_scripts entry in the
  * manifest. Custom engines are only known at runtime, so they are registered
  * dynamically here - and removed again when the last one goes away. */
+var currentScriptMatches = null;
+
 function syncContentScripts(settings) {
   if (!chrome.scripting || !chrome.scripting.registerContentScripts) return;
   var custom = ((settings && settings.customEngines) || []).filter(function (e) { return e && e.host; });
-  var matches = custom.map(function (e) { return '*://*.' + e.host + '/*'; });
+  var matches = [];
+  for (var i = 0; i < custom.length; i++) {
+    var pattern = '*://*.' + custom[i].host + '/*';
+    if (matches.indexOf(pattern) === -1) matches.push(pattern);
+  }
+
+  /* Every settings write lands here, including one that only changed the DOI
+   * pattern, so compare first and skip the cycle when nothing moved. */
+  var key = matches.join('|');
+  if (currentScriptMatches === key) return;
+  currentScriptMatches = key;
 
   var done = function () {};
   var unregister = chrome.scripting.unregisterContentScripts({ ids: [CONTENT_SCRIPT_ID] });

@@ -8,8 +8,5 @@
 # saved a stale buffer a second later, and the commit took the stale version.
 
 echo "pre-commit: running tests"
-node tests/core.test.js
-if [ $? -ne 0 ]; then
-  echo "pre-commit: tests failed, commit aborted"
-  exit 1
-fi
+node tests/core.test.js || { echo "pre-commit: tests/core.test.js failed, commit aborted"; exit 1; }
+node poc/test/doi-core.test.js || { echo "pre-commit: poc/test/doi-core.test.js failed, commit aborted"; exit 1; }

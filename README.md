@@ -50,7 +50,7 @@ src/background.js  interception path A (service worker)
 src/content.js     interception path B (content script)
 src/options/       settings page
 src/popup/         toolbar popup
-_locales/          English and Simplified Chinese UI strings
+_locales/          UI strings: English plus 22 translations
 tests/             unit tests for src/core
 poc/               an earlier measurement harness, kept for reference
 ```
@@ -85,11 +85,17 @@ a `description` on every key.
   extension from loading at all, and the suite catches that as well as a key that
   exists in one language only, an empty message, or a message that nothing uses.
 
-No language needs CSS of its own. Every page takes its `lang` from
-`chrome.i18n.getUILanguage()` and its `dir` from Chrome's `@@bidi_dir`, so the browser
-picks a font for the writing system by itself - including the right Chinese,
-Japanese or Korean form of a shared Han character - and a right-to-left language
-lays itself out with no extra rules. There is no language-to-font table to keep.
+No language needs CSS of its own. A page takes its `lang` and `dir` from
+`chrome.i18n.getUILanguage()` and Chrome's `@@bidi_dir`, so the browser picks a font
+for the writing system by itself - including the right Chinese, Japanese or Korean
+form of a shared Han character - and a right-to-left language lays itself out with no
+extra rules. There is no language-to-font table to keep.
+
+The globe at the top of the settings page previews the interface in any of the
+catalogues, which is how the translations get checked. Chrome picks the catalogue
+from the browser's UI language and offers no way to override that, so the picker
+loads a catalogue itself. The extension keeps running in the browser's language
+whatever the picker happens to show.
 
 ## Permissions
 

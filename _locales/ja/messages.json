@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "ドメインと検索パラメーターは必須です。"
   },
+  "engineExists": {
+    "message": "その検索エンジンはすでに一覧にあります。"
+  },
   "permissionDenied": {
     "message": "サイトへのアクセス権限を取得できませんでした。"
   },

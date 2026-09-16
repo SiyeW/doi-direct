@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "도메인과 검색 매개변수는 필수입니다."
   },
+  "engineExists": {
+    "message": "그 검색 엔진은 이미 목록에 있습니다."
+  },
   "permissionDenied": {
     "message": "사이트 접근 권한을 얻지 못했습니다."
   },

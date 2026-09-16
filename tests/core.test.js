@@ -130,6 +130,40 @@ eq(customOff.customEngines[0].enabled, false, 'the off flag survives normalisati
 eq(Decide.attempt('https://search.example.edu/query?text=10.1038%2Fx', customOff), null,
    'a disabled custom engine is skipped');
 
+/* Two engines can share a host and a path and differ only in the query parameter.
+ * Neither may swallow the other: not in the list, and not when matching. */
+const twins = Settings.normalize({
+  customEngines: [
+    { name: 'A', host: 'x.edu', path: '/find', param: 'q' },
+    { name: 'B', host: 'x.edu', path: '/find', param: 'query' }
+  ]
+});
+eq(twins.customEngines.length, 2, 'both twins survive normalisation');
+ok(twins.customEngines[0].id !== twins.customEngines[1].id,
+   'their ids differ, so removing one leaves the other');
+eq((Decide.attempt('https://x.edu/find?q=10.1038%2Fx', twins) || {}).engine, 'custom:x.edu/find?q',
+   'the first twin matches its own parameter');
+eq((Decide.attempt('https://x.edu/find?query=10.1038%2Fx', twins) || {}).engine, 'custom:x.edu/find?query',
+   'the second twin matches its own parameter');
+
+/* The same engine twice is still one engine. */
+const twice = Settings.normalize({
+  customEngines: [
+    { name: 'A', host: 'x.edu', path: '/find', param: 'q' },
+    { name: 'A', host: 'x.edu', path: '/find', param: 'q' }
+  ]
+});
+eq(twice.customEngines.length, 1, 'a duplicate custom engine is collapsed');
+
+/* An engine that is switched off must not shadow another that would have matched. */
+const shadow = Settings.normalize({
+  engineStates: { google: false },
+  customEngines: [{ name: 'G', host: 'google.com', path: '/search', param: 'q' }]
+});
+eq((Decide.attempt('https://google.com/search?q=10.1038%2Fx', shadow) || {}).engine,
+   'custom:google.com/search?q',
+   'a disabled built-in does not shadow a custom engine on the same host and path');
+
 /* ---------- settings normalisation ---------- */
 const n1 = Settings.normalize(null);
 eq(n1.enabled, true, 'defaults when empty');

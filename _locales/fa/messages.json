@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "دامنه و پارامتر جست‌وجو الزامی هستند."
   },
+  "engineExists": {
+    "message": "این موتور جست‌وجو از قبل در فهرست است."
+  },
   "permissionDenied": {
     "message": "دسترسی به وب‌سایت دریافت نشد."
   },

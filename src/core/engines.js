@@ -79,7 +79,14 @@
     return rule.enabled !== false;
   }
 
-  /* Returns { rule, url, enabled } for the first matching rule, or null. */
+  /* Returns { rule, url } for the first rule that both matches the URL and is
+   * switched on, or null.
+   *
+   * Two things decide which rule wins. A rule whose query parameter is absent has
+   * nothing to read, so it is passed over rather than ending the search - that is
+   * what lets two engines share a host and a path and differ only by parameter.
+   * And a rule that is switched off is passed over too, so it cannot shadow
+   * another rule that would have matched. */
   function match(url, settings) {
     var u;
     try { u = new URL(url); } catch (e) { return null; }
@@ -94,7 +101,9 @@
       }
       if (!hit) continue;
       if (!pathMatches(u.pathname, rule.path)) continue;
-      return { rule: rule, url: u, enabled: isEnabled(rule, settings) };
+      if (rule.param && u.searchParams.get(rule.param) === null) continue;
+      if (!isEnabled(rule, settings)) continue;
+      return { rule: rule, url: u };
     }
     return null;
   }
@@ -118,11 +127,8 @@
 
   return {
     builtIn: builtIn,
-    allRules: allRules,
     isEnabled: isEnabled,
     match: match,
-    hostMatches: hostMatches,
-    pathMatches: pathMatches,
     hostPatterns: hostPatterns
   };
 });

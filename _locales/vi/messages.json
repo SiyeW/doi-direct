@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "Tên miền và tham số tìm kiếm là bắt buộc."
   },
+  "engineExists": {
+    "message": "Công cụ tìm kiếm đó đã có trong danh sách."
+  },
   "permissionDenied": {
     "message": "Không thể lấy quyền truy cập trang."
   },

@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "Domain und Suchparameter sind erforderlich."
   },
+  "engineExists": {
+    "message": "Diese Suchmaschine steht bereits in der Liste."
+  },
   "permissionDenied": {
     "message": "Der Zugriff auf die Website konnte nicht gewährt werden."
   },

@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "डोमेन और सर्च पैरामीटर आवश्यक हैं।"
   },
+  "engineExists": {
+    "message": "वह सर्च इंजन पहले से सूची में है।"
+  },
   "permissionDenied": {
     "message": "साइट की एक्सेस अनुमति नहीं मिल सकी।"
   },

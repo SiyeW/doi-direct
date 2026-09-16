@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "Domein en zoekparameter zijn verplicht."
   },
+  "engineExists": {
+    "message": "Die zoekmachine staat al in de lijst."
+  },
   "permissionDenied": {
     "message": "Toegang tot de website kon niet worden verkregen."
   },

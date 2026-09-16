@@ -87,6 +87,10 @@
     "message": "Host and search parameter are required.",
     "description": "Shown when host or search parameter is missing; also the empty preview."
   },
+  "engineExists": {
+    "message": "That search engine is already in the list.",
+    "description": "Shown when the engine being added is already in the list."
+  },
   "permissionDenied": {
     "message": "Permission for that site was not granted, so the engine was not added.",
     "description": "Shown when the user refuses the host permission for a custom engine."

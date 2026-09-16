@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "Le domaine et le paramètre de recherche sont obligatoires."
   },
+  "engineExists": {
+    "message": "Ce moteur de recherche figure déjà dans la liste."
+  },
   "permissionDenied": {
     "message": "L’accès au site n’a pas pu être obtenu."
   },

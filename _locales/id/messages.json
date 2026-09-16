@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "Domain dan parameter pencarian wajib diisi."
   },
+  "engineExists": {
+    "message": "Mesin pencari itu sudah ada dalam daftar."
+  },
   "permissionDenied": {
     "message": "Akses ke situs tidak dapat diperoleh."
   },

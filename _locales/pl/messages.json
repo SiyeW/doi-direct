@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "Domena i parametr wyszukiwania są wymagane."
   },
+  "engineExists": {
+    "message": "Ta wyszukiwarka jest już na liście."
+  },
   "permissionDenied": {
     "message": "Nie udało się uzyskać dostępu do witryny."
   },

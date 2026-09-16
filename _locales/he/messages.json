@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "דומיין ופרמטר חיפוש הם שדות חובה."
   },
+  "engineExists": {
+    "message": "מנוע החיפוש הזה כבר ברשימה."
+  },
   "permissionDenied": {
     "message": "לא ניתן לקבל הרשאת גישה לאתר."
   },

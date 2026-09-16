@@ -15,14 +15,14 @@
 })(typeof self !== 'undefined' ? self : globalThis, function (DOICore, EngineRules) {
   'use strict';
 
-  /* settings.enabled is the master switch. Callers check it as early as they
-   * can so path A can bail out before waking up for nothing. Turning a single
-   * engine off is the per-engine switch in the engine list, not a rule here. */
+  /* settings.enabled is the master switch, checked here so both paths can bail
+   * out as early as possible. Turning a single engine off is the per-engine
+   * switch, and EngineRules.match skips the engines that are off. */
   function attempt(url, settings) {
     try {
       if (!settings || settings.enabled === false) return null;
       var m = EngineRules.match(url, settings);
-      if (!m || !m.enabled) return null;
+      if (!m) return null;
       var q = m.url.searchParams.get(m.rule.param);
       if (q === null) return null;
       var doi = DOICore.parseDoi(q, settings.doiPattern);

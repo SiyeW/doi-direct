@@ -65,6 +65,9 @@
   "invalidEngine": {
     "message": "域名和搜索参数为必填项。"
   },
+  "engineExists": {
+    "message": "这个搜索引擎已经在列表里了。"
+  },
   "permissionDenied": {
     "message": "获取网站权限失败。"
   },
