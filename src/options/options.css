@@ -1,18 +1,13 @@
 :root {
   color-scheme: light dark;
-  /* The anchor for every size in this file.
+  /* The anchor for every size in this file, and the smallest text in the
+   * interface: 1rem, the reader's base size, left alone. Nothing here is ever
+   * smaller than that, and every larger size is a multiple of it.
    *
-   * Chrome renders its own pages at 75% of the root - IDS_WEB_FONT_SIZE in
-   * ui/strings/app_locale_settings.grd - which is the same thing as 0.75rem, and
-   * which is also what the stylesheet Chrome injects into extension pages asks
-   * for on body. So this is the size the browser itself uses for text, and it is
-   * the floor here: nothing in this interface is smaller than that. Every other
-   * size is a multiple of it.
-   *
-   * Being in rem is what makes the whole ladder follow the reader's font size
+   * Being in rem is what makes the whole ladder follow the browser's font size
    * setting, since nothing sets a size on html and rem therefore measures the
    * browser's own default. */
-  --small: 0.75rem;
+  --small: 1rem;
 }
 /* Two things about this rule are deliberate.
  *
