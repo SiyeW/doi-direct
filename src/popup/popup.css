@@ -1,7 +1,8 @@
 :root {
   color-scheme: light dark;
-  /* See options.css. 0.8125rem is 13px at the browser's default of 16px. */
-  --base: 0.8125rem;
+  /* See options.css: this is the size Chrome itself renders text at, and the
+   * floor for everything here. */
+  --small: 0.75rem;
 }
 html body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
@@ -9,11 +10,11 @@ html body {
 }
 body {
   width: 230px; margin: 0; padding: 14px;
-  font-size: var(--base);
+  font-size: calc(var(--small) * 13 / 12);
   line-height: 1.6;
   color: #1b1f24; background: #fbfbfd;
 }
-h1 { font-size: calc(var(--base) * 1.08); margin: 0 0 10px; }
+h1 { font-size: calc(var(--small) * 7 / 6); margin: 0 0 10px; }
 .row { display: flex; align-items: center; gap: 8px; cursor: pointer; }
 .count { margin: 10px 0; color: #5b6572; }
 .count b { color: #1b1f24; }
