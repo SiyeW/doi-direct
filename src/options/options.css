@@ -1,10 +1,15 @@
 :root {
   color-scheme: light dark;
-  /* Every size below is derived from this. The script replaces it at runtime with
-   * the size Chrome itself applies to extension pages, so the interface follows
-   * the browser rather than a number picked here. The literal is the fallback for
-   * the moment before that script runs. */
-  --base: 14px;
+  /* Every size below derives from --base, which follows the font size Chrome
+   * applies to extension pages: the script reads that value into --measured.
+   *
+   * That injected value is only the default the chrome:// stylesheets start from,
+   * and the chrome:// pages set larger sizes on top of it, so it is smaller than
+   * what those pages actually look like. Hence the floor: follow the browser
+   * upwards, never drop below something readable. */
+  --min: 14px;
+  --measured: var(--min);
+  --base: max(var(--measured), var(--min));
 }
 /* Two things about this rule are deliberate.
  *

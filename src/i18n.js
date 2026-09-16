@@ -78,13 +78,14 @@
   }
 
   /* Chrome injects its own font size into every extension page. Reading it back
-   * and publishing it as --base is what makes the interface follow the browser's
-   * sizing instead of a number chosen here. The stylesheets deliberately leave
-   * body's font-size alone so that this read returns Chrome's value rather than
-   * one of ours. */
+   * into --measured is what lets the interface follow the browser instead of a
+   * number chosen here. The stylesheets deliberately leave body's font-size alone
+   * so this read returns Chrome's value rather than one of ours, and they apply a
+   * floor to it, since that injected value is smaller than what the chrome://
+   * pages themselves end up using. */
   function applyBaseFontSize() {
     var size = getComputedStyle(document.body).fontSize;
-    if (size) document.documentElement.style.setProperty('--base', size);
+    if (size) document.documentElement.style.setProperty('--measured', size);
   }
 
   function paint() {

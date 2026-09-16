@@ -1,8 +1,9 @@
 :root {
   color-scheme: light dark;
-  /* Replaced at runtime with the size Chrome applies to extension pages; see
-   * options.css for the full explanation. */
-  --base: 13px;
+  /* See options.css: follow the size Chrome applies, but never go below a floor. */
+  --min: 13px;
+  --measured: var(--min);
+  --base: max(var(--measured), var(--min));
 }
 html body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
