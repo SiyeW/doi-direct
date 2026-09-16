@@ -1,4 +1,4 @@
-/* Localisation for extension pages.
+/* Localisation and page environment for extension pages.
  *
  * Chrome chooses the catalogue from the browser's UI language and offers no way
  * to override that at runtime, so the language picker at the top of the settings
@@ -77,7 +77,18 @@
     }
   }
 
+  /* Chrome injects its own font size into every extension page. Reading it back
+   * and publishing it as --base is what makes the interface follow the browser's
+   * sizing instead of a number chosen here. The stylesheets deliberately leave
+   * body's font-size alone so that this read returns Chrome's value rather than
+   * one of ours. */
+  function applyBaseFontSize() {
+    var size = getComputedStyle(document.body).fontSize;
+    if (size) document.documentElement.style.setProperty('--base', size);
+  }
+
   function paint() {
+    applyBaseFontSize();
     applyDocumentLocale();
     setText('[data-i18n]', 'data-i18n', 'text');
     setText('[data-i18n-placeholder]', 'data-i18n-placeholder', 'placeholder');

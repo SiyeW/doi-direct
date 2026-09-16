@@ -1,4 +1,11 @@
-:root { color-scheme: light dark; }
+:root {
+  color-scheme: light dark;
+  /* Every size below is derived from this. The script replaces it at runtime with
+   * the size Chrome itself applies to extension pages, so the interface follows
+   * the browser rather than a number picked here. The literal is the fallback for
+   * the moment before that script runs. */
+  --base: 14px;
+}
 /* Two things about this rule are deliberate.
  *
  * It goes on body, not html. Chrome injects a stylesheet into every extension
@@ -18,9 +25,12 @@ html body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
                Helvetica, Arial, sans-serif;
 }
+/* body deliberately carries no font-size: the injected stylesheet sets one, and
+ * the script reads it back out to fill in --base. Sizing it here would make that
+ * read return our own number instead. */
 body {
   margin: 0; padding: 24px 20px 60px;
-  font-size: 14px; line-height: 1.6;
+  line-height: 1.6;
   color: #1b1f24; background: #fbfbfd;
 }
 main { max-width: 680px; margin: 0 auto; }
@@ -33,30 +43,32 @@ main { max-width: 680px; margin: 0 auto; }
 .preview-locale label { display: flex; align-items: center; }
 .preview-locale svg { display: block; }
 .preview-locale select {
-  font: inherit; font-size: 12.5px; padding: 3px 6px; border-radius: 6px;
+  font: inherit; font-size: calc(var(--base) * 0.89);
+  padding: 3px 6px; border-radius: 6px;
   border: 1px solid #cfd5de; background: #fff; color: inherit; max-width: 180px;
 }
-h1 { font-size: 20px; margin: 0 0 20px; }
-h2 { font-size: 14px; margin: 0 0 6px; text-transform: uppercase; letter-spacing: .04em; color: #4a5568; }
-h3 { font-size: 12.5px; margin: 16px 0 4px; color: #4a5568; font-weight: 600; }
+h1 { font-size: calc(var(--base) * 1.43); margin: 0 0 20px; }
+h2 { font-size: var(--base); margin: 0 0 6px; text-transform: uppercase; letter-spacing: .04em; color: #4a5568; }
+h3 { font-size: calc(var(--base) * 0.89); margin: 16px 0 4px; color: #4a5568; font-weight: 600; }
 section { padding: 16px 0; border-top: 1px solid #e4e7ec; }
 section:first-of-type { border-top: 0; }
-.hint { color: #5b6572; font-size: 12.5px; margin: 4px 0 10px; }
+.hint { color: #5b6572; font-size: calc(var(--base) * 0.89); margin: 4px 0 10px; }
 .row { display: flex; align-items: center; gap: 8px; padding: 3px 0; cursor: pointer; }
 .list { margin: 6px 0 10px; }
 .list .row { justify-content: flex-start; }
 .row-main { display: flex; align-items: center; gap: 8px; flex: 1; cursor: pointer; min-width: 0; }
 .row-main span { overflow: hidden; text-overflow: ellipsis; }
-.muted { color: #7b8494; font-size: 12px; margin-left: auto; }
+.muted { color: #7b8494; font-size: calc(var(--base) * 0.86); margin-left: auto; }
 .badge {
-  font-size: 11px; padding: 1px 6px; border-radius: 999px; white-space: nowrap;
+  font-size: calc(var(--base) * 0.79); padding: 1px 6px; border-radius: 999px;
+  white-space: nowrap;
   background: #fdeccd; color: #8a5a00; border: 1px solid #f0d29a;
 }
 .badge.ok { background: #dff3e4; color: #1e6b33; border-color: #b6e0c2; }
 .badge.bad { background: #fde3e1; color: #a3231b; border-color: #f3c0bc; }
 .badge.unknown { background: #eceff4; color: #6b7488; border-color: #dadee6; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
-.grid label { display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; color: #4a5568; }
+.grid label { display: flex; flex-direction: column; gap: 4px; font-size: calc(var(--base) * 0.89); color: #4a5568; }
 input[type=text] {
   font: inherit; padding: 6px 8px; border: 1px solid #cfd5de; border-radius: 6px;
   background: #fff; color: inherit; min-width: 0;
@@ -70,17 +82,17 @@ button {
   border: 1px solid #cfd5de; background: #fff; color: inherit; cursor: pointer;
 }
 button:hover { background: #f0f3f8; }
-.msg { font-size: 12.5px; margin: 8px 0 0; min-height: 1.2em; color: #2f7a3f; }
+.msg { font-size: calc(var(--base) * 0.89); margin: 8px 0 0; min-height: 1.2em; color: #2f7a3f; }
 .msg.error { color: #b3261e; }
-.empty { color: #7b8494; font-size: 12.5px; }
+.empty { color: #7b8494; font-size: calc(var(--base) * 0.89); }
 .preview {
   background: #f4f6fa; border: 1px solid #e4e7ec; border-radius: 6px;
-  padding: 8px 10px; margin: 0 0 10px; font-size: 12.5px; min-height: 40px;
+  padding: 8px 10px; margin: 0 0 10px; font-size: calc(var(--base) * 0.89); min-height: 40px;
 }
 .preview div { margin: 1px 0; word-break: break-all; }
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 12px;
+  font-size: calc(var(--base) * 0.86);
 }
 .examples .row { gap: 8px; cursor: default; }
 .examples code { flex: 1; word-break: break-all; }
