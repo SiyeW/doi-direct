@@ -1,0 +1,22 @@
+:root { color-scheme: light dark; }
+body {
+  width: 230px; margin: 0; padding: 14px;
+  font: 13px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #1b1f24; background: #fbfbfd;
+}
+h1 { font-size: 14px; margin: 0 0 10px; }
+.row { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.count { margin: 10px 0; color: #5b6572; }
+.count b { color: #1b1f24; }
+button {
+  font: inherit; width: 100%; padding: 6px 10px; border-radius: 6px;
+  border: 1px solid #cfd5de; background: #fff; color: inherit; cursor: pointer;
+}
+button:hover { background: #f0f3f8; }
+@media (prefers-color-scheme: dark) {
+  body { color: #e6e6e6; background: #16181d; }
+  .count { color: #98a2b3; }
+  .count b { color: #e6e6e6; }
+  button { background: #1e2128; border-color: #3a4150; }
+  button:hover { background: #262b34; }
+}

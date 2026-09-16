@@ -1,0 +1,99 @@
+{
+  "manifest_version": 3,
+  "name": "DOI Direct",
+  "version": "0.1.0",
+  "description": "Resolve a DOI straight from the search box: DOI-only searches go to the DOI resolver instead of a page of search results.",
+  "default_locale": "en",
+  "permissions": [
+    "webRequest",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.google.com/*",
+    "*://*.google.co.uk/*",
+    "*://*.google.de/*",
+    "*://*.google.fr/*",
+    "*://*.google.es/*",
+    "*://*.google.it/*",
+    "*://*.google.nl/*",
+    "*://*.google.ca/*",
+    "*://*.google.com.au/*",
+    "*://*.google.co.jp/*",
+    "*://*.google.co.in/*",
+    "*://*.google.com.br/*",
+    "*://*.google.com.tw/*",
+    "*://*.google.com.hk/*",
+    "*://*.google.co.kr/*",
+    "*://*.google.ru/*",
+    "*://*.google.pl/*",
+    "*://*.google.com.mx/*",
+    "*://*.bing.com/*",
+    "*://*.baidu.com/*",
+    "*://*.duckduckgo.com/*",
+    "*://*.html.duckduckgo.com/*",
+    "*://*.sogou.com/*",
+    "*://*.so.com/*",
+    "*://*.search.brave.com/*",
+    "*://*.search.yahoo.com/*",
+    "*://*.ecosia.org/*",
+    "*://*.startpage.com/*"
+  ],
+  "optional_host_permissions": [
+    "*://*/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.google.com/*",
+        "*://*.google.co.uk/*",
+        "*://*.google.de/*",
+        "*://*.google.fr/*",
+        "*://*.google.es/*",
+        "*://*.google.it/*",
+        "*://*.google.nl/*",
+        "*://*.google.ca/*",
+        "*://*.google.com.au/*",
+        "*://*.google.co.jp/*",
+        "*://*.google.co.in/*",
+        "*://*.google.com.br/*",
+        "*://*.google.com.tw/*",
+        "*://*.google.com.hk/*",
+        "*://*.google.co.kr/*",
+        "*://*.google.ru/*",
+        "*://*.google.pl/*",
+        "*://*.google.com.mx/*",
+        "*://*.bing.com/*",
+        "*://*.baidu.com/*",
+        "*://*.duckduckgo.com/*",
+        "*://*.html.duckduckgo.com/*",
+        "*://*.sogou.com/*",
+        "*://*.so.com/*",
+        "*://*.search.brave.com/*",
+        "*://*.search.yahoo.com/*",
+        "*://*.ecosia.org/*",
+        "*://*.startpage.com/*"
+      ],
+      "js": [
+        "src/core/doi.js",
+        "src/core/engines.js",
+        "src/core/settings.js",
+        "src/core/decide.js",
+        "src/content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "DOI Direct"
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  }
+}

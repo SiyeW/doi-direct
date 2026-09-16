@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1 data-i18n="extName">DOI Direct</h1>
+  <label class="row">
+    <input type="checkbox" id="master">
+    <span id="status"></span>
+  </label>
+  <p class="count"><span data-i18n="popupEngines"></span> <b id="count">0</b></p>
+  <button id="openOptions" data-i18n="openOptions">Settings</button>
+
+  <script src="../core/doi.js"></script>
+  <script src="../core/engines.js"></script>
+  <script src="../core/settings.js"></script>
+  <script src="../i18n.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

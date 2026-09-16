@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>DOI Direct</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+<main>
+  <h1 data-i18n="optionsTitle">DOI Direct settings</h1>
+
+  <section>
+    <h2 data-i18n="secGeneral">General</h2>
+    <label class="row">
+      <input type="checkbox" id="master">
+      <span data-i18n="masterSwitch">Redirect DOI searches</span>
+    </label>
+    <p class="hint" data-i18n="masterSwitchHint"></p>
+  </section>
+
+  <section>
+    <h2 data-i18n="secEngines">Search engines</h2>
+    <p class="hint" data-i18n="enginesHint"></p>
+    <div id="engineList" class="list"></div>
+    <p class="hint" data-i18n="notVerifiedHint"></p>
+  </section>
+
+  <section>
+    <h2 data-i18n="secCustom">Custom search engines</h2>
+    <p class="hint" data-i18n="customHint"></p>
+    <div id="customList" class="list"></div>
+    <div class="grid">
+      <label><span data-i18n="fieldName"></span><input type="text" id="ceName"></label>
+      <label><span data-i18n="fieldHost"></span><input type="text" id="ceHost" placeholder="search.example.edu"></label>
+      <label><span data-i18n="fieldPath"></span><input type="text" id="cePath" placeholder="/query"></label>
+      <label><span data-i18n="fieldParam"></span><input type="text" id="ceParam" placeholder="text"></label>
+    </div>
+    <button id="addEngine" data-i18n="add">Add</button>
+    <p id="customMsg" class="msg"></p>
+  </section>
+
+  <section>
+    <h2 data-i18n="secExceptions">Exceptions</h2>
+    <p class="hint" data-i18n="exceptionsHint"></p>
+    <div id="exceptionList" class="list"></div>
+    <div class="grid">
+      <label><input type="text" id="exInput" data-i18n-placeholder="exceptionPlaceholder"></label>
+    </div>
+    <button id="addException" data-i18n="add">Add</button>
+  </section>
+
+  <section>
+    <h2 data-i18n="secResolver">Resolver</h2>
+    <p class="hint" data-i18n="resolverHint"></p>
+    <div class="grid">
+      <label><span data-i18n="resolverBase"></span><input type="text" id="resolverBase" spellcheck="false"></label>
+    </div>
+    <button id="resetResolver" data-i18n="restoreDefault">Restore default</button>
+    <p id="resolverMsg" class="msg"></p>
+  </section>
+
+  <section>
+    <h2 data-i18n="secAdvanced">Advanced</h2>
+    <p class="hint" data-i18n="patternHint"></p>
+    <div class="grid">
+      <label><span data-i18n="patternLabel"></span><input type="text" id="doiPattern" spellcheck="false"></label>
+      <label><span data-i18n="testLabel"></span><input type="text" id="testInput" placeholder="10.1038/s41586-026-12345-6"></label>
+    </div>
+    <button id="testPattern" data-i18n="test">Test</button>
+    <button id="resetPattern" data-i18n="restoreDefault">Restore default</button>
+    <p id="patternMsg" class="msg"></p>
+    <p id="testResult" class="msg"></p>
+  </section>
+</main>
+
+<script src="../core/doi.js"></script>
+<script src="../core/engines.js"></script>
+<script src="../core/settings.js"></script>
+<script src="../core/decide.js"></script>
+<script src="../i18n.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

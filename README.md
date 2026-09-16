@@ -16,38 +16,87 @@ It only acts when the **entire** query is a DOI. `10.1038/xxxxx pdf` is left alo
 
 ## Status
 
-Early development. The repository currently contains `poc/`, a harness used to compare
-interception strategies in Chromium. The extension itself is not written yet.
+Early but working. The extension loads and runs; the settings UI is deliberately
+small and a few search engines ship disabled until their URL shape has been
+confirmed (see *Limitations*).
+
+## Install (unpacked)
+
+1. Open `chrome://extensions`
+2. Turn on **Developer mode**
+3. Click **Load unpacked** and select the root of this repository
+4. Pin the extension, then open its settings to choose which search engines to watch
+
+Chromium-based browsers only (Chrome, Edge, and similar).
+
+## How it works
+
+Two independent interception paths, both driven by the same decision function in
+`src/core/decide.js`, so they can never disagree:
+
+| Path | Trigger | Behaviour |
+|---|---|---|
+| **A** | `webRequest.onBeforeRequest` | Sends the tab to the resolver with `chrome.tabs.update`. Fires while the request is about to go out, so it works even when the search engine is unreachable. |
+| **B** | `document_start` content script | Runs on the search page itself and calls `location.replace`. Covers the case where path A reacted too late because the service worker had to wake up first. |
+
+Only one of them ever acts: if path A redirects in time the search page is never
+loaded, and path B never runs.
 
 ## Repository layout
 
 ```text
-poc/0-probe/    navigation lifecycle recorder (no host permissions)
-poc/1-routes/   two interception strategies, switchable at runtime
-poc/shared/     DOI matching core and shared UI
-poc/test/       unit tests for the matching core
+manifest.json
+src/core/          matching, encoding, engine rules, settings - pure and unit tested
+src/background.js  interception path A (service worker)
+src/content.js     interception path B (content script)
+src/options/       settings page
+src/popup/         toolbar popup
+_locales/          English and Simplified Chinese UI strings
+tests/             unit tests for src/core
+poc/               an earlier measurement harness, kept for reference
 ```
 
-## Requirements
-
-- Chromium-based browser (Chrome, Edge, and similar)
-- Node.js, only for running the tests
-
-## Development
-
-Load `poc/0-probe` or `poc/1-routes` as an unpacked extension from
-`chrome://extensions` with Developer mode enabled. See `poc/README.md` for details.
-
-Run the unit tests:
+## Tests
 
 ```text
-node poc/test/doi-core.test.js
+node tests/core.test.js
 ```
+
+No browser needed. The suite covers DOI matching, the percent-encoding rules, the
+resolver URL, engine URL matching, exceptions, settings normalisation, and a check
+that `manifest.json` stays in sync with the built-in engine list.
+
+## Permissions
+
+- `webRequest` - to see main-frame navigation requests
+- `storage` - to keep your settings
+- `scripting` - to add a content script for search engines you add yourself
+- Host permissions for the built-in search engines only
+
+The `tabs` permission is deliberately not requested, and neither is broad access
+to all sites. A custom search engine asks for exactly that one host when you add it.
 
 ## Privacy
 
-DOI Direct performs all matching locally in the browser. It does not collect or
+All matching happens locally in the browser. DOI Direct does not collect or
 transmit anything, and it has no analytics.
+
+Note that it does not stop the search request from reaching the search engine: the
+request is usually already on its way by the time the extension reacts. What it
+saves you is the page of search results.
+
+## Limitations
+
+- **Address-bar support depends on browser behaviour.** Chromium currently treats
+  input like `10.1038/xxx` as a search query rather than a hostname. That is
+  browser behaviour, not something an extension can rely on as a contract.
+- **Firefox is not supported.** Its URL handling differs and would need its own
+  verification.
+- **Engines marked *not verified*** in the settings have not had their URL shape
+  confirmed by actually loading them, so they are off by default. Enable the ones
+  you use.
+- Search engines that update results without reloading the page (`history.pushState`)
+  are not covered.
 
 ## License
 

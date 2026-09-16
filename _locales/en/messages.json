@@ -1,0 +1,131 @@
+{
+  "extName": {
+    "message": "DOI Direct",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Resolve a DOI straight from the search box: DOI-only searches go to the DOI resolver instead of a page of search results.",
+    "description": "Extension description"
+  },
+  "optionsTitle": {
+    "message": "DOI Direct settings"
+  },
+  "secGeneral": {
+    "message": "General"
+  },
+  "masterSwitch": {
+    "message": "Redirect DOI searches"
+  },
+  "masterSwitchHint": {
+    "message": "Turn the extension off without uninstalling it."
+  },
+  "secEngines": {
+    "message": "Search engines"
+  },
+  "enginesHint": {
+    "message": "Only a query that is entirely a DOI is redirected. Anything else is left alone."
+  },
+  "notVerified": {
+    "message": "not verified",
+    "description": "Badge for engines whose URL shape has not been confirmed"
+  },
+  "notVerifiedHint": {
+    "message": "The URL shape of these engines has not been confirmed by fetching them, so they are off by default. Enable one if you use it."
+  },
+  "secCustom": {
+    "message": "Custom search engines"
+  },
+  "customHint": {
+    "message": "Added engines need permission for that one site. Nothing else is requested."
+  },
+  "fieldName": {
+    "message": "Name"
+  },
+  "fieldHost": {
+    "message": "Host"
+  },
+  "fieldPath": {
+    "message": "Path"
+  },
+  "fieldParam": {
+    "message": "Search parameter"
+  },
+  "add": {
+    "message": "Add"
+  },
+  "remove": {
+    "message": "Remove"
+  },
+  "permissionDenied": {
+    "message": "Permission for that site was not granted, so the engine was not added."
+  },
+  "invalidEngine": {
+    "message": "Host and search parameter are required."
+  },
+  "noCustom": {
+    "message": "No custom engines yet."
+  },
+  "secExceptions": {
+    "message": "Exceptions"
+  },
+  "exceptionsHint": {
+    "message": "Sites listed here are never redirected. A bare host means every page on it."
+  },
+  "exceptionPlaceholder": {
+    "message": "example.com/*"
+  },
+  "noExceptions": {
+    "message": "No exceptions."
+  },
+  "secResolver": {
+    "message": "Resolver"
+  },
+  "resolverHint": {
+    "message": "The DOI is appended to this base URL as a path."
+  },
+  "resolverBase": {
+    "message": "Resolver base URL"
+  },
+  "secAdvanced": {
+    "message": "Advanced"
+  },
+  "patternLabel": {
+    "message": "DOI matching pattern"
+  },
+  "patternHint": {
+    "message": "A JavaScript regular expression, tested against the whole decoded search query. This is a matching pattern, not a DOI syntax validator."
+  },
+  "testLabel": {
+    "message": "Test input"
+  },
+  "test": {
+    "message": "Test"
+  },
+  "testMatch": {
+    "message": "Matches: the search would be redirected."
+  },
+  "testNoMatch": {
+    "message": "No match: the search is left alone."
+  },
+  "patternInvalid": {
+    "message": "That is not a valid regular expression."
+  },
+  "resolverInvalid": {
+    "message": "Must be an http(s) URL with no query string or fragment."
+  },
+  "restoreDefault": {
+    "message": "Restore default"
+  },
+  "popupOn": {
+    "message": "Redirecting DOI searches"
+  },
+  "popupOff": {
+    "message": "Paused"
+  },
+  "popupEngines": {
+    "message": "Search engines enabled"
+  },
+  "openOptions": {
+    "message": "Settings"
+  }
+}

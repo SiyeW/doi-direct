@@ -1,0 +1,128 @@
+{
+  "extName": {
+    "message": "DOI Direct"
+  },
+  "extDescription": {
+    "message": "搜索框里直接解析 DOI：整条查询是 DOI 时，直接跳到 DOI 解析地址，而不进搜索结果页。"
+  },
+  "optionsTitle": {
+    "message": "DOI Direct 设置"
+  },
+  "secGeneral": {
+    "message": "常规"
+  },
+  "masterSwitch": {
+    "message": "拦截 DOI 搜索"
+  },
+  "masterSwitchHint": {
+    "message": "临时关掉，不用卸载扩展。"
+  },
+  "secEngines": {
+    "message": "搜索引擎"
+  },
+  "enginesHint": {
+    "message": "只有整条查询就是一个 DOI 时才会跳转，其它情况一律不管。"
+  },
+  "notVerified": {
+    "message": "未核实"
+  },
+  "notVerifiedHint": {
+    "message": "这些引擎的网址格式没有实际抓取确认过，所以默认关闭。你在用哪个就打开哪个。"
+  },
+  "secCustom": {
+    "message": "自定义搜索引擎"
+  },
+  "customHint": {
+    "message": "添加的引擎只会申请那一个网站的权限，不会多要。"
+  },
+  "fieldName": {
+    "message": "名称"
+  },
+  "fieldHost": {
+    "message": "域名"
+  },
+  "fieldPath": {
+    "message": "路径"
+  },
+  "fieldParam": {
+    "message": "搜索参数"
+  },
+  "add": {
+    "message": "添加"
+  },
+  "remove": {
+    "message": "删除"
+  },
+  "permissionDenied": {
+    "message": "你没有授予那个网站的权限，所以没有添加。"
+  },
+  "invalidEngine": {
+    "message": "域名和搜索参数都必须填。"
+  },
+  "noCustom": {
+    "message": "还没有自定义搜索引擎。"
+  },
+  "secExceptions": {
+    "message": "例外"
+  },
+  "exceptionsHint": {
+    "message": "这里列出的网站永不跳转。只写域名表示该站所有页面。"
+  },
+  "exceptionPlaceholder": {
+    "message": "example.com/*"
+  },
+  "noExceptions": {
+    "message": "没有例外。"
+  },
+  "secResolver": {
+    "message": "解析地址"
+  },
+  "resolverHint": {
+    "message": "DOI 会作为路径追加到这个地址后面。"
+  },
+  "resolverBase": {
+    "message": "解析地址前缀"
+  },
+  "secAdvanced": {
+    "message": "高级"
+  },
+  "patternLabel": {
+    "message": "DOI 匹配正则"
+  },
+  "patternHint": {
+    "message": "一段 JavaScript 正则，作用在解码后的完整查询串上。它是匹配规则，不是 DOI 语法校验器。"
+  },
+  "testLabel": {
+    "message": "测试输入"
+  },
+  "test": {
+    "message": "测试"
+  },
+  "testMatch": {
+    "message": "匹配：这次搜索会被跳转。"
+  },
+  "testNoMatch": {
+    "message": "不匹配：搜索不受影响。"
+  },
+  "patternInvalid": {
+    "message": "这不是合法的正则表达式。"
+  },
+  "resolverInvalid": {
+    "message": "必须是 http(s) 地址，且不能带查询串或片段。"
+  },
+  "restoreDefault": {
+    "message": "恢复默认"
+  },
+  "popupOn": {
+    "message": "正在拦截 DOI 搜索"
+  },
+  "popupOff": {
+    "message": "已暂停"
+  },
+  "popupEngines": {
+    "message": "已启用的搜索引擎"
+  },
+  "openOptions": {
+    "message": "设置"
+  }
+}
