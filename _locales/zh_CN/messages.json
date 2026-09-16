@@ -3,7 +3,7 @@
     "message": "DOI Direct"
   },
   "extDescription": {
-    "message": "将 DOI 搜索直接重定向到 DOI 解析器。"
+    "message": "将 DOI 搜索自动重定向至 DOI 解析器。"
   },
   "optionsTitle": {
     "message": "DOI Direct 设置"
@@ -24,10 +24,10 @@
     "message": "自定义搜索引擎"
   },
   "customHint": {
-    "message": "添加新引擎时将会申请对应网站的权限。"
+    "message": "添加新引擎时将会申请相应网站的权限。"
   },
   "fieldName": {
-    "message": "备注名称"
+    "message": "备注"
   },
   "fieldHost": {
     "message": "域名"
@@ -45,10 +45,10 @@
     "message": "删除"
   },
   "invalidEngine": {
-    "message": "域名和搜索参数都必须填。"
+    "message": "域名和搜索参数为必填项。"
   },
   "permissionDenied": {
-    "message": "你没有授予那个网站的权限，所以没有添加。"
+    "message": "获取网站权限失败。"
   },
   "noCustom": {
     "message": "还没有自定义搜索引擎。"
@@ -57,10 +57,10 @@
     "message": "例外"
   },
   "exceptionsHint": {
-    "message": "这里列出的网站永不跳转。只写域名表示该站所有页面。"
+    "message": "这里列出的网站不会被跳转。只写域名就是整站（含子域名），加上路径就只管那一页。"
   },
   "exceptionPlaceholder": {
-    "message": "example.com/*"
+    "message": "google.com"
   },
   "noExceptions": {
     "message": "没有例外。"

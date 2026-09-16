@@ -17,7 +17,7 @@
 
   var REGEX_SPECIALS = '\\^$.|?*+()[]{}';
 
-  /* Exceptions are simple URL globs such as "example.com/*" or "google.com/special/*". */
+  /* Path globs: "*" stands for any run of characters. */
   function globToRegExp(pattern) {
     var out = '';
     for (var i = 0; i < pattern.length; i++) {
@@ -28,13 +28,37 @@
     return new RegExp('^' + out + '$', 'i');
   }
 
+  /* An exception is a host, optionally followed by a path: "google.com" or
+   * "google.com/maps". Three rules, all of them chosen to match what a reader
+   * expects rather than what is easiest to implement:
+   *
+   *  - A host on its own covers every path on it, and covers its subdomains too.
+   *    That is the same treatment engine hosts get, so "google.com" behaves the
+   *    same whether it appears in the engine list or in the exception list.
+   *  - The query string and the fragment take no part in matching, so
+   *    "google.com/search" covers "google.com/search?q=..." - which, on a search
+   *    engine, is the only URL that ever occurs.
+   *  - A path is compared exactly, so "google.com/maps" does not cover
+   *    "google.com/maps/place/x". Add a "*" when a prefix is wanted. */
   function matchesException(url, exceptions) {
     if (!exceptions || !exceptions.length) return false;
-    var stripped = String(url).replace(/^https?:\/\//i, '');
+    var u;
+    try { u = new URL(url); } catch (e) { return false; }
+    var host = u.hostname.toLowerCase();
+    var path = u.pathname || '/';
+
     for (var i = 0; i < exceptions.length; i++) {
-      var pat = String(exceptions[i] || '').trim();
-      if (!pat) continue;
-      try { if (globToRegExp(pat).test(stripped)) return true; }
+      var pattern = String(exceptions[i] || '').trim();
+      if (!pattern) continue;
+
+      var cut = pattern.indexOf('/');
+      var patternHost = cut === -1 ? pattern : pattern.slice(0, cut);
+      var patternPath = cut === -1 ? '/*' : pattern.slice(cut);
+      if (patternHost.slice(0, 2) === '*.') patternHost = patternHost.slice(2);
+      if (!patternHost) continue;
+
+      if (!EngineRules.hostMatches(host, patternHost)) continue;
+      try { if (globToRegExp(patternPath).test(path)) return true; }
       catch (e) { /* a broken exception must not block anything */ }
     }
     return false;

@@ -76,11 +76,11 @@
     "description": "Settings section heading."
   },
   "exceptionsHint": {
-    "message": "Sites listed here are never redirected. A bare host means every page on it.",
-    "description": "One line explaining what an exception does."
+    "message": "Sites listed here are never redirected. A domain covers the whole site and its subdomains; add a path to cover only that page.",
+    "description": "One line explaining what an exception covers."
   },
   "exceptionPlaceholder": {
-    "message": "example.com/*",
+    "message": "google.com",
     "description": "Placeholder inside the exception input box."
   },
   "noExceptions": {

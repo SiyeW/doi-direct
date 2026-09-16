@@ -123,13 +123,33 @@ eq(cr && cr.target, 'https://doi.org/10.1038/x', 'custom engine target');
 eq(Decide.attempt('https://search.example.edu/other?text=10.1038%2Fx', custom), null, 'custom engine path is respected');
 
 /* exceptions */
-const ex = Settings.normalize({ exceptions: ['www.google.com/*'] });
-eq(Decide.attempt('https://www.google.com/search?q=10.1038%2Fx', ex), null, 'exception blocks that host');
-ok(Decide.attempt('https://www.google.co.uk/search?q=10.1038%2Fx', ex), 'other hosts are unaffected');
-const ex2 = Settings.normalize({ exceptions: ['other.example.com/*'] });
-ok(Decide.attempt('https://www.google.com/search?q=10.1038%2Fx', ex2), 'an unrelated exception does not block');
-eq(Settings.normalizeException('example.com'), 'example.com/*', 'a bare host gains /*');
+const GOOGLE_SEARCH = 'https://www.google.com/search?q=10.1038%2Fx';
+
+eq(Decide.attempt(GOOGLE_SEARCH, Settings.normalize({ exceptions: ['www.google.com'] })), null,
+   'a bare host excepts that host');
+ok(Decide.attempt('https://www.google.co.uk/search?q=10.1038%2Fx',
+   Settings.normalize({ exceptions: ['www.google.com'] })), 'a different host is unaffected');
+ok(Decide.attempt(GOOGLE_SEARCH, Settings.normalize({ exceptions: ['other.example.com'] })),
+   'an unrelated exception does not block');
+
+/* a bare domain covers subdomains, the same way engine hosts do */
+eq(Decide.attempt(GOOGLE_SEARCH, Settings.normalize({ exceptions: ['google.com'] })), null,
+   'a bare domain covers its subdomains');
+
+/* A path exception ignores the query string. On a search engine that is the
+ * only URL that ever occurs, so without this the path form would never match. */
+eq(Decide.attempt(GOOGLE_SEARCH, Settings.normalize({ exceptions: ['www.google.com/search'] })), null,
+   'a path exception covers the page despite the query string');
+ok(Decide.attempt(GOOGLE_SEARCH, Settings.normalize({ exceptions: ['www.google.com/maps'] })),
+   'a path exception leaves other paths alone');
+
+/* the wildcard stays available for a prefix */
+eq(Decide.attempt(GOOGLE_SEARCH, Settings.normalize({ exceptions: ['www.google.com/sea*'] })), null,
+   'a trailing * makes the path a prefix');
+
+eq(Settings.normalizeException('example.com'), 'example.com', 'a bare host is stored exactly as typed');
 eq(Settings.normalizeException('https://example.com/a'), 'example.com/a', 'the scheme is stripped');
+eq(Settings.normalizeException('   '), null, 'blank input is rejected');
 
 /* ---------- settings normalisation ---------- */
 const n1 = Settings.normalize(null);

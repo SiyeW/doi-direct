@@ -51,13 +51,13 @@
     return { ok: true, value: build.slice(0, build.length - '10.1000/x'.length) };
   }
 
-  /* A bare host means "everything on that host". */
+  /* Stored exactly as typed, minus a scheme if one was pasted in. What a bare
+   * host means is decided at match time - see Decide.matchesException - so the
+   * list never shows something the user did not write. */
   function normalizeException(input) {
     var s = String(input == null ? '' : input).trim();
     if (!s) return null;
-    s = s.replace(/^https?:\/\//i, '');
-    if (s.indexOf('/') === -1) s += '/*';
-    return s;
+    return s.replace(/^https?:\/\//i, '');
   }
 
   function normalizeCustomEngine(raw, index) {
