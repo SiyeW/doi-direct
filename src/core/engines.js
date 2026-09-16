@@ -2,25 +2,17 @@
  *
  * Pure data + pure functions, no chrome.* access, so this is unit testable.
  *
- * "verified" records whether the URL shape was actually confirmed by loading the
- * engine and checking that the query comes back in the result. Listing an engine
- * is not the same as supporting it, so anything unconfirmed ships disabled until
- * someone re-checks it.
+ * Every rule below was checked against the live site: the search URL was loaded
+ * and the query came back in the result.
  *
- * Ecosia answers automated requests with a Cloudflare challenge, so its rule was
- * confirmed by hand instead: a real search produced
- * https://www.ecosia.org/search?method=index&ar=1&q=test - that is the /search
- * path with the query in q, plus two extra parameters that do not matter because
- * the query is read by name.
+ * Two engines are deliberately absent because they cannot work here at all.
+ * Startpage and DuckDuckGo's no-JavaScript version (html.duckduckgo.com) both
+ * submit searches with POST, so the query never appears in the URL and there is
+ * nothing for this extension to read.
  *
- * Startpage is deliberately absent. It submits searches with POST and keeps the
- * query out of the URL on purpose, so there is nothing for this extension to
- * read. An engine that cannot work does not belong in the list, not even
- * switched off.
- *
- * Note for anyone re-verifying: curl does NOT use the Windows system proxy by
- * default, while Invoke-WebRequest does. Testing with curl but no --proxy
- * produces false negatives for engines that are blocked on the local network.
+ * Note for anyone re-verifying: curl does not use the Windows system proxy by
+ * default while Invoke-WebRequest does, so testing with curl and no --proxy
+ * gives false negatives for engines blocked on the local network.
  */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) { module.exports = factory(); }
@@ -31,8 +23,9 @@
   /* Google's regional domains have to be listed one by one: a match pattern
    * cannot express "*.google.*", and each ccTLD is a separate site that stays on
    * its own domain. This is a curated subset covering the most used regions;
-   * anything missing can be added as a custom search engine. */
-  /* Bing owns regional domains too (bing.de, bing.co.uk, ...) but they are only
+   * anything missing can be added as a custom search engine.
+   *
+   * Bing owns regional domains too (bing.de, bing.co.uk, ...) but they are only
    * redirectors: bing.de/search?q=x answers 301 to
    * www.bing.com/search?q=x&cc=de, so Bing folds every region back into one
    * site. Chrome ships www.bing.com, plus cn.bing.com for China, which is a
@@ -48,26 +41,15 @@
 
   function builtIn() {
     return [
-      { id: 'google', name: 'Google', enabled: true, verified: true,
-        hosts: GOOGLE_HOSTS, path: '/search', param: 'q' },
-      { id: 'bing', name: 'Bing', enabled: true, verified: true,
-        hosts: ['bing.com'], path: '/search', param: 'q' },
-      { id: 'baidu', name: 'Baidu', enabled: true, verified: true,
-        hosts: ['baidu.com'], path: '/s', param: 'wd' },
-      { id: 'duckduckgo', name: 'DuckDuckGo', enabled: true, verified: true,
-        hosts: ['duckduckgo.com'], path: '/', param: 'q' },
-      { id: 'duckduckgo-html', name: 'DuckDuckGo (HTML)', enabled: true, verified: true,
-        hosts: ['html.duckduckgo.com'], path: '/html/', param: 'q' },
-      { id: 'sogou', name: 'Sogou', enabled: true, verified: true,
-        hosts: ['sogou.com'], path: '/web', param: 'query' },
-      { id: 'so360', name: '360 Search', enabled: true, verified: true,
-        hosts: ['so.com'], path: '/s', param: 'q' },
-      { id: 'brave', name: 'Brave Search', enabled: true, verified: true,
-        hosts: ['search.brave.com'], path: '/search', param: 'q' },
-      { id: 'yahoo', name: 'Yahoo', enabled: true, verified: true,
-        hosts: ['search.yahoo.com'], path: '/search', param: 'p' },
-      { id: 'ecosia', name: 'Ecosia', enabled: true, verified: true,
-        hosts: ['ecosia.org'], path: '/search', param: 'q' }
+      { id: 'google', name: 'Google', hosts: GOOGLE_HOSTS, path: '/search', param: 'q' },
+      { id: 'bing', name: 'Bing', hosts: ['bing.com'], path: '/search', param: 'q' },
+      { id: 'baidu', name: 'Baidu', hosts: ['baidu.com'], path: '/s', param: 'wd' },
+      { id: 'duckduckgo', name: 'DuckDuckGo', hosts: ['duckduckgo.com'], path: '/', param: 'q' },
+      { id: 'sogou', name: 'Sogou', hosts: ['sogou.com'], path: '/web', param: 'query' },
+      { id: 'so360', name: '360 Search', hosts: ['so.com'], path: '/s', param: 'q' },
+      { id: 'brave', name: 'Brave Search', hosts: ['search.brave.com'], path: '/search', param: 'q' },
+      { id: 'yahoo', name: 'Yahoo', hosts: ['search.yahoo.com'], path: '/search', param: 'p' },
+      { id: 'ecosia', name: 'Ecosia', hosts: ['ecosia.org'], path: '/search', param: 'q' }
     ];
   }
 

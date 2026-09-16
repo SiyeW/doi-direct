@@ -27,18 +27,6 @@
     "message": "Search engines",
     "description": "Settings section heading."
   },
-  "enginesHint": {
-    "message": "Only a query that is entirely a DOI is redirected. Anything else is left alone.",
-    "description": "One line explaining that only a whole-query DOI is redirected."
-  },
-  "notVerified": {
-    "message": "not verified",
-    "description": "Small badge next to an engine whose URL shape was never confirmed."
-  },
-  "notVerifiedHint": {
-    "message": "The URL shape of these engines has not been confirmed by fetching them, so they are off by default. Enable one if you use it.",
-    "description": "Footnote shown only while at least one engine is unverified."
-  },
   "secCustom": {
     "message": "Custom search engines",
     "description": "Settings section heading."
@@ -82,18 +70,6 @@
   "noCustom": {
     "message": "No custom engines yet.",
     "description": "Empty-state line when no custom engine has been added."
-  },
-  "enginePreview": {
-    "message": "Preview",
-    "description": "Label in the live preview of the custom engine."
-  },
-  "enginePreviewPermission": {
-    "message": "Permission requested",
-    "description": "Label in the live preview, before the permission pattern."
-  },
-  "enginePreviewExample": {
-    "message": "Example search",
-    "description": "Label in the live preview, before a worked example search."
   },
   "secExceptions": {
     "message": "Exceptions",

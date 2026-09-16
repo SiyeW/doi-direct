@@ -109,9 +109,10 @@ saves you is the page of search results.
 - **Firefox is not supported.** Its URL handling differs and would need its own
   verification.
 - **Search engines that submit with POST cannot be supported**, because the query
-  never reaches the URL. Startpage is one of those. A quick way to check any
-  engine: search for something and look at the address bar - if there is no query
-  parameter there, this extension has nothing to read.
+  never reaches the URL. Startpage and DuckDuckGo's no-JavaScript version are both
+  like that. A quick way to check any engine: search for something and look at the
+  address bar - if there is no query parameter there, this extension has nothing
+  to read.
 - Search engines that update results without reloading the page (`history.pushState`)
   are not covered.
 

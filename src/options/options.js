@@ -79,12 +79,7 @@
   function renderEngines() {
     var box = el('engineList');
     box.textContent = '';
-    var rules = EngineRules.builtIn();
-
-    /* the "not verified" note only makes sense while something is unverified */
-    el('notVerifiedHint').hidden = !rules.some(function (r) { return r.verified === false; });
-
-    rules.forEach(function (rule) {
+    EngineRules.builtIn().forEach(function (rule) {
       var row = document.createElement('label');
       row.className = 'row';
       var cb = document.createElement('input');
@@ -98,12 +93,6 @@
       var name = document.createElement('span');
       name.textContent = rule.name;
       row.appendChild(name);
-      if (rule.verified === false) {
-        var badge = document.createElement('span');
-        badge.className = 'badge';
-        badge.textContent = DOI18n.t('notVerified');
-        row.appendChild(badge);
-      }
       var hosts = document.createElement('span');
       hosts.className = 'muted';
       hosts.textContent = rule.hosts.join(', ');
@@ -160,20 +149,8 @@
 
   /* ------------------------------------------------------- engine preview */
 
-  function previewLine(box, key, value) {
-    var row = document.createElement('div');
-    if (key) {
-      var k = document.createElement('span');
-      k.className = 'k';
-      k.textContent = key + ': ';
-      row.appendChild(k);
-    }
-    var v = document.createElement('code');
-    v.textContent = value;
-    row.appendChild(v);
-    box.appendChild(row);
-  }
-
+  /* Shows nothing at all until the fields describe a usable engine. An empty box
+   * reads better than an error message parked inside a preview area. */
   function updateEnginePreview() {
     var box = el('enginePreview');
     box.textContent = '';
@@ -185,20 +162,12 @@
       param: el('ceParam').value
     });
 
-    if (!entry) {
-      var empty = document.createElement('div');
-      empty.className = 'empty';
-      empty.textContent = DOI18n.t('invalidEngine');
-      box.appendChild(empty);
-      return;
-    }
+    if (!entry) { box.hidden = true; return; }
 
-    previewLine(box, DOI18n.t('enginePreview'),
-      entry.name + '  ' + entry.host + entry.path + '?' + entry.param);
-    previewLine(box, DOI18n.t('enginePreviewPermission'), '*://*.' + entry.host + '/*');
-    previewLine(box, DOI18n.t('enginePreviewExample'),
-      'https://' + entry.host + entry.path + '?' + entry.param + '=' +
-      encodeURIComponent(DOICore.EXAMPLES.accept[0]) + '  ->  https://doi.org/' + DOICore.EXAMPLES.accept[0]);
+    box.hidden = false;
+    var code = document.createElement('code');
+    code.textContent = entry.name + '  ' + entry.host + entry.path + '?' + entry.param;
+    box.appendChild(code);
   }
 
   /* -------------------------------------------------------- pattern testing */

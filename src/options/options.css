@@ -42,7 +42,6 @@ button:hover { background: #f0f3f8; }
   padding: 8px 10px; margin: 0 0 10px; font-size: 12.5px; min-height: 40px;
 }
 .preview div { margin: 1px 0; word-break: break-all; }
-.preview .k { color: #7b8494; }
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 12px;

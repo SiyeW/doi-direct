@@ -76,7 +76,6 @@ const MATCH = [
   ['https://cn.bing.com/search?q=10.1038%2Fx&form=QBLH', 'bing'],
   ['https://www.baidu.com/s?wd=10.1038%2Fx&ie=utf-8', 'baidu'],
   ['https://duckduckgo.com/?q=10.1038%2Fx', 'duckduckgo'],
-  ['https://html.duckduckgo.com/html/?q=10.1038%2Fx', 'duckduckgo-html'],
   ['https://www.sogou.com/web?query=10.1038%2Fx&ie=utf8', 'sogou'],
   ['https://www.so.com/s?q=10.1038%2Fx', 'so360'],
   ['https://search.brave.com/search?q=10.1038%2Fx', 'brave'],
@@ -98,9 +97,10 @@ const NO_MATCH = [
   'https://www.google.com/search?q=10.1038%2Fexample+pdf',
   'https://example.com/search?q=10.1038%2Fx',
   'https://www.google.com.evil.test/search?q=10.1038%2Fx',
-  /* Startpage is not built in: it submits searches with POST and keeps the
-   * query out of the URL, so it can never be supported this way. */
+  /* These two are not built in: both submit searches with POST and keep the
+   * query out of the URL, so they can never be supported this way. */
   'https://www.startpage.com/sp/search?query=10.1038%2Fx',
+  'https://html.duckduckgo.com/html/?q=10.1038%2Fx',
   'chrome://newtab/',
   'not a url'
 ];
@@ -130,15 +130,6 @@ const ex2 = Settings.normalize({ exceptions: ['other.example.com/*'] });
 ok(Decide.attempt('https://www.google.com/search?q=10.1038%2Fx', ex2), 'an unrelated exception does not block');
 eq(Settings.normalizeException('example.com'), 'example.com/*', 'a bare host gains /*');
 eq(Settings.normalizeException('https://example.com/a'), 'example.com/a', 'the scheme is stripped');
-
-/* ---------- policy: unverified engines must ship disabled ---------- */
-EngineRules.builtIn().forEach(function (rule) {
-  if (rule.verified === false) {
-    eq(rule.enabled, false, 'unverified engine is off by default: ' + rule.id);
-  }
-});
-ok(EngineRules.builtIn().filter(function (r) { return r.verified !== false; }).length >= 8,
-   'most built-in engines are verified');
 
 /* ---------- settings normalisation ---------- */
 const n1 = Settings.normalize(null);
