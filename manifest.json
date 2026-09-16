@@ -36,8 +36,7 @@
     "*://*.so.com/*",
     "*://*.search.brave.com/*",
     "*://*.search.yahoo.com/*",
-    "*://*.ecosia.org/*",
-    "*://*.startpage.com/*"
+    "*://*.ecosia.org/*"
   ],
   "optional_host_permissions": [
     "*://*/*"
@@ -74,8 +73,7 @@
         "*://*.so.com/*",
         "*://*.search.brave.com/*",
         "*://*.search.yahoo.com/*",
-        "*://*.ecosia.org/*",
-        "*://*.startpage.com/*"
+        "*://*.ecosia.org/*"
       ],
       "js": [
         "src/core/doi.js",

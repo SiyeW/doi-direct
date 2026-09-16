@@ -7,9 +7,13 @@
  * is not the same as supporting it, so anything unconfirmed ships disabled until
  * someone re-checks it.
  *
- * Ecosia and Startpage are still unverified: Ecosia answers 403 through a proxy
- * and is hijacked to another engine without one, and Startpage's search endpoint
- * is a JavaScript app that redirects unauthorised GETs back to its home page.
+ * Ecosia is still unverified: it sits behind a Cloudflare challenge that refuses
+ * automated requests, so its URL shape has not been confirmed yet.
+ *
+ * Startpage is deliberately absent. It submits searches with POST and keeps the
+ * query out of the URL on purpose, so there is nothing for this extension to
+ * read. An engine that cannot work does not belong in the list, not even
+ * switched off.
  *
  * Note for anyone re-verifying: curl does NOT use the Windows system proxy by
  * default, while Invoke-WebRequest does. Testing with curl but no --proxy
@@ -22,8 +26,16 @@
   'use strict';
 
   /* Google's regional domains have to be listed one by one: a match pattern
-   * cannot express "*.google.*". This is a curated subset covering the most
-   * used regions; anything missing can be added as a custom search engine. */
+   * cannot express "*.google.*", and each ccTLD is a separate site that stays on
+   * its own domain. This is a curated subset covering the most used regions;
+   * anything missing can be added as a custom search engine. */
+  /* Bing owns regional domains too (bing.de, bing.co.uk, ...) but they are only
+   * redirectors: bing.de/search?q=x answers 301 to
+   * www.bing.com/search?q=x&cc=de, so Bing folds every region back into one
+   * site. Chrome ships www.bing.com, plus cn.bing.com for China, which is a
+   * subdomain and therefore already covered by suffix matching. One entry is
+   * enough - and even if a browser started at bing.de, the redirect would land
+   * on www.bing.com where this rule does match. */
   var GOOGLE_HOSTS = [
     'google.com', 'google.co.uk', 'google.de', 'google.fr', 'google.es',
     'google.it', 'google.nl', 'google.ca', 'google.com.au', 'google.co.jp',
@@ -52,9 +64,7 @@
       { id: 'yahoo', name: 'Yahoo', enabled: true, verified: true,
         hosts: ['search.yahoo.com'], path: '/search', param: 'p' },
       { id: 'ecosia', name: 'Ecosia', enabled: false, verified: false,
-        hosts: ['ecosia.org'], path: '/search', param: 'q' },
-      { id: 'startpage', name: 'Startpage', enabled: false, verified: false,
-        hosts: ['startpage.com'], path: '/sp/search', param: 'query' }
+        hosts: ['ecosia.org'], path: '/search', param: 'q' }
     ];
   }
 
