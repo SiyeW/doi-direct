@@ -29,6 +29,9 @@ input[type=text] {
   background: #fff; color: inherit; min-width: 0;
 }
 input[type=text]:focus { outline: 2px solid #7fb3ff; outline-offset: 1px; border-color: #7fb3ff; }
+/* Chrome's default placeholder colour is close enough to the real text that the
+ * field reads as already filled in. Keep it clearly lighter. */
+input[type=text]::placeholder { color: #aab3c0; opacity: 1; }
 button {
   font: inherit; padding: 5px 12px; margin-right: 8px; border-radius: 6px;
   border: 1px solid #cfd5de; background: #fff; color: inherit; cursor: pointer;
@@ -54,6 +57,7 @@ code {
   section { border-top-color: #2a2f3a; }
   .hint, .empty { color: #8b93a1; }
   input[type=text] { background: #1e2128; border-color: #3a4150; }
+  input[type=text]::placeholder { color: #667080; }
   button { background: #1e2128; border-color: #3a4150; }
   button:hover { background: #262b34; }
   .preview { background: #1b1e24; border-color: #2a2f3a; }
