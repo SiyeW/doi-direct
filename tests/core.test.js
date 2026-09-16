@@ -168,6 +168,60 @@ ok(manifest.permissions.indexOf('webRequest') !== -1, 'webRequest is requested')
 ok(!(manifest.host_permissions || []).some(p => p === '<all_urls>' || p === '*://*/*'),
    'no broad host permission is required up front');
 
+/* ---------- locales ---------- */
+/* These checks exist so that hand-editing a translation cannot silently break
+ * the extension: a stray comma, a key that only exists in one language, or a
+ * message referenced from the UI but missing from the catalogue all fail here. */
+const LOCALES = ['en', 'zh_CN'];
+const catalogues = {};
+
+LOCALES.forEach(function (loc) {
+  const file = path.join(__dirname, '..', '_locales', loc, 'messages.json');
+  let parsed = null;
+  let err = null;
+  try { parsed = JSON.parse(fs.readFileSync(file, 'utf8')); }
+  catch (e) { err = e.message; }
+  eq(err, null, 'locale file parses: ' + loc + (err ? '  (' + err + ')' : ''));
+  catalogues[loc] = parsed || {};
+});
+
+const baseKeys = Object.keys(catalogues.en || {}).sort();
+ok(baseKeys.length > 20, 'the English catalogue is populated');
+
+LOCALES.forEach(function (loc) {
+  eq(Object.keys(catalogues[loc]).sort(), baseKeys, 'same keys as English: ' + loc);
+  baseKeys.forEach(function (key) {
+    const entry = catalogues[loc][key];
+    const text = entry && entry.message;
+    ok(typeof text === 'string' && text.trim() !== '', 'non-empty message: ' + loc + '/' + key);
+  });
+});
+
+/* the product name is a proper noun */
+LOCALES.forEach(function (loc) {
+  ok(String(catalogues[loc].extName.message).indexOf('DOI Direct') !== -1,
+     'the product name survives translation: ' + loc);
+});
+
+/* every message the UI asks for must exist */
+const referenced = new Set();
+['src/options/options.js', 'src/popup/popup.js'].forEach(function (rel) {
+  const src = fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+  const re = /DOI18n\.t\('([A-Za-z0-9_]+)'\)/g;
+  let m;
+  while ((m = re.exec(src)) !== null) referenced.add(m[1]);
+});
+['src/options/options.html', 'src/popup/popup.html'].forEach(function (rel) {
+  const src = fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+  const re = /data-i18n(?:-placeholder|-title)?="([A-Za-z0-9_]+)"/g;
+  let m;
+  while ((m = re.exec(src)) !== null) referenced.add(m[1]);
+});
+eq(Array.from(referenced).filter(k => !catalogues.en[k]).sort(), [],
+   'every message used by the UI exists in the catalogue');
+
+ok(LOCALES.indexOf(manifest.default_locale) !== -1, 'default_locale points at a shipped catalogue');
+
 /* ---------- report ---------- */
 console.log('');
 console.log(pass + ' passed, ' + fail + ' failed');

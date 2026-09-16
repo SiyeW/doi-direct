@@ -62,8 +62,25 @@ node tests/core.test.js
 ```
 
 No browser needed. The suite covers DOI matching, the percent-encoding rules, the
-resolver URL, engine URL matching, exceptions, settings normalisation, and a check
-that `manifest.json` stays in sync with the built-in engine list.
+resolver URL, engine URL matching, exceptions, settings normalisation, the message
+catalogues, and a check that `manifest.json` stays in sync with the built-in
+engine list.
+
+## Translating
+
+UI strings live in `_locales/<locale>/messages.json`. English is the source locale
+and carries a `description` on every key; `zh_CN` is a full translation.
+
+- **Editing an existing translation**: change the `message` values only, never the
+  keys.
+- **Adding a language**: copy `_locales/en` to `_locales/<code>` (for example `de`
+  or `pt_BR`), translate the `message` values, and leave everything else alone.
+  Chrome picks the catalogue matching the browser language and falls back to
+  English.
+- **After any edit**, run the tests. A malformed `messages.json` stops the
+  extension from loading at all, and the suite catches that as well as a key that
+  exists in one language only, an empty message, or a message the UI asks for that
+  the catalogue does not have.
 
 ## Permissions
 

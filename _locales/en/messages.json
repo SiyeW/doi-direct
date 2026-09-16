@@ -1,146 +1,190 @@
 {
   "extName": {
     "message": "DOI Direct",
-    "description": "Extension name"
+    "description": "Extension name, shown in the browser and the store listing."
   },
   "extDescription": {
     "message": "Resolve a DOI straight from the search box: DOI-only searches go to the DOI resolver instead of a page of search results.",
-    "description": "Extension description"
+    "description": "Extension description, shown in the browser and the store listing."
   },
   "optionsTitle": {
-    "message": "DOI Direct settings"
+    "message": "DOI Direct settings",
+    "description": "Heading at the top of the settings page."
   },
   "secGeneral": {
-    "message": "General"
+    "message": "General",
+    "description": "Settings section heading."
   },
   "masterSwitch": {
-    "message": "Redirect DOI searches"
+    "message": "Redirect DOI searches",
+    "description": "Label next to the on/off checkbox."
   },
   "masterSwitchHint": {
-    "message": "Turn the extension off without uninstalling it."
+    "message": "Turn the extension off without uninstalling it.",
+    "description": "One line under the on/off checkbox."
   },
   "secEngines": {
-    "message": "Search engines"
+    "message": "Search engines",
+    "description": "Settings section heading."
   },
   "enginesHint": {
-    "message": "Only a query that is entirely a DOI is redirected. Anything else is left alone."
+    "message": "Only a query that is entirely a DOI is redirected. Anything else is left alone.",
+    "description": "One line explaining that only a whole-query DOI is redirected."
   },
   "notVerified": {
     "message": "not verified",
-    "description": "Badge for engines whose URL shape has not been confirmed"
+    "description": "Small badge next to an engine whose URL shape was never confirmed."
   },
   "notVerifiedHint": {
-    "message": "The URL shape of these engines has not been confirmed by fetching them, so they are off by default. Enable one if you use it."
+    "message": "The URL shape of these engines has not been confirmed by fetching them, so they are off by default. Enable one if you use it.",
+    "description": "Footnote shown only while at least one engine is unverified."
   },
   "secCustom": {
-    "message": "Custom search engines"
+    "message": "Custom search engines",
+    "description": "Settings section heading."
   },
   "customHint": {
-    "message": "Added engines need permission for that one site. Nothing else is requested."
+    "message": "Added engines need permission for that one site. Nothing else is requested.",
+    "description": "One line explaining that a custom engine asks for one site only."
   },
   "fieldName": {
-    "message": "Name"
+    "message": "Name",
+    "description": "Form label for the engine's display name."
   },
   "fieldHost": {
-    "message": "Host"
+    "message": "Host",
+    "description": "Form label for the engine's domain, e.g. search.example.edu."
   },
   "fieldPath": {
-    "message": "Path"
+    "message": "Path",
+    "description": "Form label for the URL path, e.g. /query."
   },
   "fieldParam": {
-    "message": "Search parameter"
+    "message": "Search parameter",
+    "description": "Form label for the query parameter name, e.g. q."
   },
   "add": {
-    "message": "Add"
+    "message": "Add",
+    "description": "Button that adds an engine or an exception."
   },
   "remove": {
-    "message": "Remove"
-  },
-  "permissionDenied": {
-    "message": "Permission for that site was not granted, so the engine was not added."
+    "message": "Remove",
+    "description": "Button that deletes a row."
   },
   "invalidEngine": {
-    "message": "Host and search parameter are required."
+    "message": "Host and search parameter are required.",
+    "description": "Shown when host or search parameter is missing; also the empty preview."
+  },
+  "permissionDenied": {
+    "message": "Permission for that site was not granted, so the engine was not added.",
+    "description": "Shown when the user refuses the host permission for a custom engine."
   },
   "noCustom": {
-    "message": "No custom engines yet."
-  },
-  "secExceptions": {
-    "message": "Exceptions"
-  },
-  "exceptionsHint": {
-    "message": "Sites listed here are never redirected. A bare host means every page on it."
-  },
-  "exceptionPlaceholder": {
-    "message": "example.com/*"
-  },
-  "noExceptions": {
-    "message": "No exceptions."
-  },
-  "secResolver": {
-    "message": "Resolver"
-  },
-  "resolverHint": {
-    "message": "The DOI is appended to this base URL as a path."
-  },
-  "resolverBase": {
-    "message": "Resolver base URL"
-  },
-  "secAdvanced": {
-    "message": "Advanced"
-  },
-  "patternLabel": {
-    "message": "DOI matching pattern"
-  },
-  "patternHint": {
-    "message": "A JavaScript regular expression, tested against the whole decoded search query. This is a matching pattern, not a DOI syntax validator."
-  },
-  "testLabel": {
-    "message": "Test input"
-  },
-  "testMatch": {
-    "message": "Matches"
-  },
-  "testNoMatch": {
-    "message": "No match"
-  },
-  "patternInvalid": {
-    "message": "That is not a valid regular expression."
-  },
-  "resolverInvalid": {
-    "message": "Must be an http(s) URL with no query string or fragment."
-  },
-  "restoreDefault": {
-    "message": "Restore default"
-  },
-  "popupOn": {
-    "message": "Redirecting DOI searches"
-  },
-  "popupOff": {
-    "message": "Paused"
-  },
-  "popupEngines": {
-    "message": "Search engines enabled"
-  },
-  "openOptions": {
-    "message": "Settings"
+    "message": "No custom engines yet.",
+    "description": "Empty-state line when no custom engine has been added."
   },
   "enginePreview": {
-    "message": "Preview"
+    "message": "Preview",
+    "description": "Label in the live preview of the custom engine."
   },
   "enginePreviewPermission": {
-    "message": "Permission requested"
+    "message": "Permission requested",
+    "description": "Label in the live preview, before the permission pattern."
   },
   "enginePreviewExample": {
-    "message": "Example search"
+    "message": "Example search",
+    "description": "Label in the live preview, before a worked example search."
   },
-  "examplesAccept": {
-    "message": "Should be redirected"
+  "secExceptions": {
+    "message": "Exceptions",
+    "description": "Settings section heading."
   },
-  "examplesReject": {
-    "message": "Should be left alone"
+  "exceptionsHint": {
+    "message": "Sites listed here are never redirected. A bare host means every page on it.",
+    "description": "One line explaining what an exception does."
+  },
+  "exceptionPlaceholder": {
+    "message": "example.com/*",
+    "description": "Placeholder inside the exception input box."
+  },
+  "noExceptions": {
+    "message": "No exceptions.",
+    "description": "Empty-state line when no exception has been added."
+  },
+  "secResolver": {
+    "message": "Resolver",
+    "description": "Settings section heading."
+  },
+  "resolverHint": {
+    "message": "The DOI is appended to this base URL as a path.",
+    "description": "One line explaining that the DOI is appended to this base as a path."
+  },
+  "resolverBase": {
+    "message": "Resolver base URL",
+    "description": "Form label for the resolver base URL."
+  },
+  "resolverInvalid": {
+    "message": "Must be an http(s) URL with no query string or fragment.",
+    "description": "Error shown when the resolver base is not usable."
+  },
+  "secAdvanced": {
+    "message": "Advanced",
+    "description": "Settings section heading."
+  },
+  "patternLabel": {
+    "message": "DOI matching pattern",
+    "description": "Form label for the DOI matching pattern."
+  },
+  "patternHint": {
+    "message": "A JavaScript regular expression, tested against the whole decoded search query. This is a matching pattern, not a DOI syntax validator.",
+    "description": "One line explaining that this is a matching pattern, not a validator."
+  },
+  "testLabel": {
+    "message": "Test input",
+    "description": "Form label for the free-text box that tests the pattern."
   },
   "testInputPlaceholder": {
-    "message": "Type a query to check"
+    "message": "Type a query to check",
+    "description": "Placeholder inside the free-text test box. Instruction, not an example value."
+  },
+  "testMatch": {
+    "message": "Matches",
+    "description": "Shown when the tested text matches the pattern."
+  },
+  "testNoMatch": {
+    "message": "No match",
+    "description": "Shown when the tested text does not match the pattern."
+  },
+  "patternInvalid": {
+    "message": "That is not a valid regular expression.",
+    "description": "Error shown when the pattern is not a valid JavaScript regular expression."
+  },
+  "restoreDefault": {
+    "message": "Restore default",
+    "description": "Button that puts one setting back to its default."
+  },
+  "examplesAccept": {
+    "message": "Should be redirected",
+    "description": "Heading over the example queries that should match."
+  },
+  "examplesReject": {
+    "message": "Should be left alone",
+    "description": "Heading over the example queries that should not match."
+  },
+  "popupOn": {
+    "message": "Redirecting DOI searches",
+    "description": "Popup status line while redirecting is on."
+  },
+  "popupOff": {
+    "message": "Paused",
+    "description": "Popup status line while redirecting is paused."
+  },
+  "popupEngines": {
+    "message": "Search engines enabled",
+    "description": "Popup line before the number of enabled engines."
+  },
+  "openOptions": {
+    "message": "Settings",
+    "description": "Popup button that opens the settings page."
   }
 }
