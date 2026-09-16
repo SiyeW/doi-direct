@@ -29,10 +29,10 @@ DOICore.EXAMPLES.accept.forEach(s => ok(DOICore.parseDoi(s), 'shipped example sh
 DOICore.EXAMPLES.reject.forEach(s => eq(DOICore.parseDoi(s), null, 'shipped example should reject: ' + JSON.stringify(s)));
 
 const ACCEPT = [
-  '10.21/FQSQT4T3',                       /* a 2-digit registrant code really exists */
-  '  10.1038/nature12373  ',              /* surrounding whitespace */
-  '10.1002/1097-0142(195109)4:5<1036::aid-cncr2820040521>3.0.co;2-a',
-  '10.1016/0014-5793(88)81340-1'
+  '10.21/example',                        /* a 2-digit registrant code really exists */
+  '  10.1038/s41559-022-01925-6  ',       /* surrounding whitespace */
+  '10.1000/0000-0000(195109)4:5<1036::aid-example>3.0.co;2-a',   /* a SICI-shaped suffix */
+  '10.1016/j.xgen.2025.100928'
 ];
 ACCEPT.forEach(s => ok(DOICore.parseDoi(s), 'should accept: ' + s));
 

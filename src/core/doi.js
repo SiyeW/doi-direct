@@ -25,17 +25,17 @@
   /* Example queries shown in the options page and asserted by the test suite,
    * so the two can never drift apart.
    *
-   * The accepted ones sit under reserved prefixes rather than naming real
-   * articles: 10.1000 is the prefix the DOI Handbook uses for its own examples,
-   * and 10.5555 is reserved for testing. Inventing a plausible suffix under a
-   * publisher prefix is worse than an obvious example, because it eventually
-   * lands on somebody's actual paper. The rejected ones contain no DOI at all,
-   * which cannot collide with anything. */
+   * The accepted ones are real, resolvable DOIs and they are ours, which is what
+   * makes them safe to use here: an example can never turn out to belong to
+   * somebody else's paper. A reserved prefix is no way out of that - both
+   * 10.1000/182 and 10.5555/12345678 are registered documents too. The rejected
+   * ones contain no DOI at all, which cannot collide with anything. */
   var EXAMPLES = {
     accept: [
-      '10.1000/182',
-      '10.5555/12345678',
-      'DOI: 10.1000/182',
+      '10.1038/s41559-022-01925-6',
+      '10.1016/j.xgen.2025.100928',
+      '10.1126/sciadv.adh7912',
+      'DOI: 10.1038/s41559-022-01925-6',
       'doi:10.1002/example'
     ],
     reject: [
