@@ -76,7 +76,9 @@ const MATCH = [
   ['https://duckduckgo.com/?q=10.1038%2Fx', 'duckduckgo'],
   ['https://html.duckduckgo.com/html/?q=10.1038%2Fx', 'duckduckgo-html'],
   ['https://www.sogou.com/web?query=10.1038%2Fx&ie=utf8', 'sogou'],
-  ['https://www.so.com/s?q=10.1038%2Fx', 'so360']
+  ['https://www.so.com/s?q=10.1038%2Fx', 'so360'],
+  ['https://search.brave.com/search?q=10.1038%2Fx', 'brave'],
+  ['https://search.yahoo.com/search?p=10.1038%2Fx', 'yahoo']
 ];
 MATCH.forEach(function (pair) {
   const url = pair[0], engine = pair[1];
@@ -92,7 +94,9 @@ const NO_MATCH = [
   'https://www.google.com/search?q=10.1038%2Fexample+pdf',
   'https://example.com/search?q=10.1038%2Fx',
   'https://www.google.com.evil.test/search?q=10.1038%2Fx',
-  'https://search.brave.com/search?q=10.1038%2Fx',
+  /* unverified engines ship disabled, so they must not match */
+  'https://www.ecosia.org/search?q=10.1038%2Fx',
+  'https://www.startpage.com/sp/search?query=10.1038%2Fx',
   'chrome://newtab/',
   'not a url'
 ];
@@ -122,6 +126,15 @@ const ex2 = Settings.normalize({ exceptions: ['other.example.com/*'] });
 ok(Decide.attempt('https://www.google.com/search?q=10.1038%2Fx', ex2), 'an unrelated exception does not block');
 eq(Settings.normalizeException('example.com'), 'example.com/*', 'a bare host gains /*');
 eq(Settings.normalizeException('https://example.com/a'), 'example.com/a', 'the scheme is stripped');
+
+/* ---------- policy: unverified engines must ship disabled ---------- */
+EngineRules.builtIn().forEach(function (rule) {
+  if (rule.verified === false) {
+    eq(rule.enabled, false, 'unverified engine is off by default: ' + rule.id);
+  }
+});
+ok(EngineRules.builtIn().filter(function (r) { return r.verified !== false; }).length >= 8,
+   'most built-in engines are verified');
 
 /* ---------- settings normalisation ---------- */
 const n1 = Settings.normalize(null);

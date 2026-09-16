@@ -2,11 +2,18 @@
  *
  * Pure data + pure functions, no chrome.* access, so this is unit testable.
  *
- * "verified" records whether the URL shape was actually confirmed by fetching
- * the engine and checking that it echoes the query back. Engines that could not
- * be confirmed ship disabled: listing an engine is not the same as supporting
- * it. Unverified entries keep enabled=false until someone re-checks them from a
- * network that can reach them.
+ * "verified" records whether the URL shape was actually confirmed by loading the
+ * engine and checking that the query comes back in the result. Listing an engine
+ * is not the same as supporting it, so anything unconfirmed ships disabled until
+ * someone re-checks it.
+ *
+ * Ecosia and Startpage are still unverified: Ecosia answers 403 through a proxy
+ * and is hijacked to another engine without one, and Startpage's search endpoint
+ * is a JavaScript app that redirects unauthorised GETs back to its home page.
+ *
+ * Note for anyone re-verifying: curl does NOT use the Windows system proxy by
+ * default, while Invoke-WebRequest does. Testing with curl but no --proxy
+ * produces false negatives for engines that are blocked on the local network.
  */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) { module.exports = factory(); }
@@ -40,9 +47,9 @@
         hosts: ['sogou.com'], path: '/web', param: 'query' },
       { id: 'so360', name: '360 Search', enabled: true, verified: true,
         hosts: ['so.com'], path: '/s', param: 'q' },
-      { id: 'brave', name: 'Brave Search', enabled: false, verified: false,
+      { id: 'brave', name: 'Brave Search', enabled: true, verified: true,
         hosts: ['search.brave.com'], path: '/search', param: 'q' },
-      { id: 'yahoo', name: 'Yahoo', enabled: false, verified: false,
+      { id: 'yahoo', name: 'Yahoo', enabled: true, verified: true,
         hosts: ['search.yahoo.com'], path: '/search', param: 'p' },
       { id: 'ecosia', name: 'Ecosia', enabled: false, verified: false,
         hosts: ['ecosia.org'], path: '/search', param: 'q' },
