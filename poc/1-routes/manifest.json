@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "DOI Direct PoC - routes A/B",
+  "version": "0.0.1",
+  "description": "A = webRequest + tabs.update；B = document_start content script。popup 里切模式。",
+  "permissions": [
+    "webRequest",
+    "webNavigation",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.google.com/*",
+    "*://*.bing.com/*",
+    "*://*.baidu.com/*"
+  ],
+  "background": {
+    "service_worker": "sw.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.google.com/*",
+        "*://*.bing.com/*",
+        "*://*.baidu.com/*"
+      ],
+      "js": [
+        "shared/doi-core.js",
+        "shared/log-store.js",
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "PoC routes A/B"
+  }
+}

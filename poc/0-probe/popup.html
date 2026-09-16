@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>DOI Direct PoC</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <strong>DOI Direct PoC</strong>
+    <span id="subtitle"></span>
+  </header>
+
+  <section id="modes" hidden>
+    <label><input type="radio" name="mode" value="off"> off</label>
+    <label><input type="radio" name="mode" value="A"> A &nbsp;抢先改道</label>
+    <label><input type="radio" name="mode" value="B"> B &nbsp;页面上拦截</label>
+    <label><input type="radio" name="mode" value="AB"> <b>AB &nbsp;A + B</b></label>
+  </section>
+
+  <section id="summary">（还没有日志）</section>
+
+  <section class="buttons">
+    <button id="mark">Mark</button>
+    <button id="clear">Clear</button>
+    <button id="copy">Copy</button>
+  </section>
+
+  <ol id="log"></ol>
+
+  <script src="shared/log-store.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Local development notes, design documents and measurement records.
+# Kept out of the published repository on purpose.
+/internal/
+
+# Build and packaging output
+/dist/
+*.zip
+*.crx
+*.xpi
+*.pem
+
+# Dependencies
+node_modules/
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and scratch files
+*.log
+.tmp/
+tmp/

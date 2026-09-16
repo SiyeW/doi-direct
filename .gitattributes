@@ -1,0 +1,8 @@
+# Normalise line endings so the repository stays clean across platforms.
+* text=auto eol=lf
+
+# Binary-ish assets should never be normalised.
+*.png binary
+*.jpg binary
+*.ico binary
+*.zip binary

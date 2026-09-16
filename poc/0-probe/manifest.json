@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "DOI Direct PoC - probe",
+  "version": "0.0.1",
+  "description": "零 host 权限。只记录 webNavigation 生命周期，用来看地址栏粘裸 DOI 回车到底产生了什么。",
+  "permissions": [
+    "webNavigation",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "sw.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "PoC probe log"
+  }
+}
