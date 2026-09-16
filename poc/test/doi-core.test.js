@@ -15,10 +15,10 @@ function ok(cond, label) { eq(!!cond, true, label); }
 
 /* ---------- 1. DOI matching: what is accepted ---------- */
 const ACCEPT = [
-  '10.1038/s41559-022-01925-6',
-  '10.1016/j.xgen.2025.100928',
+  '10.1000/182',
+  '10.5555/12345678',
   '10.21/FQSQT4T3',                                   // two-digit registrant code
-  'DOI: 10.1126/sciadv.adh7912',                      // prefix stripped
+  'DOI: 10.1000/182',                                 // prefix stripped
   'doi:10.1002/example',
   '  10.1038/nature12373  ',                          // surrounding whitespace
   '10.1002/1097-0142(195109)4:5<1036::aid-cncr2820040521>3.0.co;2-a',   // a real DOI containing < >
@@ -26,7 +26,7 @@ const ACCEPT = [
 ];
 ACCEPT.forEach(s => ok(C.parseDoi(s), 'accepted: ' + s));
 
-eq(C.parseDoi('DOI: 10.1126/sciadv.adh7912'), '10.1126/sciadv.adh7912', 'doi: prefix stripped');
+eq(C.parseDoi('DOI: 10.1000/182'), '10.1000/182', 'doi: prefix stripped');
 eq(C.parseDoi('  doi:10.1002/x  '), '10.1002/x', 'doi: prefix and whitespace both handled');
 
 /* ---------- 2. what is rejected ---------- */
