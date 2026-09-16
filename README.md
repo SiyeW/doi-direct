@@ -61,6 +61,9 @@ poc/               an earlier measurement harness, kept for reference
 node tests/core.test.js
 ```
 
+A pre-commit hook that runs the suite lives in `tools/hooks/pre-commit`. Install it with
+`cp tools/hooks/pre-commit .git/hooks/pre-commit`.
+
 No browser needed. The suite covers DOI matching, the percent-encoding rules, the
 resolver URL, engine URL matching, settings normalisation, the message
 catalogues, and a check that `manifest.json` stays in sync with the built-in

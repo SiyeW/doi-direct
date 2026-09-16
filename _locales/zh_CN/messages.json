@@ -29,14 +29,26 @@
   "fieldName": {
     "message": "备注"
   },
+  "fieldNamePlaceholder": {
+    "message": "Google"
+  },
   "fieldHost": {
     "message": "域名"
+  },
+  "fieldHostPlaceholder": {
+    "message": "google.com"
   },
   "fieldPath": {
     "message": "路径"
   },
+  "fieldPathPlaceholder": {
+    "message": "/search"
+  },
   "fieldParam": {
     "message": "搜索参数"
+  },
+  "fieldParamPlaceholder": {
+    "message": "q"
   },
   "add": {
     "message": "添加"

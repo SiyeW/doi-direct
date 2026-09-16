@@ -1,0 +1,15 @@
+#!/bin/sh
+# Runs before every commit.
+#
+# The value of doing it here rather than by hand is timing: the hook reads the
+# working tree at the moment of the commit, so a file that changes between
+# "run the tests" and "git commit" cannot slip through. That is exactly how a
+# reverted message catalogue once got committed - the tests passed, an editor
+# saved a stale buffer a second later, and the commit took the stale version.
+
+echo "pre-commit: running tests"
+node tests/core.test.js
+if [ $? -ne 0 ]; then
+  echo "pre-commit: tests failed, commit aborted"
+  exit 1
+fi
