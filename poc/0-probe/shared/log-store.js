@@ -1,9 +1,11 @@
 /* DOI Direct PoC - shared log.
  *
- * 用 chrome.storage.local：storage.session 默认不暴露给 content script。
+ * Uses chrome.storage.local, because storage.session is not exposed to content
+ * scripts by default.
  *
- * 每条日志单独占一个 key，不做"读-改-写整份数组"。
- * 原因：同一个事件回调里连着写两条时，两次 get 会读到同一份快照，后一次写会覆盖前一条。
+ * Each entry takes a key of its own rather than read-modify-writing one array:
+ * without that, two writes in the same event callback would both read the same
+ * snapshot and the later one would drop the earlier entry.
  */
 (function (root) {
   'use strict';
@@ -22,7 +24,7 @@
               Math.random().toString(36).slice(2, 6);
     var obj = {};
     obj[key] = entry;
-    try { chrome.storage.local.set(obj); } catch (e) { /* storage 不可用时只留 console */ }
+    try { chrome.storage.local.set(obj); } catch (e) { /* with no storage, console is all there is */ }
     return entry;
   }
 
@@ -54,8 +56,9 @@
     } catch (e) { if (cb) cb(); }
   }
 
-  /* 把一次 webNavigation / webRequest 的 details 压成可读字段。
-   * documentLifecycle / frameType 在旧版 Chrome 上可能不存在，一律如实记录。 */
+  /* Flattens the details of one webNavigation / webRequest event into readable
+   * fields. documentLifecycle and frameType may be absent on older Chrome and are
+   * recorded exactly as they come. */
   function pickDetails(d) {
     return {
       url: d.url,

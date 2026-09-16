@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "DOI Direct PoC - probe",
   "version": "0.0.1",
-  "description": "零 host 权限。只记录 webNavigation 生命周期，用来看地址栏粘裸 DOI 回车到底产生了什么。",
+  "description": "No host permissions. Records the webNavigation lifecycle only, to see what pasting a bare DOI into the address bar and pressing Enter actually produces.",
   "permissions": [
     "webNavigation",
     "storage"

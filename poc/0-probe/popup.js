@@ -1,6 +1,7 @@
-/* 共享 popup：合并展示所有组件写进 chrome.storage.local 的时间线。
- * 依赖同目录 shared/log-store.js（单条写，不会互相覆盖）。
- * 只有带 webRequest 权限的扩展才显示模式切换。 */
+/* Shared popup: one timeline merging everything the components write into
+ * chrome.storage.local. Expects shared/log-store.js alongside it, which writes one
+ * key per entry so entries cannot clobber each other. The mode switcher only
+ * appears in the extension that has the webRequest permission. */
 (function () {
   'use strict';
 
@@ -87,15 +88,15 @@
       };
       sumEl.textContent = '';
       var lines = [
-        ['SEARCH_PAGE_ACTIVE（搜索页成为可见页）', n(/SEARCH_PAGE_ACTIVE/)],
-        ['prerender 相关事件', n(/prerender/i)],
-        ['真正执行跳转', n(/REDIRECT|UPDATE tab/)],
-        ['跳过', n(/SKIP/)],
-        ['事件总数', arr.length]
+        ['SEARCH_PAGE_ACTIVE (search page became visible)', n(/SEARCH_PAGE_ACTIVE/)],
+        ['prerender events', n(/prerender/i)],
+        ['redirects actually taken', n(/REDIRECT|UPDATE tab/)],
+        ['skipped', n(/SKIP/)],
+        ['events total', arr.length]
       ];
       for (var k = 0; k < lines.length; k++) {
         var d = document.createElement('div');
-        d.textContent = lines[k][0] + '：';
+        d.textContent = lines[k][0] + ': ';
         var b = document.createElement('b');
         b.textContent = lines[k][1];
         d.appendChild(b);

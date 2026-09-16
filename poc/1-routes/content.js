@@ -1,18 +1,21 @@
-/* 路线 B：document_start content script。
+/* Route B: document_start content script.
  *
- * 1) 开头有一个同步预筛：不是受支持的搜索引擎页面就直接返回，不读 storage，
- *    因此普通网页浏览完全不付代价。
- * 2) 文档处于 prerender 状态时不立即动作，等 prerenderingchange 之后再重读
- *    location —— prerender 文档在 document_start 时的 location 未必是最终值。
- * 3) 与 webRequest 路径互不依赖：页面没有加载出来时本脚本不会运行。
+ * 1) It opens with a synchronous prefilter: anything that is not a supported search
+ *    engine page returns immediately without reading storage, so ordinary browsing
+ *    costs nothing.
+ * 2) While the document is prerendering it does not act straight away. It waits for
+ *    prerenderingchange and then re-reads location, because the location of a
+ *    prerendered document at document_start is not necessarily its final one.
+ * 3) It does not depend on the webRequest path: when the page never loads, this
+ *    script never runs.
  */
 (function () {
   'use strict';
   var SRC = 'B';
 
-  if (window.top !== window) return;   /* 只看顶层 */
+  if (window.top !== window) return;   /* top frame only */
 
-  /* 同步预筛：非目标站点直接返回 */
+  /* synchronous prefilter: anything else returns here */
   if (!DOICore.matchEngine(location.href)) return;
 
   var MODE = null;
@@ -21,7 +24,7 @@
 
   var startHit = DOICore.resolveFromUrl(location.href, {});
 
-  /* 已确认是受支持的搜索引擎页面 */
+  /* past this point it is a supported search engine page */
   log('content script start', {
     href: location.href,
     prerendering: (document.prerendering === true),

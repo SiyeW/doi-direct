@@ -1,14 +1,16 @@
-/* 路线 A：webRequest.onBeforeRequest（非阻塞，只观察）+ chrome.tabs.update 跳转。
- * 未申请 "tabs" 权限；tabs.update 不需要它。
+/* Route A: webRequest.onBeforeRequest (non-blocking, observation only) plus
+ * chrome.tabs.update to redirect. The "tabs" permission is not requested;
+ * tabs.update does not need it.
  *
- * 模式：
- *   off  什么都不做
- *   A    仅使用本文件的重定向路径
- *   B    仅使用 content script（本文件只做记录）
- *   AB   两者同时启用
+ * Modes:
+ *   off  do nothing
+ *   A    the redirect path in this file only
+ *   B    the content script only (this file just logs)
+ *   AB   both at once
  *
- * 另外记录所有外层帧导航（每条一行 nav），并在被唤醒后的第一个事件上打
- * FIRST-EVENT-AFTER-BOOT 标记，便于对照生命周期。
+ * It also logs every outermost-frame navigation, one line each, and tags the first
+ * event after the worker is woken with FIRST-EVENT-AFTER-BOOT so the two timelines
+ * can be lined up.
  */
 importScripts('shared/doi-core.js', 'shared/log-store.js');
 
@@ -31,7 +33,7 @@ function tag() {
   return s;
 }
 
-/* ---------- 模式：同步 listener 必须在顶层注册，模式值可能还没读回来 ---------- */
+/* ---------- mode: the listener has to be registered at the top level, before the mode value can be read back ---------- */
 var MODE = null;
 var waiters = [];
 function readMode(cb) {
@@ -51,7 +53,7 @@ readMode(function (m) { POCLog.log(SRC, 'mode loaded', { mode: m }); });
 
 function aEnabled(m) { return m === 'A' || m === 'AB'; }
 
-/* ---------- 测量用：webNavigation ---------- */
+/* ---------- for measurement: webNavigation ---------- */
 function shortUrl(u) {
   var s = String(u).replace(/^https?:\/\//, '');
   return s.length > 96 ? (s.slice(0, 96) + '…') : s;
@@ -67,7 +69,7 @@ function classify(url) {
   if (/^https?:\/\/(dx\.)?doi\.org\//.test(url)) out.IS_RESOLVER = 1;
   try {
     var h = new URL(url).hostname;
-    if (/^10\.\d+\.\d+\.\d+$/.test(h)) out.IPV4_NAVIGATION = h;
+    if (/^10\.\d+\.\d+\.\d+$/.test(h)) out.IPV4_NAVIGATION = h;  /* read as an IPv4 host instead */
   } catch (e) {}
   return out;
 }
@@ -88,17 +90,17 @@ function navHandler(name) {
       det.sinceUpdateMs = lastUpdateAt ? (Date.now() - lastUpdateAt) : null;
       msg = 'RESOLVER  ' + name + '  ' + shortUrl(d.url);
     } else if (cls.IPV4_NAVIGATION) {
-      msg = 'IPV4_NAVIGATION  <-- 被解析成了 IPv4 主机名';
+      msg = 'IPV4_NAVIGATION  <-- read as an IPv4 hostname';
     } else if (cls.DOI) {
       msg = name + '  ' + shortUrl(d.url);
     } else if (name === 'onCommitted') {
-      msg = 'nav  ' + shortUrl(d.url);   /* 普通页面也记一行，便于对照 */
+      msg = 'nav  ' + shortUrl(d.url);   /* ordinary pages get a line too, for comparison */
     }
     if (msg) POCLog.log(SRC, tag() + msg, det);
 
     if (name === 'onCommitted' && cls.DOI &&
         (!d.documentLifecycle || d.documentLifecycle === 'active')) {
-      POCLog.log(SRC, 'SEARCH_PAGE_ACTIVE  <-- 搜索页成为可见页',
+      POCLog.log(SRC, 'SEARCH_PAGE_ACTIVE  <-- search page became visible',
                  { url: d.url, t: Math.round(d.timeStamp) });
     }
   };
@@ -108,7 +110,7 @@ function navHandler(name) {
   if (chrome.webNavigation[name]) chrome.webNavigation[name].addListener(navHandler(name));
 });
 
-/* ---------- 路线 A 本体 ---------- */
+/* ---------- route A itself ---------- */
 var HOSTS = ['*://*.google.com/*', '*://*.bing.com/*', '*://*.baidu.com/*'];
 
 chrome.webRequest.onBeforeRequest.addListener(function (d) {
@@ -119,18 +121,18 @@ chrome.webRequest.onBeforeRequest.addListener(function (d) {
   det.type = d.type;
   det.frameTypeMissing = (typeof d.frameType !== 'string');
   det.documentLifecycleMissing = (typeof d.documentLifecycle !== 'string');
-  det.deltaMs = Math.round(Date.now() - d.timeStamp);   /* 事件时间戳 -> 处理时刻 */
+  det.deltaMs = Math.round(Date.now() - d.timeStamp);   /* event timestamp to handling time */
   det.sinceBootMs = Date.now() - bootAt;
 
   var hit = DOICore.resolveFromUrl(d.url, {});
   if (hit) { det.ENGINE = hit.engine; det.DOI = hit.doi; det.TARGET = hit.target; }
 
-  /* 无论当前是什么模式，都完整记录 onBeforeRequest 的字段 */
+  /* every onBeforeRequest field is logged, whatever the mode is */
   POCLog.log(SRC, tag() + 'onBeforeRequest  ' + shortUrl(d.url), det);
   if (!hit) return;
 
   if (d.documentLifecycle === 'prerender') {
-    POCLog.log(SRC, 'SKIP  prerender 请求', { url: d.url, DOI: hit.doi });
+    POCLog.log(SRC, 'SKIP  prerender request', { url: d.url, DOI: hit.doi });
     return;
   }
   if (typeof d.tabId !== 'number' || d.tabId < 0) {

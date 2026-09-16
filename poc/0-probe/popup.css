@@ -20,7 +20,7 @@ button:hover { background: #333a47; }
 #log { list-style: none; margin: 0; padding: 0; overflow-y: auto; max-height: 400px; }
 #log li { padding: 3px 4px; border-bottom: 1px solid #23262d; white-space: pre-wrap;
           word-break: break-all; }
-#log li.hi   { background: #1d3320; }   /* 真跳转 */
+#log li.hi   { background: #1d3320; }   /* a redirect was taken */
 #log li.warn { background: #3a2a12; }   /* search page committed as the visible page */
 #log li.pre  { background: #2a1f38; }   /* prerender */
 .t { color: #6b7488; margin-right: 6px; }

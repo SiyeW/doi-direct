@@ -1,4 +1,4 @@
-/* 共享内核的单元测试。不碰浏览器，直接 node poc/test/doi-core.test.js */
+/* Unit tests for the shared core. No browser involved: node poc/test/doi-core.test.js */
 'use strict';
 const C = require('../shared/doi-core.js');
 
@@ -9,27 +9,27 @@ function eq(actual, expected, label) {
   const a = JSON.stringify(actual), b = JSON.stringify(expected);
   if (a === b) { pass++; return; }
   fail++;
-  failures.push(label + '\n    期望: ' + b + '\n    实际: ' + a);
+  failures.push(label + '\n    expected: ' + b + '\n    actual:   ' + a);
 }
 function ok(cond, label) { eq(!!cond, true, label); }
 
-/* ---------- 1. DOI 匹配：应当接受 ---------- */
+/* ---------- 1. DOI matching: what is accepted ---------- */
 const ACCEPT = [
   '10.1038/s41559-022-01925-6',
   '10.1016/j.xgen.2025.100928',
-  '10.21/FQSQT4T3',                                   // 2 位注册码
-  'DOI: 10.1126/sciadv.adh7912',                      // 前缀剥离
+  '10.21/FQSQT4T3',                                   // two-digit registrant code
+  'DOI: 10.1126/sciadv.adh7912',                      // prefix stripped
   'doi:10.1002/example',
-  '  10.1038/nature12373  ',                          // 首尾空白
-  '10.1002/1097-0142(195109)4:5<1036::aid-cncr2820040521>3.0.co;2-a',   // 含 < > 的真实 DOI
+  '  10.1038/nature12373  ',                          // surrounding whitespace
+  '10.1002/1097-0142(195109)4:5<1036::aid-cncr2820040521>3.0.co;2-a',   // a real DOI containing < >
   '10.1016/0014-5793(88)81340-1'
 ];
-ACCEPT.forEach(s => ok(C.parseDoi(s), '应当接受: ' + s));
+ACCEPT.forEach(s => ok(C.parseDoi(s), 'accepted: ' + s));
 
-eq(C.parseDoi('DOI: 10.1126/sciadv.adh7912'), '10.1126/sciadv.adh7912', 'doi: 前缀被剥离');
-eq(C.parseDoi('  doi:10.1002/x  '), '10.1002/x', 'doi: 前缀 + 空白都处理');
+eq(C.parseDoi('DOI: 10.1126/sciadv.adh7912'), '10.1126/sciadv.adh7912', 'doi: prefix stripped');
+eq(C.parseDoi('  doi:10.1002/x  '), '10.1002/x', 'doi: prefix and whitespace both handled');
 
-/* ---------- 2. 应当拒绝 ---------- */
+/* ---------- 2. what is rejected ---------- */
 const REJECT = [
   '10.1038/example pdf',
   '10.1038/example abstract',
@@ -40,9 +40,9 @@ const REJECT = [
   'doi:',
   ''
 ];
-REJECT.forEach(s => eq(C.parseDoi(s), null, '应当拒绝: ' + JSON.stringify(s)));
+REJECT.forEach(s => eq(C.parseDoi(s), null, 'rejected: ' + JSON.stringify(s)));
 
-/* ---------- 3. 搜索引擎参数提取 ---------- */
+/* ---------- 3. engine query extraction ---------- */
 const EX = [
   ['https://www.google.com/search?q=10.1038%2Fnature12373', 'google', '10.1038/nature12373'],
   ['https://www.google.com/search?q=10.1038/nature12373&oq=10.1038&sourceid=chrome', 'google', '10.1038/nature12373'],
@@ -57,62 +57,62 @@ EX.forEach(([url, engine, q]) => {
 });
 
 const NULLS = [
-  'https://www.google.com/maps?q=10.1038%2Fx',        // 路径不是 /search，不能误伤
-  'https://www.google.com/search?oq=10.1038%2Fx',     // 没有 q
-  'https://example.com/search?q=10.1038%2Fx',         // 未知站点
-  'https://search.yahoo.com/search?p=10.1038%2Fx',    // 未列出的引擎
+  'https://www.google.com/maps?q=10.1038%2Fx',        // path is not /search, must not match
+  'https://www.google.com/search?oq=10.1038%2Fx',     // no q
+  'https://example.com/search?q=10.1038%2Fx',         // unknown site
+  'https://search.yahoo.com/search?p=10.1038%2Fx',    // engine not listed
   'chrome://newtab/',
   'not a url'
 ];
-NULLS.forEach(u => eq(C.extractQuery(u), null, '不应提取: ' + u));
+NULLS.forEach(u => eq(C.extractQuery(u), null, 'not extracted: ' + u));
 
-/* ---------- 4. 编码（DOI Handbook 正向白名单） ---------- */
-eq(C.encodeDoi('10.1000/res#test'), '10.1000/res%23test', '  必须编码 #');
-eq(C.encodeDoi('10.1000/a?b'), '10.1000/a%3Fb', '  必须编码 ?');
-eq(C.encodeDoi('10.1000/a b'), '10.1000/a%20b', '  必须编码 空格');
-eq(C.encodeDoi('10.1000/100%'), '10.1000/100%25', '  必须编码 %');
-eq(C.encodeDoi('10.1000/a"b'), '10.1000/a%22b', '  必须编码 "');
-eq(C.encodeDoi('10.1000/a<b>c'), '10.1000/a%3Cb%3Ec', '  建议编码 < >');
-eq(C.encodeDoi('10.1000/a{b}|c'), '10.1000/a%7Bb%7D%7Cc', '  建议编码 { } |');
+/* ---------- 4. encoding (DOI Handbook positive whitelist) ---------- */
+eq(C.encodeDoi('10.1000/res#test'), '10.1000/res%23test', '  # must be encoded');
+eq(C.encodeDoi('10.1000/a?b'), '10.1000/a%3Fb', '  ? must be encoded');
+eq(C.encodeDoi('10.1000/a b'), '10.1000/a%20b', '  space must be encoded');
+eq(C.encodeDoi('10.1000/100%'), '10.1000/100%25', '  % must be encoded');
+eq(C.encodeDoi('10.1000/a"b'), '10.1000/a%22b', '  " must be encoded');
+eq(C.encodeDoi('10.1000/a<b>c'), '10.1000/a%3Cb%3Ec', '  < > should be encoded');
+eq(C.encodeDoi('10.1000/a{b}|c'), '10.1000/a%7Bb%7D%7Cc', '  { } | should be encoded');
 
-eq(C.encodeDoi('10.1000/a(b)c;d:e'), '10.1000/a(b)c;d:e', '  白名单内的 ( ) ; : 保持字面');
-eq(C.encodeDoi('10.1038/sub/dir'), '10.1038/sub/dir', '  斜杠保持字面');
-eq(C.encodeDoi('10.1000/a-b_c.d~e'), '10.1000/a-b_c.d~e', '  白名单内的 - _ . ~ 保持字面');
-eq(C.encodeDoi('10.1000/中文'), '10.1000/%E4%B8%AD%E6%96%87', '  非 ASCII 按 UTF-8 编码');
+eq(C.encodeDoi('10.1000/a(b)c;d:e'), '10.1000/a(b)c;d:e', '  ( ) ; : from the whitelist stay literal');
+eq(C.encodeDoi('10.1038/sub/dir'), '10.1038/sub/dir', '  the slash stays literal');
+eq(C.encodeDoi('10.1000/a-b_c.d~e'), '10.1000/a-b_c.d~e', '  - _ . ~ from the whitelist stay literal');
+eq(C.encodeDoi('10.1000/中文'), '10.1000/%E4%B8%AD%E6%96%87', '  CJK encoded as UTF-8, three bytes per character');
 
-/* SICI DOI：只有 < > 被编码，其余保持字面 */
+/* A SICI DOI: only < > are encoded, everything else stays literal. */
 const sici = '10.1002/1097-0142(195109)4:5<1036::aid-cncr2820040521>3.0.co;2-a';
 const siciEnc = '10.1002/1097-0142(195109)4:5%3C1036::aid-cncr2820040521%3E3.0.co;2-a';
-eq(C.encodeDoi(sici), siciEnc, '真实 SICI DOI 的编码结果');
+eq(C.encodeDoi(sici), siciEnc, 'encoded form of a real SICI DOI');
 
-/* ---------- 5. resolver 拼接 ---------- */
-eq(C.buildResolverUrl('https://doi.org/', '10.1038/x'), 'https://doi.org/10.1038/x', '默认 base');
-eq(C.buildResolverUrl('https://doi.org', '10.1038/x'), 'https://doi.org/10.1038/x', 'base 补斜杠');
-eq(C.buildResolverUrl('doi.org', '10.1038/x'), 'https://doi.org/10.1038/x', 'base 补 scheme');
+/* ---------- 5. resolver assembly ---------- */
+eq(C.buildResolverUrl('https://doi.org/', '10.1038/x'), 'https://doi.org/10.1038/x', 'default base');
+eq(C.buildResolverUrl('https://doi.org', '10.1038/x'), 'https://doi.org/10.1038/x', 'base gets a trailing slash');
+eq(C.buildResolverUrl('doi.org', '10.1038/x'), 'https://doi.org/10.1038/x', 'base gets a scheme');
 eq(C.buildResolverUrl('https://lib.example.edu/resolve', '10.1038/x'),
-   'https://lib.example.edu/resolve/10.1038/x', '自定义 base 追加 path');
+   'https://lib.example.edu/resolve/10.1038/x', 'custom base, path appended');
 eq(C.buildResolverUrl('https://lib.example.edu/resolve/', '10.1038/x'),
-   'https://lib.example.edu/resolve/10.1038/x', '自定义 base（已带斜杠）');
-eq(C.buildResolverUrl('javascript:alert(1)', '10.1038/x'), null, '拒绝 javascript:');
-eq(C.buildResolverUrl('data:text/html,x', '10.1038/x'), null, '拒绝 data:');
-eq(C.buildResolverUrl('https://r.example.edu/?doi=', '10.1038/x'), null, '拒绝 query 形式的 base');
+   'https://lib.example.edu/resolve/10.1038/x', 'custom base that already ends in a slash');
+eq(C.buildResolverUrl('javascript:alert(1)', '10.1038/x'), null, 'rejects javascript:');
+eq(C.buildResolverUrl('data:text/html,x', '10.1038/x'), null, 'rejects data:');
+eq(C.buildResolverUrl('https://r.example.edu/?doi=', '10.1038/x'), null, 'rejects a base carrying a query');
 
-/* ---------- 6. 端到端 ---------- */
+/* ---------- 6. end to end ---------- */
 const r1 = C.resolveFromUrl('https://www.google.com/search?q=10.1038%2Fnature12373', {});
-eq(r1.doi, '10.1038/nature12373', '端到端 DOI');
-eq(r1.target, 'https://doi.org/10.1038/nature12373', '端到端目标');
+eq(r1.doi, '10.1038/nature12373', 'end to end: DOI');
+eq(r1.target, 'https://doi.org/10.1038/nature12373', 'end to end: target');
 eq(C.resolveFromUrl('https://www.google.com/search?q=10.1038%2Fexample+pdf', {}), null,
-   '端到端：带自然语言的一律不跳');
+   'end to end: anything carrying natural language is left alone');
 eq(C.resolveFromUrl('https://www.google.com/search?q=10.1038%2Fexample', { resolverBase: 'https://lib.example.edu/r' }).target,
-   'https://lib.example.edu/r/10.1038/example', '端到端：自定义 base');
+   'https://lib.example.edu/r/10.1038/example', 'end to end: custom base');
 
-/* ---------- 汇总 ---------- */
+/* ---------- summary ---------- */
 console.log('');
-console.log('通过 ' + pass + ' 项，失败 ' + fail + ' 项');
+console.log('passed ' + pass + ', failed ' + fail);
 if (fail) {
   console.log('');
   failures.forEach(f => console.log('  ✗ ' + f));
   process.exitCode = 1;
 } else {
-  console.log('全部通过');
+  console.log('all good');
 }

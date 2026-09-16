@@ -1,6 +1,7 @@
-/* 打印内核为真实 DOI 生成的 resolver URL，供人工/脚本再去 doi.org 验证。
- * 用法: node poc/test/live-resolve-check.js
- * 输出每行: <DOI> <TAB> <URL> */
+/* Prints the resolver URLs the core builds for a set of real DOIs, so a person or a
+ * script can check them against doi.org afterwards.
+ * Usage: node poc/test/live-resolve-check.js
+ * One line per DOI: <DOI> <TAB> <URL> */
 'use strict';
 const C = require('../shared/doi-core.js');
 

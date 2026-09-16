@@ -13,8 +13,9 @@
   var DEFAULT_RESOLVER_BASE = 'https://doi.org/';
   var MAX_QUERY_LEN = 2048;
 
-  /* 三个引擎够这个实验用。这里的 path 是精确比较；正式版还支持前缀，
-   * 并且要处理各地区域名。 */
+  /* Three engines is enough for this experiment. The path here is compared
+   * exactly; the extension also accepts a path prefix and covers regional
+   * domains. */
   var ENGINES = [
     { id: 'google', host: 'google.com', path: '/search', param: 'q'  },
     { id: 'bing',   host: 'bing.com',   path: '/search', param: 'q'  },
@@ -54,9 +55,11 @@
     return re.test(v) ? v : null;
   }
 
-  /* DOI Handbook 的正向白名单：这些字符在 URL 里保持字面，其余按 UTF-8 百分号编码。
-   * 注意：% " # 空格 ? 都不在白名单里 —— 这正是必须编码的那几个。
-   * 斜杠按 Handbook 的语义是 prefix/suffix 之间的字面分隔符，所以保留。 */
+  /* The DOI Handbook positive whitelist: these characters stay literal in a URL
+   * and everything else is percent-encoded as UTF-8. Note that % " # space and ?
+   * are all absent - those are exactly the ones that have to be encoded. The slash
+   * is the literal separator between prefix and suffix as the Handbook defines it,
+   * so it is kept. */
   var KEEP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789' +
              "-._~!$&'()*+;=:@/";
 
@@ -75,8 +78,9 @@
     return out;
   }
 
-  /* 只支持"DOI 追加到 base 的 path 后面"这一种形式。
-   * 带 query/hash 的 base（例如 https://r.example.edu/?doi=）直接拒绝，不猜 —— 那需要另一套编码规则。 */
+  /* Only "append the DOI to the base URL's path" is supported. A base carrying a
+   * query or hash, such as https://r.example.edu/?doi=, is rejected rather than
+   * guessed at - that form needs a different set of encoding rules. */
   function buildResolverUrl(base, doi) {
     var b = (typeof base === 'string' && base.trim()) ? base.trim() : DEFAULT_RESOLVER_BASE;
     var u;

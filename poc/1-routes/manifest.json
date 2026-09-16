@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "DOI Direct PoC - routes A/B",
   "version": "0.0.1",
-  "description": "A = webRequest + tabs.update；B = document_start content script。popup 里切模式。",
+  "description": "A = webRequest + tabs.update; B = document_start content script. Switch between them in the popup.",
   "permissions": [
     "webRequest",
     "webNavigation",
