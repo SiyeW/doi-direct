@@ -1,8 +1,8 @@
 # PoC harness
 
-This folder is a small, throwaway harness used to compare two ways of intercepting a
-DOI search inside Chromium before committing to an implementation. It is not the
-extension; it exists so the choice can be made from measurements instead of guesses.
+A small harness for observing how Chromium reports navigations and requests, and for
+comparing two ways of intercepting a DOI search. It is not the extension, and the
+extension does not depend on it.
 
 | Folder | What it is | Permissions |
 |---|---|---|

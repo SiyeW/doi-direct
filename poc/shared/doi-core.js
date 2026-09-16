@@ -1,8 +1,7 @@
 /* DOI Direct PoC - shared matching core.
  *
- * Loads as a classic script (content script / service worker importScripts)
- * and also works under Node for unit tests. No template literals on purpose,
- * so the file stays easy to paste around.
+ * Loads as a classic script: content script, service worker importScripts, or a
+ * script tag. It also works under Node, which is how the unit tests reach it.
  */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) { module.exports = factory(); }
@@ -14,8 +13,8 @@
   var DEFAULT_RESOLVER_BASE = 'https://doi.org/';
   var MAX_QUERY_LEN = 2048;
 
-  /* PoC 只带三个引擎。path 用严格相等，PoC 够用；
-   * 真实实现需要支持 path 前缀/正则，并且要处理 Google 的 ccTLD 覆盖问题。 */
+  /* 三个引擎够这个实验用。这里的 path 是精确比较；正式版还支持前缀，
+   * 并且要处理各地区域名。 */
   var ENGINES = [
     { id: 'google', host: 'google.com', path: '/search', param: 'q'  },
     { id: 'bing',   host: 'bing.com',   path: '/search', param: 'q'  },
@@ -76,9 +75,8 @@
     return out;
   }
 
-  /* PoC 只支持"DOI 追加到 base 的 path 后面"这一种形式。
-   * 带 query/hash 的 base（例如 https://r.example.edu/?doi=）直接拒绝 —— fail open，不猜。
-   * 真实实现对 query 形式的 base 需要一套不同的编码规则，v0.1 不做。 */
+  /* 只支持"DOI 追加到 base 的 path 后面"这一种形式。
+   * 带 query/hash 的 base（例如 https://r.example.edu/?doi=）直接拒绝，不猜 —— 那需要另一套编码规则。 */
   function buildResolverUrl(base, doi) {
     var b = (typeof base === 'string' && base.trim()) ? base.trim() : DEFAULT_RESOLVER_BASE;
     var u;

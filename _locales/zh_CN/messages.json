@@ -12,10 +12,10 @@
     "message": "常规"
   },
   "masterSwitch": {
-    "message": "启用 DOI 搜索拦截"
+    "message": "启用 DOI 搜索重定向"
   },
   "masterSwitchHint": {
-    "message": "实时生效，关闭后搜索将不会重定向。"
+    "message": "实时生效，关闭后搜索将不会重定向至 DOI 解析器。"
   },
   "secEngines": {
     "message": "搜索引擎"
@@ -30,13 +30,13 @@
     "message": "备注"
   },
   "fieldNamePlaceholder": {
-    "message": "Google"
+    "message": "example"
   },
   "fieldHost": {
     "message": "域名"
   },
   "fieldHostPlaceholder": {
-    "message": "google.com"
+    "message": "example.com"
   },
   "fieldPath": {
     "message": "路径"
@@ -111,13 +111,13 @@
     "message": "不合理案例"
   },
   "popupOn": {
-    "message": "正在拦截 DOI 搜索"
+    "message": "已启用 DOI 搜索重定向"
   },
   "popupOff": {
-    "message": "已暂停"
+    "message": "已暂停 DOI 搜索重定向"
   },
   "popupEngines": {
-    "message": "启用的搜索引擎："
+    "message": "包含的搜索引擎："
   },
   "openOptions": {
     "message": "设置"
