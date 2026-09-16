@@ -8,6 +8,12 @@
   "optionsTitle": {
     "message": "Cài đặt DOI Direct"
   },
+  "localePicker": {
+    "message": "Ngôn ngữ"
+  },
+  "localeAuto": {
+    "message": "Tự động"
+  },
   "secGeneral": {
     "message": "Chung"
   },

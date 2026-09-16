@@ -8,6 +8,12 @@
   "optionsTitle": {
     "message": "Налаштування DOI Direct"
   },
+  "localePicker": {
+    "message": "Мова"
+  },
+  "localeAuto": {
+    "message": "Автоматично"
+  },
   "secGeneral": {
     "message": "Загальні"
   },

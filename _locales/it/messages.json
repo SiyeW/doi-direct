@@ -8,6 +8,12 @@
   "optionsTitle": {
     "message": "Impostazioni di DOI Direct"
   },
+  "localePicker": {
+    "message": "Lingua"
+  },
+  "localeAuto": {
+    "message": "Automatico"
+  },
   "secGeneral": {
     "message": "Generali"
   },

@@ -8,6 +8,12 @@
   "optionsTitle": {
     "message": "DOI Direct ayarları"
   },
+  "localePicker": {
+    "message": "Dil"
+  },
+  "localeAuto": {
+    "message": "Otomatik"
+  },
   "secGeneral": {
     "message": "Genel"
   },

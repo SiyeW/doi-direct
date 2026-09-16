@@ -8,6 +8,12 @@
   "optionsTitle": {
     "message": "DOI Direct सेटिंग"
   },
+  "localePicker": {
+    "message": "भाषा"
+  },
+  "localeAuto": {
+    "message": "स्वचालित"
+  },
   "secGeneral": {
     "message": "सामान्य"
   },

@@ -11,6 +11,14 @@
     "message": "DOI Direct settings",
     "description": "Heading at the top of the settings page."
   },
+  "localePicker": {
+    "message": "Language",
+    "description": "Tooltip on the globe next to the language picker."
+  },
+  "localeAuto": {
+    "message": "Automatic",
+    "description": "First entry of the language picker: follow the browser's own language."
+  },
   "secGeneral": {
     "message": "General",
     "description": "Settings section heading."

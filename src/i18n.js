@@ -4,10 +4,8 @@
  * to override that at runtime, so the language picker at the top of the settings
  * page loads a catalogue itself and this module prefers it while one is loaded.
  *
- * That picker is a debugging aid: it is how the other catalogues get looked at
- * without changing the browser language. Taking it out means removing the picker
- * markup and its wiring, the preview branches in this file, and nothing else. No
- * catalogue carries a string for it.
+ * The default stays chrome.i18n, and the picker's own strings come from the
+ * catalogues like every other string in the interface.
  */
 (function () {
   'use strict';
@@ -50,7 +48,6 @@
   ];
 
   var preview = null;   /* { locale, messages } while a preview catalogue is loaded */
-  var loadFailed = null;
 
   function t(key) {
     if (preview && preview.messages[key]) return preview.messages[key].message;
@@ -102,7 +99,7 @@
       fetch(chrome.runtime.getURL('_locales/' + locale + '/messages.json'))
         .then(function (response) { return response.json(); })
         .then(function (messages) { preview = { locale: locale, messages: messages }; })
-        .catch(function () { preview = null; loadFailed = locale; })
+        .catch(function () { preview = null; })
         .then(function () { paint(); if (cb) cb(); });
     });
   }
@@ -119,16 +116,8 @@
     });
   }
 
-  /* Where the strings actually came from, for the debug readout. */
-  function source() {
-    if (loadFailed) return 'load failed: ' + loadFailed;
-    if (preview) return 'file: _locales/' + preview.locale;
-    return 'chrome.i18n: ' + (chrome.i18n.getUILanguage() || '?');
-  }
-
   window.DOI18n = {
     AUTO: AUTO,
-    source: source,
     CATALOGUES: CATALOGUES,
     apply: apply,
     t: t,

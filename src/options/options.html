@@ -7,11 +7,8 @@
 </head>
 <body>
 <main>
-  <!-- Debugging aid: previews a catalogue without changing the browser's language.
-       Remove this block, fillLocalePicker() in options.js and the preview branches
-       in i18n.js to take it out. -->
   <div class="preview-locale">
-    <label for="previewLocale" title="Language">
+    <label for="previewLocale" data-i18n-title="localePicker">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
            stroke-width="1.8" aria-hidden="true">
         <circle cx="12" cy="12" r="9"/>
@@ -20,10 +17,8 @@
         <path d="M12 3c-2.6 2.8-2.6 15.2 0 18"/>
       </svg>
     </label>
-    <span class="font-sample" title="Font sample">直 骨 令 者 海 真 次 今</span>
-    <select id="previewLocale"></select>
+    <select id="previewLocale" data-i18n-title="localePicker"></select>
   </div>
-  <p id="previewInfo" class="preview-info"></p>
 
   <h1 data-i18n="optionsTitle">DOI Direct settings</h1>
 

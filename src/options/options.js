@@ -276,16 +276,15 @@
     save(true);
   });
 
-  /* Debugging aid: previews a catalogue without changing the browser's language.
-   * Its own wording is deliberately not translated, and no catalogue carries a
-   * string for it. */
+  /* The first entry follows the browser, as every page did before the picker
+   * existed; the rest load a catalogue directly. */
   function fillLocalePicker() {
     var select = el('previewLocale');
     select.textContent = '';
 
     var auto = document.createElement('option');
     auto.value = DOI18n.AUTO;
-    auto.textContent = 'Automatic';
+    auto.textContent = DOI18n.t('localeAuto');
     select.appendChild(auto);
 
     DOI18n.CATALOGUES.forEach(function (entry) {
@@ -301,16 +300,10 @@
     });
   }
 
-  fillLocalePicker();
-
-  /* Rendering happens inside the callback: the strings it produces have to come
-   * from the catalogue that was actually loaded. */
+  /* Both the picker and the page render inside the callback: the strings they
+   * produce have to come from the catalogue that was actually loaded. */
   DOI18n.apply(function () {
-    /* Says where the strings came from, and what lang and dir are actually in
-     * effect. Those are the first things worth knowing when a font looks wrong. */
-    el('previewInfo').textContent =
-      DOI18n.source() + '   \u00b7   lang=' + document.documentElement.lang +
-      '   \u00b7   dir=' + document.documentElement.dir;
+    fillLocalePicker();
     Settings.load(function (loaded) {
       current = loaded;
       fillInputsFromSettings();

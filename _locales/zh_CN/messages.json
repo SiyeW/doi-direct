@@ -8,6 +8,12 @@
   "optionsTitle": {
     "message": "DOI Direct 设置"
   },
+  "localePicker": {
+    "message": "语言"
+  },
+  "localeAuto": {
+    "message": "自动"
+  },
   "secGeneral": {
     "message": "常规"
   },
