@@ -80,7 +80,9 @@ const MATCH = [
   ['https://www.sogou.com/web?query=10.1038%2Fx&ie=utf8', 'sogou'],
   ['https://www.so.com/s?q=10.1038%2Fx', 'so360'],
   ['https://search.brave.com/search?q=10.1038%2Fx', 'brave'],
-  ['https://search.yahoo.com/search?p=10.1038%2Fx', 'yahoo']
+  ['https://search.yahoo.com/search?p=10.1038%2Fx', 'yahoo'],
+  /* the exact shape a real Ecosia search produced, extra parameters and all */
+  ['https://www.ecosia.org/search?method=index&ar=1&q=10.1038%2Fx', 'ecosia']
 ];
 MATCH.forEach(function (pair) {
   const url = pair[0], engine = pair[1];
@@ -96,8 +98,8 @@ const NO_MATCH = [
   'https://www.google.com/search?q=10.1038%2Fexample+pdf',
   'https://example.com/search?q=10.1038%2Fx',
   'https://www.google.com.evil.test/search?q=10.1038%2Fx',
-  /* unverified engines ship disabled, so they must not match */
-  'https://www.ecosia.org/search?q=10.1038%2Fx',
+  /* Startpage is not built in: it submits searches with POST and keeps the
+   * query out of the URL, so it can never be supported this way. */
   'https://www.startpage.com/sp/search?query=10.1038%2Fx',
   'chrome://newtab/',
   'not a url'

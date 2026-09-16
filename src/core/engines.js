@@ -7,8 +7,11 @@
  * is not the same as supporting it, so anything unconfirmed ships disabled until
  * someone re-checks it.
  *
- * Ecosia is still unverified: it sits behind a Cloudflare challenge that refuses
- * automated requests, so its URL shape has not been confirmed yet.
+ * Ecosia answers automated requests with a Cloudflare challenge, so its rule was
+ * confirmed by hand instead: a real search produced
+ * https://www.ecosia.org/search?method=index&ar=1&q=test - that is the /search
+ * path with the query in q, plus two extra parameters that do not matter because
+ * the query is read by name.
  *
  * Startpage is deliberately absent. It submits searches with POST and keeps the
  * query out of the URL on purpose, so there is nothing for this extension to
@@ -63,7 +66,7 @@
         hosts: ['search.brave.com'], path: '/search', param: 'q' },
       { id: 'yahoo', name: 'Yahoo', enabled: true, verified: true,
         hosts: ['search.yahoo.com'], path: '/search', param: 'p' },
-      { id: 'ecosia', name: 'Ecosia', enabled: false, verified: false,
+      { id: 'ecosia', name: 'Ecosia', enabled: true, verified: true,
         hosts: ['ecosia.org'], path: '/search', param: 'q' }
     ];
   }

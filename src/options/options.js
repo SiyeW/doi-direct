@@ -79,7 +79,12 @@
   function renderEngines() {
     var box = el('engineList');
     box.textContent = '';
-    EngineRules.builtIn().forEach(function (rule) {
+    var rules = EngineRules.builtIn();
+
+    /* the "not verified" note only makes sense while something is unverified */
+    el('notVerifiedHint').hidden = !rules.some(function (r) { return r.verified === false; });
+
+    rules.forEach(function (rule) {
       var row = document.createElement('label');
       row.className = 'row';
       var cb = document.createElement('input');

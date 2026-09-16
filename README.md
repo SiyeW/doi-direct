@@ -16,9 +16,8 @@ It only acts when the **entire** query is a DOI. `10.1038/xxxxx pdf` is left alo
 
 ## Status
 
-Early but working. The extension loads and runs; the settings UI is deliberately
-small and a few search engines ship disabled until their URL shape has been
-confirmed (see *Limitations*).
+Early but working. The extension loads and runs, and every built-in search engine
+has had its URL shape confirmed against the live site.
 
 ## Install (unpacked)
 
@@ -92,9 +91,10 @@ saves you is the page of search results.
   browser behaviour, not something an extension can rely on as a contract.
 - **Firefox is not supported.** Its URL handling differs and would need its own
   verification.
-- **Engines marked *not verified*** in the settings have not had their URL shape
-  confirmed by actually loading them, so they are off by default. Enable the ones
-  you use.
+- **Search engines that submit with POST cannot be supported**, because the query
+  never reaches the URL. Startpage is one of those. A quick way to check any
+  engine: search for something and look at the address bar - if there is no query
+  parameter there, this extension has nothing to read.
 - Search engines that update results without reloading the page (`history.pushState`)
   are not covered.
 
