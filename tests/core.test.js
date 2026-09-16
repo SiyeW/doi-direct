@@ -196,13 +196,36 @@ LOCALES.forEach(function (loc) {
      'the product name survives translation: ' + loc);
 });
 
-/* every message the UI asks for must exist */
+/* Every message the UI asks for must exist. A key can be chosen by a ternary -
+ * DOI18n.t(on ? 'popupOn' : 'popupOff') - so collect every quoted word inside
+ * each call rather than only the plain t('key') form. */
+function keysPassedToT(src) {
+  const found = new Set();
+  const marker = 'DOI18n.t(';
+  let at = src.indexOf(marker);
+  while (at !== -1) {
+    let depth = 1;
+    let i = at + marker.length;
+    let args = '';
+    while (i < src.length && depth > 0) {
+      const c = src[i];
+      if (c === '(') depth++;
+      else if (c === ')') depth--;
+      if (depth > 0) args += c;
+      i++;
+    }
+    const re = /'([A-Za-z0-9_]+)'/g;
+    let m;
+    while ((m = re.exec(args)) !== null) found.add(m[1]);
+    at = src.indexOf(marker, at + 1);
+  }
+  return found;
+}
+
 const referenced = new Set();
 ['src/options/options.js', 'src/popup/popup.js'].forEach(function (rel) {
   const src = fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
-  const re = /DOI18n\.t\('([A-Za-z0-9_]+)'\)/g;
-  let m;
-  while ((m = re.exec(src)) !== null) referenced.add(m[1]);
+  keysPassedToT(src).forEach(function (k) { referenced.add(k); });
 });
 ['src/options/options.html', 'src/popup/popup.html'].forEach(function (rel) {
   const src = fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
@@ -212,6 +235,17 @@ const referenced = new Set();
 });
 eq(Array.from(referenced).filter(k => !catalogues.en[k]).sort(), [],
    'every message used by the UI exists in the catalogue');
+
+/* The manifest pulls its name and description through __MSG_ too. */
+const manifestRaw = fs.readFileSync(path.join(__dirname, '..', 'manifest.json'), 'utf8');
+const msgRe = /__MSG_([A-Za-z0-9_]+)__/g;
+let msgMatch;
+while ((msgMatch = msgRe.exec(manifestRaw)) !== null) referenced.add(msgMatch[1]);
+ok(referenced.has('extName') && referenced.has('extDescription'),
+   'the manifest localises its name and description');
+
+/* And nothing should be left in the catalogue that no longer has a caller. */
+eq(baseKeys.filter(k => !referenced.has(k)).sort(), [], 'no unused message keys');
 
 ok(LOCALES.indexOf(manifest.default_locale) !== -1, 'default_locale points at a shipped catalogue');
 

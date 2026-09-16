@@ -51,19 +51,19 @@
     "message": "获取网站权限失败。"
   },
   "noCustom": {
-    "message": "还没有自定义搜索引擎。"
+    "message": "没有自定义搜索引擎。"
   },
   "secResolver": {
-    "message": "解析地址"
+    "message": "解析器"
   },
   "resolverHint": {
-    "message": "DOI 会作为路径追加到这个地址后面。"
+    "message": "DOI 将追加到解析器地址前缀之后。"
   },
   "resolverBase": {
-    "message": "解析地址前缀"
+    "message": "DOI 解析器地址前缀"
   },
   "resolverInvalid": {
-    "message": "必须是 http(s) 地址，且不能带查询串或片段。"
+    "message": "必须是 http(s) 地址，且不能包含查询串 (query string) 或片段 (fragment)。"
   },
   "secAdvanced": {
     "message": "高级"
@@ -72,13 +72,13 @@
     "message": "DOI 匹配正则"
   },
   "patternHint": {
-    "message": "一段 JavaScript 正则，作用在解码后的完整查询串上。它是匹配规则，不是 DOI 语法校验器。"
+    "message": "用于匹配搜索内容的正则表达式。开头的 doi: 会在匹配前被自动去掉，大小写不限。"
   },
   "testLabel": {
     "message": "测试输入"
   },
   "testInputPlaceholder": {
-    "message": "输入一条查询，实时看结果"
+    "message": "example"
   },
   "testMatch": {
     "message": "匹配"
@@ -87,16 +87,16 @@
     "message": "不匹配"
   },
   "patternInvalid": {
-    "message": "这不是合法的正则表达式。"
+    "message": "正则表达式不合法。"
   },
   "restoreDefault": {
     "message": "恢复默认"
   },
   "examplesAccept": {
-    "message": "应当被跳转"
+    "message": "合理案例"
   },
   "examplesReject": {
-    "message": "不应当被跳转"
+    "message": "不合理案例"
   },
   "popupOn": {
     "message": "正在拦截 DOI 搜索"
@@ -105,7 +105,7 @@
     "message": "已暂停"
   },
   "popupEngines": {
-    "message": "已启用的搜索引擎"
+    "message": "启用的搜索引擎："
   },
   "openOptions": {
     "message": "设置"

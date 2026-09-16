@@ -96,8 +96,8 @@
     "description": "Form label for the DOI matching pattern."
   },
   "patternHint": {
-    "message": "A JavaScript regular expression, tested against the whole decoded search query. This is a matching pattern, not a DOI syntax validator.",
-    "description": "One line explaining that this is a matching pattern, not a validator."
+    "message": "The regular expression matched against the search content. A leading doi: is stripped before matching, upper or lower case.",
+    "description": "Explains the one behaviour of the matcher that the regex itself does not perform and that the examples cannot show."
   },
   "testLabel": {
     "message": "Test input",

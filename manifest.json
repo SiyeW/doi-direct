@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "DOI Direct",
+  "name": "__MSG_extName__",
   "version": "0.1.0",
-  "description": "Resolve a DOI straight from the search box: DOI-only searches go to the DOI resolver instead of a page of search results.",
+  "description": "__MSG_extDescription__",
   "default_locale": "en",
   "permissions": [
     "webRequest",
