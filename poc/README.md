@@ -1,10 +1,8 @@
 # DOI Direct PoC
 
-[English · en-US](#poc-en-us) · [简体中文 · zh-CN](#poc-zh-cn) · [繁體中文 · zh-TW](#poc-zh-tw) · [日本語 · ja-JP](#poc-ja-jp) · [한국어 · ko-KR](#poc-ko-kr)
+[English · en-US](#english) · 简体中文 · zh-CN](#%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87) · 繁體中文 · zh-TW](#%E7%B9%81%E9%AB%94%E4%B8%AD%E6%96%87) · 日本語 · ja-JP](#%E6%97%A5%E6%9C%AC%E8%AA%9E) · 한국어 · ko-KR](#%ED%95%9C%EA%B5%AD%EC%96%B4)
 
 ---
-
-<a id="poc-en-us"></a>
 
 <div lang="en-US">
 
@@ -53,8 +51,6 @@ powershell -ExecutionPolicy Bypass -File poc/build/sync-shared.ps1
 
 ---
 
-<a id="poc-zh-cn"></a>
-
 <div lang="zh-CN">
 
 ## 简体中文
@@ -101,8 +97,6 @@ powershell -ExecutionPolicy Bypass -File poc/build/sync-shared.ps1
 </div>
 
 ---
-
-<a id="poc-zh-tw"></a>
 
 <div lang="zh-TW">
 
@@ -151,8 +145,6 @@ powershell -ExecutionPolicy Bypass -File poc/build/sync-shared.ps1
 
 ---
 
-<a id="poc-ja-jp"></a>
-
 <div lang="ja-JP">
 
 ## 日本語
@@ -199,8 +191,6 @@ powershell -ExecutionPolicy Bypass -File poc/build/sync-shared.ps1
 </div>
 
 ---
-
-<a id="poc-ko-kr"></a>
 
 <div lang="ko-KR">
 

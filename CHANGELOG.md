@@ -2,16 +2,11 @@
 
 This project follows Semantic Versioning. Versions below `1.0.0` may include incompatible changes.
 
-[English · en-US](#changelog-en-us) · [简体中文 · zh-CN](#changelog-zh-cn) · [繁體中文 · zh-TW](#changelog-zh-tw) · [日本語 · ja-JP](#changelog-ja-jp) · [한국어 · ko-KR](#changelog-ko-kr)
-
 ## [Unreleased]
 
 ## [0.1.0-dev.1] - 2026-09-17
 
-<a id="changelog-en-us"></a>
-
 <div lang="en-US">
-
 
 ### English · September 17, 2026
 
@@ -22,10 +17,7 @@ This project follows Semantic Versioning. Versions below `1.0.0` may include inc
 - The interface is available in 23 languages.
 </div>
 
-<a id="changelog-zh-cn"></a>
-
 <div lang="zh-CN">
-
 
 ### 简体中文 · 2026年9月17日
 
@@ -36,10 +28,7 @@ This project follows Semantic Versioning. Versions below `1.0.0` may include inc
 - 界面提供 23 种语言。
 </div>
 
-<a id="changelog-zh-tw"></a>
-
 <div lang="zh-TW">
-
 
 ### 繁體中文 · 2026年9月17日
 
@@ -50,10 +39,7 @@ This project follows Semantic Versioning. Versions below `1.0.0` may include inc
 - 介面提供 23 種語言。
 </div>
 
-<a id="changelog-ja-jp"></a>
-
 <div lang="ja-JP">
-
 
 ### 日本語 · 2026年9月17日
 
@@ -64,10 +50,7 @@ This project follows Semantic Versioning. Versions below `1.0.0` may include inc
 - インターフェースは 23 言語に対応しています。
 </div>
 
-<a id="changelog-ko-kr"></a>
-
 <div lang="ko-KR">
-
 
 ### 한국어 · 2026년 9월 17일
 
