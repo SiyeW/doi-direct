@@ -34,20 +34,22 @@ It acts only when the whole query is a DOI. `10.1038/xxxxx pdf` is left alone.
 - Add your own search engine; only that one site is requested
 - Point at a different resolver; the DOI is appended to it as a path
 - Change the DOI matching pattern, with the shipped examples and your own input checked as you type
-- Interface available in 23 languages and previewable from the settings page
+- Interface available in 23 languages: follow the browser, or pick one in the settings
 
 ### Installation
 
-Download the `doi-direct-v*.zip` asset from [Releases](https://github.com/SiyeW/doi-direct/releases/latest) and extract it. Then:
+DOI Direct is distributed through GitHub Releases.
 
-1. Open `chrome://extensions`
-2. Turn on **Developer mode**
-3. Select **Load unpacked** and choose the extracted folder
-4. Pin the extension, then choose which search engines to watch in its settings
+1. Download `doi-direct-v*.zip` from [Releases](https://github.com/SiyeW/doi-direct/releases/latest).
+2. Extract it to a folder that will stay on the computer.
+3. Open `chrome://extensions`.
+4. Turn on **Developer mode**.
+5. Select **Load unpacked** and choose the extracted folder.
+6. Pin the extension, then choose which search engines to watch in its settings.
 
-Chromium-based browsers only (Chrome, Edge, and similar).
+Chrome 108 and later, and other Chromium-based browsers such as Edge.
 
-Installed this way, the extension counts as a developer extension: Chrome warns about it at startup, and a new version has to be installed the same way.
+An extension installed this way counts as a developer extension: the browser says so at startup. To update, replace the files in that folder with a newer release and reload the extension from `chrome://extensions`.
 
 ### Use
 
@@ -144,20 +146,22 @@ Ctrl+L
 - 可以添加自定义搜索引擎，只为所填站点请求一次权限
 - 可以改用其他解析地址，DOI 作为路径追加在其后
 - 可以调整 DOI 匹配规则，示例和自填内容会实时显示匹配结果
-- 界面支持 23 种语言，可在设置页切换预览
+- 界面支持 23 种语言，默认跟随浏览器，也可以在设置页指定
 
 ### 安装
 
-前往 [Releases](https://github.com/SiyeW/doi-direct/releases/latest) 下载 `doi-direct-v*.zip` 并解压，然后：
+DOI Direct 通过 GitHub Releases 分发。
 
-1. 打开 `chrome://extensions`
-2. 打开「开发者模式」
-3. 点击「加载已解压的扩展程序」，选择解压出的文件夹
-4. 固定扩展，然后在设置页选择要监视的搜索引擎
+1. 前往 [Releases](https://github.com/SiyeW/doi-direct/releases/latest) 下载 `doi-direct-v*.zip`。
+2. 解压到一个会长期保留的文件夹。
+3. 打开 `chrome://extensions`。
+4. 打开「开发者模式」。
+5. 点击「加载已解压的扩展程序」，选择解压出的文件夹。
+6. 固定扩展，然后在设置页选择要监视的搜索引擎。
 
-仅支持 Chromium 内核浏览器（Chrome、Edge 等）。
+需要 Chrome 108 及以上，以及其他 Chromium 内核浏览器（如 Edge）。
 
-这样安装的扩展会被 Chrome 当作开发者扩展：启动时会提示，新版本也需要用同样的方式安装。
+这样安装的扩展会被 Chrome 当作开发者扩展，启动时会提示。更新时把该文件夹里的文件换成新版本，再到 `chrome://extensions` 重新加载扩展。
 
 ### 使用
 
