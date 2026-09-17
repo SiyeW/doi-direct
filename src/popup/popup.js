@@ -36,9 +36,18 @@
     window.close();
   });
 
+  /* The footer takes its links and its version from the manifest, so there is one
+   * place to change them. */
+  function fillFooter() {
+    var manifest = chrome.runtime.getManifest();
+    if (!manifest.homepage_url) return;
+    el('repoLink').href = manifest.homepage_url;
+    el('issuesLink').href = manifest.homepage_url + '/issues';
+    el('version').textContent = manifest.version;
+  }
+
   DOI18n.apply(function () {
-    var home = chrome.runtime.getManifest().homepage_url;
-    if (home) el('repoLink').href = home;
+    fillFooter();
     Settings.load(function (loaded) {
       current = loaded;
       render();

@@ -12,7 +12,13 @@
   </label>
   <p class="count"><span data-i18n="popupEngines"></span> <b id="count">0</b></p>
   <button id="openOptions" data-i18n="openOptions">Settings</button>
-  <p class="source"><a id="repoLink" target="_blank" rel="noopener" data-i18n="footerSource"></a></p>
+  <p class="footer">
+    <a id="repoLink" target="_blank" rel="noopener" data-i18n="footerSource"></a>
+    <span aria-hidden="true">·</span>
+    <a id="issuesLink" target="_blank" rel="noopener" data-i18n="footerIssues"></a>
+    <span aria-hidden="true">·</span>
+    <span id="version"></span>
+  </p>
 
   <script src="../core/doi.js"></script>
   <script src="../core/engines.js"></script>

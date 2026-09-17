@@ -21,8 +21,11 @@ button {
   border: 1px solid #cfd5de; background: #fff; color: inherit; cursor: pointer;
 }
 button:hover { background: #f0f3f8; }
-.source { margin: 10px 0 0; text-align: center; }
-.source a { color: #7b8494; }
+.footer {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 6px; margin: 12px 0 0; color: #7b8494;
+}
+.footer a { color: inherit; }
 @media (prefers-color-scheme: dark) {
   body { color: #e6e6e6; background: #16181d; }
   .count { color: #98a2b3; }
