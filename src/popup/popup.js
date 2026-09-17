@@ -36,14 +36,16 @@
     window.close();
   });
 
-  /* The footer takes its links and its version from the manifest, so there is one
-   * place to change them. */
+  /* Every footer address is derived from homepage_url, so the manifest is the only
+   * place to change one. */
   function fillFooter() {
     var manifest = chrome.runtime.getManifest();
     if (!manifest.homepage_url) return;
     el('repoLink').href = manifest.homepage_url;
     el('issuesLink').href = manifest.homepage_url + '/issues';
-    el('version').textContent = manifest.version;
+    el('licenseLink').href = manifest.homepage_url + '/blob/main/LICENSE';
+    el('releasesLink').href = manifest.homepage_url + '/releases';
+    el('releasesLink').textContent = manifest.version;
   }
 
   DOI18n.apply(function () {
