@@ -298,6 +298,22 @@ while ((entryMatch = entryRe.exec(i18nSource)) !== null) listed.push(entryMatch[
 eq(listed.slice().sort(), LOCALES, 'the language picker lists every catalogue');
 eq(listed.length, new Set(listed).size, 'the language picker lists none of them twice');
 
+/* ---------- layout ---------- */
+/* Every margin, padding and gap sits on a four pixel grid, so the spacing stays
+ * deliberate rather than accumulating whatever value each rule was first given. */
+['src/options/options.css', 'src/popup/popup.css'].forEach(function (rel) {
+  const css = fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+  const offGrid = [];
+  const re = /(?:^|;)\s*(margin|padding|gap)(?:-(?:top|right|bottom|left))?\s*:\s*([^;}]+)/g;
+  let m;
+  while ((m = re.exec(css)) !== null) {
+    (m[2].match(/\d+(?:\.\d+)?px/g) || []).forEach(function (value) {
+      if (parseFloat(value) % 4 !== 0) offGrid.push(m[1] + ': ' + m[2].trim());
+    });
+  }
+  eq(Array.from(new Set(offGrid)), [], rel + ': spacing sits on a four pixel grid');
+});
+
 /* ---------- documentation ---------- */
 /* The documents carry a language navigation made of in-page links. A link whose
  * brackets do not match its target is not a link at all - it renders as text with

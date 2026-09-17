@@ -12,27 +12,28 @@ body {
   line-height: 1.6;
   color: #1b1f24; background: #fbfbfd;
 }
-h1 { font-size: 1.125rem; margin: 0 0 10px; }
+h1 { font-size: 1.125rem; margin: 0 0 12px; }
 .row { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-.count { margin: 10px 0; color: #5b6572; }
+.count { margin: 12px 0; color: #5b6572; }
 .count b { color: #1b1f24; }
 /* line-height comes after font, which is a shorthand and would reset it. Without
  * it the button inherits the body's reading leading and grows taller than its
  * padding suggests. */
 button {
-  font: inherit; line-height: 1.25; width: 100%; padding: 6px 10px; border-radius: 6px;
+  font: inherit; line-height: 1.25; width: 100%; padding: 8px 12px; border-radius: 6px;
   border: 1px solid #cfd5de; background: #fff; color: inherit; cursor: pointer;
 }
 button:hover { background: #f0f3f8; }
 .footer {
   display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-  gap: 6px; margin: 12px 0 0; color: #7b8494;
+  gap: 8px; margin: 12px 0 0; color: #6b7484;
 }
 .footer a { color: inherit; }
 @media (prefers-color-scheme: dark) {
   body { color: #e6e6e6; background: #16181d; }
   .count { color: #98a2b3; }
   .count b { color: #e6e6e6; }
+  .footer { color: #8b93a1; }
   button { background: #1e2128; border-color: #3a4150; }
   button:hover { background: #262b34; }
 }

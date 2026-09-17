@@ -22,41 +22,41 @@ body {
 main { max-width: 680px; margin: 0 auto; }
 .preview-locale {
   display: flex; align-items: center; justify-content: flex-end;
-  gap: 6px; margin: 0 0 14px; color: #7b8494;
+  gap: 8px; margin: 0 0 16px; color: #6b7484;
 }
 /* Without these the icon sits above centre: an inline svg is laid out on a text
  * baseline, and the line box adds descender space under it. */
 .preview-locale label { display: flex; align-items: center; }
 .preview-locale svg { display: block; }
 .preview-locale select {
-  font: inherit; line-height: 1.25; padding: 3px 6px; border-radius: 6px;
+  font: inherit; line-height: 1.25; padding: 4px 8px; border-radius: 6px;
   border: 1px solid #cfd5de; background: #fff; color: inherit; max-width: 180px;
 }
 h1 { font-size: 1.5rem; margin: 0 0 20px; }
-h2 { font-size: 1.05rem; margin: 0 0 6px; text-transform: uppercase; letter-spacing: .04em; color: #4a5568; }
+h2 { font-size: 1.05rem; margin: 0 0 8px; text-transform: uppercase; letter-spacing: .04em; color: #4a5568; }
 h3 { margin: 16px 0 4px; color: #4a5568; font-weight: 600; }
 section { padding: 16px 0; border-top: 1px solid #e4e7ec; }
 section:first-of-type { border-top: 0; }
-.hint { color: #5b6572; margin: 4px 0 10px; }
-.row { display: flex; align-items: center; gap: 8px; padding: 3px 0; cursor: pointer; }
-.list { margin: 6px 0 10px; }
+.hint { color: #5b6572; margin: 4px 0 12px; }
+.row { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; }
+.list { margin: 8px 0 12px; }
 .row-main { display: flex; align-items: center; gap: 8px; flex: 1; cursor: pointer; min-width: 0; }
 .row-main span { overflow: hidden; text-overflow: ellipsis; }
-.muted { color: #7b8494; font-size: var(--quiet); margin-left: auto; }
+.muted { color: #6b7484; font-size: var(--quiet); margin-left: auto; }
 .badge {
-  font-size: var(--small); padding: 1px 6px; border-radius: 999px;
+  font-size: var(--small); line-height: 1.25; padding: 4px 8px; border-radius: 999px;
   white-space: nowrap;
   background: #fdeccd; color: #8a5a00; border: 1px solid #f0d29a;
 }
 .badge.ok { background: #dff3e4; color: #1e6b33; border-color: #b6e0c2; }
 .badge.bad { background: #fde3e1; color: #a3231b; border-color: #f3c0bc; }
 .badge.unknown { background: #eceff4; color: #6b7488; border-color: #dadee6; }
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 8px 0; }
 .grid label { display: flex; flex-direction: column; gap: 4px; color: #4a5568; }
 /* See popup.css: line-height follows font, or the field takes the body's reading
  * leading as well as its padding. */
 input[type=text] {
-  font: inherit; line-height: 1.25; padding: 6px 8px; border: 1px solid #cfd5de; border-radius: 6px;
+  font: inherit; line-height: 1.25; padding: 8px 12px; border: 1px solid #cfd5de; border-radius: 6px;
   background: #fff; color: inherit; min-width: 0;
 }
 input[type=text]:focus { outline: 2px solid #7fb3ff; outline-offset: 1px; border-color: #7fb3ff; }
@@ -66,16 +66,16 @@ input[type=text]::placeholder { color: #aab3c0; opacity: 1; }
 /* See popup.css: line-height has to follow font, and without it a button takes the
  * body's reading leading as well as its padding. */
 button {
-  font: inherit; line-height: 1.25; padding: 5px 12px; margin-right: 8px; border-radius: 6px;
+  font: inherit; line-height: 1.25; padding: 8px 12px; margin-right: 8px; border-radius: 6px;
   border: 1px solid #cfd5de; background: #fff; color: inherit; cursor: pointer;
 }
 button:hover { background: #f0f3f8; }
 .msg { margin: 8px 0 0; min-height: 1.6em; color: #2f7a3f; }
 .msg.error { color: #b3261e; }
-.empty { color: #7b8494; }
+.empty { color: #6b7484; }
 .preview {
   background: #f4f6fa; border: 1px solid #e4e7ec; border-radius: 6px;
-  padding: 8px 10px; margin: 0 0 10px; min-height: 40px;
+  padding: 8px 12px; margin: 0 0 12px; min-height: 40px;
 }
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -86,7 +86,7 @@ code {
 .footer {
   display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
   gap: 8px; margin-top: 24px; padding-top: 16px;
-  border-top: 1px solid #e4e7ec; color: #7b8494;
+  border-top: 1px solid #e4e7ec; color: #6b7484;
 }
 .footer a { color: inherit; }
 @media (prefers-color-scheme: dark) {
@@ -103,4 +103,5 @@ code {
   .preview { background: #1b1e24; border-color: #2a2f3a; }
   .preview-locale select { background: #1e2128; border-color: #3a4150; }
   .footer { border-top-color: #2a2f3a; }
+  .muted, .footer, .preview-locale { color: #8b93a1; }
 }
