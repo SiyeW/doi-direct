@@ -4,6 +4,10 @@
 ![Platform](https://img.shields.io/badge/platform-Chromium-4285F4?logo=googlechrome&logoColor=white)
 [![CI](https://github.com/SiyeW/doi-direct/actions/workflows/ci.yml/badge.svg)](https://github.com/SiyeW/doi-direct/actions/workflows/ci.yml)
 
+<p align="center">
+  <img src="icons/icon_128.png" width="128" height="128" alt="DOI Direct">
+</p>
+
 ---
 
 <div lang="en-US">
