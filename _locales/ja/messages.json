@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "一致しない例"
   },
+  "footerSource": {
+    "message": "ソースコード"
+  },
+  "footerIssues": {
+    "message": "問題を報告"
+  },
   "popupOn": {
     "message": "DOI 検索のリダイレクトは有効です"
   },

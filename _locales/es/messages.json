@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "No coincidencias esperadas"
   },
+  "footerSource": {
+    "message": "Código fuente"
+  },
+  "footerIssues": {
+    "message": "Informar de un problema"
+  },
   "popupOn": {
     "message": "La redirección de búsquedas de DOI está activada"
   },

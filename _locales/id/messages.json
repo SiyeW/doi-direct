@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "Ketidakcocokan yang diharapkan"
   },
+  "footerSource": {
+    "message": "Kode sumber"
+  },
+  "footerIssues": {
+    "message": "Laporkan masalah"
+  },
   "popupOn": {
     "message": "Pengalihan pencarian DOI aktif"
   },

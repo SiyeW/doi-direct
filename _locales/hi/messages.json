@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "अपेक्षित गैर-मिलान"
   },
+  "footerSource": {
+    "message": "सोर्स कोड"
+  },
+  "footerIssues": {
+    "message": "समस्या की रिपोर्ट करें"
+  },
   "popupOn": {
     "message": "DOI खोज रीडायरेक्शन चालू है"
   },

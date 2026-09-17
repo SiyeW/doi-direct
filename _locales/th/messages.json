@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "ตัวอย่างที่คาดว่าจะไม่ตรงกัน"
   },
+  "footerSource": {
+    "message": "ซอร์สโค้ด"
+  },
+  "footerIssues": {
+    "message": "รายงานปัญหา"
+  },
   "popupOn": {
     "message": "การเปลี่ยนเส้นทางการค้นหา DOI เปิดอยู่"
   },

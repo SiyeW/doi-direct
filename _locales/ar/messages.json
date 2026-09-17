@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "حالات عدم المطابقة المتوقعة"
   },
+  "footerSource": {
+    "message": "الشيفرة المصدرية"
+  },
+  "footerIssues": {
+    "message": "الإبلاغ عن مشكلة"
+  },
   "popupOn": {
     "message": "إعادة توجيه بحث DOI مفعّلة"
   },

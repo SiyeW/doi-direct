@@ -79,6 +79,12 @@ code {
 }
 .examples .row { gap: 8px; cursor: default; }
 .examples code { flex: 1; word-break: break-all; }
+.footer {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 8px; margin-top: 24px; padding-top: 16px;
+  border-top: 1px solid #e4e7ec; color: #7b8494;
+}
+.footer a { color: inherit; }
 @media (prefers-color-scheme: dark) {
   body { color: #e6e6e6; background: #16181d; }
   h2, h3 { color: #98a2b3; }
@@ -90,4 +96,5 @@ code {
   button:hover { background: #262b34; }
   .preview { background: #1b1e24; border-color: #2a2f3a; }
   .preview-locale select { background: #1e2128; border-color: #3a4150; }
+  .footer { border-top-color: #2a2f3a; }
 }

@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "預期不符合"
   },
+  "footerSource": {
+    "message": "原始碼"
+  },
+  "footerIssues": {
+    "message": "回報問題"
+  },
   "popupOn": {
     "message": "DOI 搜尋重新導向已啟用"
   },

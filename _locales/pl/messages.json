@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "Oczekiwane braki dopasowania"
   },
+  "footerSource": {
+    "message": "Kod źródłowy"
+  },
+  "footerIssues": {
+    "message": "Zgłoś problem"
+  },
   "popupOn": {
     "message": "Przekierowanie wyszukiwań DOI jest włączone"
   },

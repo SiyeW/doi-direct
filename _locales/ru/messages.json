@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "Ожидаемые несовпадения"
   },
+  "footerSource": {
+    "message": "Исходный код"
+  },
+  "footerIssues": {
+    "message": "Сообщить о проблеме"
+  },
   "popupOn": {
     "message": "Перенаправление поиска по DOI включено"
   },

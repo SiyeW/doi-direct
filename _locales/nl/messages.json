@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "Verwachte niet-overeenkomsten"
   },
+  "footerSource": {
+    "message": "Broncode"
+  },
+  "footerIssues": {
+    "message": "Een probleem melden"
+  },
   "popupOn": {
     "message": "DOI-zoekopdrachten worden doorgestuurd"
   },

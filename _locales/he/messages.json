@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "אי-התאמות צפויות"
   },
+  "footerSource": {
+    "message": "קוד מקור"
+  },
+  "footerIssues": {
+    "message": "דיווח על בעיה"
+  },
   "popupOn": {
     "message": "הפניית חיפושי DOI פעילה"
   },

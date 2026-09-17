@@ -159,6 +159,14 @@
     "message": "Should be left alone",
     "description": "Heading over the example queries that should not match."
   },
+  "footerSource": {
+    "message": "Source code",
+    "description": "Footer link to the repository."
+  },
+  "footerIssues": {
+    "message": "Report an issue",
+    "description": "Footer link to the issue tracker."
+  },
   "popupOn": {
     "message": "Redirecting DOI searches",
     "description": "Popup status line while redirecting is on."

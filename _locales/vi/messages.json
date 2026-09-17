@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "Trường hợp dự kiến không khớp"
   },
+  "footerSource": {
+    "message": "Mã nguồn"
+  },
+  "footerIssues": {
+    "message": "Báo lỗi"
+  },
   "popupOn": {
     "message": "Chuyển hướng tìm kiếm DOI đang bật"
   },

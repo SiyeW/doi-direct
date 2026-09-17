@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "عدم تطبیق‌های مورد انتظار"
   },
+  "footerSource": {
+    "message": "کد منبع"
+  },
+  "footerIssues": {
+    "message": "گزارش مشکل"
+  },
   "popupOn": {
     "message": "هدایت جست‌وجوی DOI فعال است"
   },

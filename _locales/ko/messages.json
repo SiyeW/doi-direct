@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "불일치 예상"
   },
+  "footerSource": {
+    "message": "소스 코드"
+  },
+  "footerIssues": {
+    "message": "문제 보고"
+  },
   "popupOn": {
     "message": "DOI 검색 리디렉션이 켜져 있습니다"
   },

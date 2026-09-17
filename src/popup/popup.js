@@ -37,6 +37,8 @@
   });
 
   DOI18n.apply(function () {
+    var home = chrome.runtime.getManifest().homepage_url;
+    if (home) el('repoLink').href = home;
     Settings.load(function (loaded) {
       current = loaded;
       render();

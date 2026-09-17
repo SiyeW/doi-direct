@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "Erwartete Nicht-Treffer"
   },
+  "footerSource": {
+    "message": "Quellcode"
+  },
+  "footerIssues": {
+    "message": "Problem melden"
+  },
   "popupOn": {
     "message": "DOI-Suchweiterleitung ist aktiviert"
   },

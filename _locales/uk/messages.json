@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "Очікувані незбіги"
   },
+  "footerSource": {
+    "message": "Вихідний код"
+  },
+  "footerIssues": {
+    "message": "Повідомити про проблему"
+  },
   "popupOn": {
     "message": "Перенаправлення пошуку за DOI увімкнено"
   },

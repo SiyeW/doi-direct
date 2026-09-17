@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "不合理案例"
   },
+  "footerSource": {
+    "message": "源代码"
+  },
+  "footerIssues": {
+    "message": "报告问题"
+  },
   "popupOn": {
     "message": "已启用 DOI 搜索重定向"
   },

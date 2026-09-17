@@ -305,10 +305,21 @@
     });
   }
 
+  /* The footer takes its links and its version from the manifest, so there is one
+   * place to change them. */
+  function fillFooter() {
+    var manifest = chrome.runtime.getManifest();
+    if (!manifest.homepage_url) return;
+    el('repoLink').href = manifest.homepage_url;
+    el('issuesLink').href = manifest.homepage_url + '/issues';
+    el('version').textContent = manifest.version;
+  }
+
   /* Both the picker and the page render inside the callback: the strings they
    * produce have to come from the catalogue that was actually loaded. */
   DOI18n.apply(function () {
     fillLocalePicker();
+    fillFooter();
     Settings.load(function (loaded) {
       current = loaded;
       fillInputsFromSettings();

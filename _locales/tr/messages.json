@@ -119,6 +119,12 @@
   "examplesReject": {
     "message": "Beklenen eşleşmeme durumları"
   },
+  "footerSource": {
+    "message": "Kaynak kodu"
+  },
+  "footerIssues": {
+    "message": "Sorun bildir"
+  },
   "popupOn": {
     "message": "DOI arama yönlendirmesi etkin"
   },
