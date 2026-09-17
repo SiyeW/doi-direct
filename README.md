@@ -93,6 +93,7 @@ Copy-Item tools/hooks/pre-commit .git/hooks/pre-commit
 
 ```text
 manifest.json
+icons/             toolbar and extension-list icons
 src/core/          matching, encoding, search engine rules, settings
 src/background.js  service worker
 src/content.js     content script
@@ -202,6 +203,7 @@ Copy-Item tools/hooks/pre-commit .git/hooks/pre-commit
 
 ```text
 manifest.json
+icons/             工具栏和扩展列表图标
 src/core/          匹配、编码、搜索引擎规则、设置
 src/background.js  服务进程
 src/content.js     内容脚本

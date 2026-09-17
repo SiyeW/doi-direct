@@ -13,7 +13,7 @@ const zlib = require('zlib');
 const { spawnSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
-const SHIPPED = ['manifest.json', 'src', '_locales', 'LICENSE', 'README.md'];
+const SHIPPED = ['manifest.json', 'icons', 'src', '_locales', 'LICENSE', 'README.md'];
 const SUITES = ['tests/core.test.js', 'poc/test/doi-core.test.js'];
 
 function fail(message) {
