@@ -29,7 +29,7 @@ main { max-width: 680px; margin: 0 auto; }
 .preview-locale label { display: flex; align-items: center; }
 .preview-locale svg { display: block; }
 .preview-locale select {
-  font: inherit; padding: 3px 6px; border-radius: 6px;
+  font: inherit; line-height: 1.25; padding: 3px 6px; border-radius: 6px;
   border: 1px solid #cfd5de; background: #fff; color: inherit; max-width: 180px;
 }
 h1 { font-size: 1.5rem; margin: 0 0 20px; }
@@ -53,8 +53,10 @@ section:first-of-type { border-top: 0; }
 .badge.unknown { background: #eceff4; color: #6b7488; border-color: #dadee6; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
 .grid label { display: flex; flex-direction: column; gap: 4px; color: #4a5568; }
+/* See popup.css: line-height follows font, or the field takes the body's reading
+ * leading as well as its padding. */
 input[type=text] {
-  font: inherit; padding: 6px 8px; border: 1px solid #cfd5de; border-radius: 6px;
+  font: inherit; line-height: 1.25; padding: 6px 8px; border: 1px solid #cfd5de; border-radius: 6px;
   background: #fff; color: inherit; min-width: 0;
 }
 input[type=text]:focus { outline: 2px solid #7fb3ff; outline-offset: 1px; border-color: #7fb3ff; }
@@ -68,7 +70,7 @@ button {
   border: 1px solid #cfd5de; background: #fff; color: inherit; cursor: pointer;
 }
 button:hover { background: #f0f3f8; }
-.msg { margin: 8px 0 0; min-height: 1.2em; color: #2f7a3f; }
+.msg { margin: 8px 0 0; min-height: 1.6em; color: #2f7a3f; }
 .msg.error { color: #b3261e; }
 .empty { color: #7b8494; }
 .preview {
@@ -89,9 +91,11 @@ code {
 .footer a { color: inherit; }
 @media (prefers-color-scheme: dark) {
   body { color: #e6e6e6; background: #16181d; }
-  h2, h3 { color: #98a2b3; }
+  h2, h3, .grid label { color: #98a2b3; }
   section { border-top-color: #2a2f3a; }
   .hint, .empty { color: #8b93a1; }
+  .msg { color: #5aa96b; }
+  .msg.error { color: #ef8a80; }
   input[type=text] { background: #1e2128; border-color: #3a4150; }
   input[type=text]::placeholder { color: #667080; }
   button { background: #1e2128; border-color: #3a4150; }
