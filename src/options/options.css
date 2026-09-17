@@ -61,8 +61,10 @@ input[type=text]:focus { outline: 2px solid #7fb3ff; outline-offset: 1px; border
 /* Chrome's default placeholder colour is close enough to the real text that the
  * field reads as already filled in. Keep it clearly lighter. */
 input[type=text]::placeholder { color: #aab3c0; opacity: 1; }
+/* See popup.css: line-height has to follow font, and without it a button takes the
+ * body's reading leading as well as its padding. */
 button {
-  font: inherit; padding: 5px 12px; margin-right: 8px; border-radius: 6px;
+  font: inherit; line-height: 1.25; padding: 5px 12px; margin-right: 8px; border-radius: 6px;
   border: 1px solid #cfd5de; background: #fff; color: inherit; cursor: pointer;
 }
 button:hover { background: #f0f3f8; }
