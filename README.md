@@ -1,4 +1,6 @@
-### [English](#english) | [中文](#%E4%B8%AD%E6%96%87)
+# DOI Direct
+
+[English · en-US](#en-us) · [简体中文 · zh-CN](#zh-cn) · [繁體中文 · zh-TW](#zh-tw) · [日本語 · ja-JP](#ja-jp) · [한국어 · ko-KR](#ko-kr)
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Chromium-4285F4?logo=googlechrome&logoColor=white)
@@ -10,224 +12,365 @@
 
 ---
 
+<a id="en-us"></a>
+
 <div lang="en-US">
 
 ## English
 
-### DOI Direct
-
-A browser extension that goes straight to a DOI's resolver when you search for a DOI, instead of a page of search results.
+DOI Direct is a Chromium browser extension for searches consisting only of a DOI. When a supported search engine receives a query that is exactly a DOI, the current tab goes directly to the configured DOI resolver.
 
 ```text
-Ctrl+L
-paste  10.1038/s41586-026-xxxxx
-Enter
-->     https://doi.org/10.1038/s41586-026-xxxxx
+10.1038/s41559-022-01925-6
+            ↓
+https://doi.org/10.1038/s41559-022-01925-6
 ```
 
-It acts only when the whole query is a DOI. `10.1038/xxxxx pdf` is left alone.
+Searches containing other text are left unchanged. For example, `10.1038/xxxxx pdf` remains a normal search.
 
-### Main features
+### Features
 
-- Resolve DOI-only searches from the address bar
-- Built-in support for Google, Bing, Baidu, DuckDuckGo, Sogou, 360, Brave, Yahoo, and Ecosia, each switchable on its own
-- Add your own search engine; only that one site is requested
-- Point at a different resolver; the DOI is appended to it as a path
-- Change the DOI matching pattern, with the shipped examples and your own input checked as you type
-- Interface available in 23 languages: follow the browser, or pick one in the settings
+- Built-in support for Google, Bing, Baidu, DuckDuckGo, Sogou, 360, Brave, Yahoo, and Ecosia
+- Each built-in search engine can be enabled or disabled independently
+- Custom search engines can be added, with site access requested only for the corresponding site
+- The DOI resolver address is configurable and defaults to `https://doi.org/`
+- The DOI matching rule is configurable, with live examples and a test input
+- The interface is available in 23 languages and can either follow the browser language automatically or use a manually selected language
 
 ### Installation
 
 DOI Direct is distributed through GitHub Releases.
 
-1. Download `doi-direct-v*.zip` from [Releases](https://github.com/SiyeW/doi-direct/releases/latest).
-2. Extract it to a folder that will stay on the computer.
+1. Download `doi-direct-v*.zip` from [Releases](https://github.com/SiyeW/doi-direct/releases).
+2. Extract the archive to a folder that will remain on the computer.
 3. Open `chrome://extensions`.
 4. Turn on **Developer mode**.
 5. Select **Load unpacked** and choose the extracted folder.
-6. Pin the extension, then choose which search engines to watch in its settings.
 
-Chrome 108 and later, and other Chromium-based browsers such as Edge.
+The extension targets Chrome 108 and later, as well as compatible Chromium-based browsers such as Edge. Because it is installed as an unpacked extension, the browser may display developer-mode notices.
 
-An extension installed this way counts as a developer extension: the browser says so at startup. To update, replace the files in that folder with a newer release and reload the extension from `chrome://extensions`.
-
-### Use
-
-- **On/off:** Turning it off stops the redirection. No other setting changes.
-- **Search engines:** Switch each built-in engine on or off. An engine you do not watch does not redirect.
-- **Custom search engines:** Enter a name, host, path, and query parameter. The entry that would be created is shown first, and adding it asks for permission for that site alone.
-- **Resolver:** `https://doi.org/` by default. Point it at a library or another resolver; the DOI is appended to that address as a path.
-- **Matching pattern:** The default matches a query that starts with `10.` and contains a slash. The examples that should and should not match are listed below it, and a text box checks anything you type.
-
-### Permissions
-
-- `webRequest` - read main-frame navigation requests
-- `storage` - keep your settings
-- `scripting` - register a content script for search engines you add yourself
-- Site access for the built-in search engines only
-
-The `tabs` permission and access to all sites are not requested. A custom search engine asks for exactly one site, and that permission is given back when you remove it.
-
-### Privacy
-
-All matching happens locally. The extension collects and transmits nothing.
-
-It does not stop the search request from reaching the search engine: by the time it reacts, the request has usually been sent already. What it saves you is the page of search results.
+To update, replace the existing files with the newer version and reload the extension from `chrome://extensions`.
 
 ### Known limitations
 
-- **Address-bar behaviour depends on the browser.** Chromium currently treats input like `10.1038/xxx` as a search query rather than a hostname. That is browser behaviour, not a contract an extension can rely on.
-- **Firefox is not supported.**
-- **Engines that submit searches with POST cannot be supported**, because the query never reaches the URL. Startpage and DuckDuckGo's no-JavaScript version are both like that.
-- **Engines that swap results with `history.pushState` are not covered.**
+- Firefox is not currently supported.
+- Search engines that submit queries with POST cannot be handled because the query does not appear in the URL. This includes Startpage and DuckDuckGo's no-JavaScript version, among others.
+- Search flows that update results only through `history.pushState` cannot currently be handled.
 
 ### Development
 
-The project is still under development, and the interface and workflows may change.
+Run the core tests:
 
-```text
+```bash
 node tests/core.test.js
 ```
 
-A pre-commit hook that runs both suites lives in `tools/hooks/pre-commit`:
+Build a release archive:
 
-```powershell
-Copy-Item tools/hooks/pre-commit .git/hooks/pre-commit
+```bash
+node tools/build-release.js
 ```
 
-`node tools/build-release.js` runs both suites and writes `dist/doi-direct-v<version>.zip`. Pushing a `v*` tag builds that archive and creates the release; the tag has to match the version in `manifest.json`, and the release notes come from the matching entry in `CHANGELOG.md`.
+The build script runs both test suites and creates:
 
 ```text
-manifest.json
-icons/             toolbar and extension-list icons
-src/core/          matching, encoding, search engine rules, settings
-src/background.js  service worker
-src/content.js     content script
-src/options/       settings page
-src/popup/         toolbar popup
-_locales/          interface text in 23 languages
-tests/             unit tests for src/core
-tools/             pre-commit hook and the release build
-poc/               an earlier measurement harness
+dist/doi-direct-v<version>.zip
 ```
 
-`poc/` is a separate tool; the extension does not depend on it. See [poc/README.md](poc/README.md).
+An optional pre-commit hook is available at `tools/hooks/pre-commit`.
 
-### License
-
-MIT
-
+Pushing a `v*` tag causes GitHub Actions to create a GitHub Release automatically. The numeric version in the tag must match `manifest.json`; prerelease suffixes such as `-dev.1` are supported. The release body is taken from the corresponding entry in [`CHANGELOG.md`](CHANGELOG.md).
 
 </div>
 
 ---
 
+<a id="zh-cn"></a>
+
 <div lang="zh-CN">
 
-## 中文
+## 简体中文
 
-### DOI Direct
-
-一款浏览器扩展：在地址栏搜索纯 DOI 时直接前往解析地址，而不是先经过一页搜索结果。
+DOI Direct 是一个用于处理纯 DOI 搜索的 Chromium 浏览器扩展。当受支持的搜索引擎收到一条内容仅为 DOI 的查询时，当前标签页会直接转向所设置的 DOI 解析地址。
 
 ```text
-Ctrl+L
-粘贴  10.1038/s41586-026-xxxxx
-回车
-→     https://doi.org/10.1038/s41586-026-xxxxx
+10.1038/s41559-022-01925-6
+            ↓
+https://doi.org/10.1038/s41559-022-01925-6
 ```
 
-只有整个搜索内容都是 DOI 时才跳转。`10.1038/xxxxx pdf` 保持原样。
+搜索内容中包含其他文字时不会触发跳转。例如，`10.1038/xxxxx pdf` 仍然作为普通搜索处理。
 
 ### 主要功能
 
-- 地址栏搜索纯 DOI 时直接跳转
-- 内置 Google、Bing、百度、DuckDuckGo、搜狗、360、Brave、Yahoo、Ecosia，可以逐个开关
-- 可以添加自定义搜索引擎，只为所填站点请求一次权限
-- 可以改用其他解析地址，DOI 作为路径追加在其后
-- 可以调整 DOI 匹配规则，示例和自填内容会实时显示匹配结果
-- 界面支持 23 种语言，默认跟随浏览器，也可以在设置页指定
+- 内置 Google、Bing、百度、DuckDuckGo、搜狗、360、Brave、Yahoo 和 Ecosia
+- 每个内置搜索引擎都可以单独启用或关闭
+- 支持添加自定义搜索引擎，只为对应站点请求权限
+- DOI 解析地址可以修改，默认为 `https://doi.org/`
+- DOI 匹配规则可以修改，并提供实时示例和测试输入
+- 界面包含 23 种语言，可自动跟随浏览器语言，也可以手动选择
 
 ### 安装
 
-DOI Direct 通过 GitHub Releases 分发。
+DOI Direct 通过 GitHub Releases 发布。
 
-1. 前往 [Releases](https://github.com/SiyeW/doi-direct/releases/latest) 下载 `doi-direct-v*.zip`。
-2. 解压到一个会长期保留的文件夹。
+1. 在 [Releases](https://github.com/SiyeW/doi-direct/releases) 下载 `doi-direct-v*.zip`。
+2. 将压缩包解压到一个长期保留的文件夹。
 3. 打开 `chrome://extensions`。
-4. 打开「开发者模式」。
+4. 开启「开发者模式」。
 5. 点击「加载已解压的扩展程序」，选择解压出的文件夹。
-6. 固定扩展，然后在设置页选择要监视的搜索引擎。
 
-需要 Chrome 108 及以上，以及其他 Chromium 内核浏览器（如 Edge）。
+扩展面向 Chrome 108 及以上版本和 Edge 等兼容的 Chromium 内核浏览器。由于采用未打包扩展的方式安装，浏览器可能会显示开发者模式相关提示。
 
-这样安装的扩展会被 Chrome 当作开发者扩展，启动时会提示。更新时把该文件夹里的文件换成新版本，再到 `chrome://extensions` 重新加载扩展。
-
-### 使用
-
-- **开关：** 关闭后不再跳转，其余设置不变。
-- **搜索引擎：** 在内置列表中逐个开关，不监视的引擎不会触发跳转。
-- **自定义搜索引擎：** 填写名称、域名、路径和查询参数，页面先显示将要生成的条目。添加时浏览器为该站点请求一次权限。
-- **解析地址：** 默认为 `https://doi.org/`，可以换成图书馆或其他解析服务。DOI 作为路径追加到该地址之后。
-- **匹配规则：** 默认规则匹配以 `10.` 开头并含斜杠的搜索内容。规则下方列出应匹配和不应匹配的示例，另有输入框可以试验任意内容。
-
-### 权限
-
-- `webRequest`：读取主框架导航请求
-- `storage`：保存设置
-- `scripting`：为自行添加的搜索引擎注册内容脚本
-- 仅内置搜索引擎的站点权限
-
-不申请 `tabs` 权限，也不申请所有网站的访问权限。添加自定义搜索引擎时只为该站点请求权限，删除后归还。
-
-### 隐私
-
-匹配全部在本地完成，不收集也不发送任何数据。
-
-扩展不阻止搜索请求到达搜索引擎：等到它响应时，请求通常已经发出。省掉的是搜索结果页。
+需要更新时，请用新版本替换原文件，然后在 `chrome://extensions` 中重新加载扩展即可。
 
 ### 已知限制
 
-- **地址栏的行为取决于浏览器。** Chromium 目前把 `10.1038/xxx` 这类输入当作搜索内容而非主机名。这是浏览器行为，不是扩展可以依赖的约定。
-- **不支持 Firefox。**
-- **以 POST 提交搜索的引擎无法支持**，查询内容不会出现在地址里。Startpage 和 DuckDuckGo 的免 JavaScript 版本都属于此类。
-- **不覆盖用 `history.pushState` 换页的搜索引擎。**
+- 目前不支持 Firefox。
+- 使用 POST 提交查询的搜索引擎无法处理，因为查询内容不会出现在 URL 中。受影响的搜索引擎包括 Startpage 和 DuckDuckGo 的免 JavaScript 版本等。
+- 仅通过 `history.pushState` 更新搜索结果的流程目前无法处理。
 
 ### 开发
 
-目前仍在开发中，界面和操作可能调整。
+运行核心测试：
 
-```text
+```bash
 node tests/core.test.js
 ```
 
-`tools/hooks/pre-commit` 在提交时运行两套测试：
+生成发布包：
 
-```powershell
-Copy-Item tools/hooks/pre-commit .git/hooks/pre-commit
+```bash
+node tools/build-release.js
 ```
 
-`node tools/build-release.js` 会跑两套测试并生成 `dist/doi-direct-v<版本>.zip`。推送 `v*` tag 会用这个包建立 Release；tag 必须与 `manifest.json` 里的版本一致，Release 正文取自 `CHANGELOG.md` 中对应的条目。
+构建脚本会运行两套测试，并生成：
 
 ```text
-manifest.json
-icons/             工具栏和扩展列表图标
-src/core/          匹配、编码、搜索引擎规则、设置
-src/background.js  服务进程
-src/content.js     内容脚本
-src/options/       设置页
-src/popup/         工具栏弹窗
-_locales/          23 种语言的界面文案
-tests/             src/core 的单元测试
-tools/             提交钩子和发布打包
-poc/               早期测量工具
+dist/doi-direct-v<版本>.zip
 ```
 
-`poc/` 是独立工具，扩展不依赖它，说明见 [poc/README.md](poc/README.md)。
+`tools/hooks/pre-commit` 提供了可选的 pre-commit hook。
 
-### 许可证
+推送 `v*` tag 后，GitHub Actions 会自动建立 GitHub Release。tag 的数字版本部分需要与 `manifest.json` 一致，支持 `-dev.1` 这类预发布后缀。Release 正文取自 [`CHANGELOG.md`](CHANGELOG.md) 中对应的版本条目。
 
-MIT
+</div>
 
+---
+
+<a id="zh-tw"></a>
+
+<div lang="zh-TW">
+
+## 繁體中文
+
+DOI Direct 是一款用來處理純 DOI 搜尋的 Chromium 瀏覽器擴充功能。當支援的搜尋引擎收到內容只有 DOI 的查詢時，目前分頁會直接前往所設定的 DOI 解析網址。
+
+```text
+10.1038/s41559-022-01925-6
+            ↓
+https://doi.org/10.1038/s41559-022-01925-6
+```
+
+搜尋內容中包含其他文字時不會觸發重新導向。例如，`10.1038/xxxxx pdf` 仍會作為一般搜尋處理。
+
+### 主要功能
+
+- 內建 Google、Bing、百度、DuckDuckGo、搜狗、360、Brave、Yahoo 和 Ecosia
+- 每個內建搜尋引擎都可以個別啟用或停用
+- 支援新增自訂搜尋引擎，只會為對應網站要求存取權限
+- DOI 解析網址可以修改，預設為 `https://doi.org/`
+- DOI 比對規則可以修改，並提供即時範例與測試輸入
+- 介面提供 23 種語言，可自動跟隨瀏覽器語言，也可以手動選擇
+
+### 安裝
+
+DOI Direct 透過 GitHub Releases 發布。
+
+1. 在 [Releases](https://github.com/SiyeW/doi-direct/releases) 下載 `doi-direct-v*.zip`。
+2. 將壓縮檔解壓縮到會長期保留的資料夾。
+3. 開啟 `chrome://extensions`。
+4. 開啟「開發人員模式」。
+5. 選擇「載入未封裝項目」，再選取解壓縮後的資料夾。
+
+擴充功能適用於 Chrome 108 以上版本，以及 Edge 等相容的 Chromium 瀏覽器。由於是以未封裝擴充功能的方式安裝，瀏覽器可能會顯示與開發人員模式相關的提示。
+
+需要更新時，以新版本檔案取代原有檔案，再到 `chrome://extensions` 重新載入擴充功能即可。
+
+### 已知限制
+
+- 目前不支援 Firefox。
+- 使用 POST 提交查詢的搜尋引擎目前無法處理，因為查詢內容不會出現在 URL 中。Startpage 和 DuckDuckGo 的免 JavaScript 版本等都會受到影響。
+- 僅透過 `history.pushState` 更新搜尋結果的流程目前無法處理。
+
+### 開發
+
+執行核心測試：
+
+```bash
+node tests/core.test.js
+```
+
+產生發布套件：
+
+```bash
+node tools/build-release.js
+```
+
+建置腳本會執行兩套測試，並產生：
+
+```text
+dist/doi-direct-v<版本>.zip
+```
+
+`tools/hooks/pre-commit` 提供可選用的 pre-commit hook。
+
+推送 `v*` tag 後，GitHub Actions 會自動建立 GitHub Release。tag 的數字版本部分需要與 `manifest.json` 一致，也支援 `-dev.1` 這類預發布後綴。Release 內容取自 [`CHANGELOG.md`](CHANGELOG.md) 中對應的版本條目。
+
+</div>
+
+---
+
+<a id="ja-jp"></a>
+
+<div lang="ja-JP">
+
+## 日本語
+
+DOI Direct は、DOI だけを検索したときに DOI リゾルバーへ直接移動する Chromium 向けブラウザー拡張機能です。対応している検索エンジンで検索内容が DOI のみの場合、現在のタブが設定済みの DOI リゾルバーへ移動します。
+
+```text
+10.1038/s41559-022-01925-6
+            ↓
+https://doi.org/10.1038/s41559-022-01925-6
+```
+
+ほかの文字を含む検索はリダイレクトしません。たとえば、`10.1038/xxxxx pdf` は通常の検索として扱われます。
+
+### 主な機能
+
+- Google、Bing、Baidu、DuckDuckGo、Sogou、360、Brave、Yahoo、Ecosia に標準対応
+- 標準対応の検索エンジンは個別に有効・無効を切り替え可能
+- カスタム検索エンジンを追加可能。サイトへのアクセス権限は追加したサイトに対してのみ要求
+- DOI リゾルバーの URL を変更可能。既定値は `https://doi.org/`
+- DOI のマッチングルールを変更可能。リアルタイムの例とテスト入力を用意
+- 23 言語のインターフェースを収録。ブラウザーの言語に自動で合わせることも、手動で選択することも可能
+
+### インストール
+
+DOI Direct は GitHub Releases から配布しています。
+
+1. [Releases](https://github.com/SiyeW/doi-direct/releases) から `doi-direct-v*.zip` をダウンロードします。
+2. ZIP を、今後も残しておくフォルダーへ展開します。
+3. `chrome://extensions` を開きます。
+4. **デベロッパー モード**を有効にします。
+5. **パッケージ化されていない拡張機能を読み込む**を選び、展開したフォルダーを指定します。
+
+Chrome 108 以降、および Edge などの互換性のある Chromium 系ブラウザーを対象としています。パッケージ化されていない拡張機能としてインストールするため、ブラウザーにデベロッパーモード関連の通知が表示される場合があります。
+
+更新時は、新しいバージョンのファイルで既存のファイルを置き換え、`chrome://extensions` から拡張機能を再読み込みします。
+
+### 既知の制限
+
+- 現在 Firefox には対応していません。
+- POST で検索内容を送信する検索エンジンには対応できません。検索内容が URL に含まれないためです。Startpage や DuckDuckGo の JavaScript 不使用版などが該当します。
+- `history.pushState` だけで検索結果を更新する検索フローには現在対応していません。
+
+### 開発
+
+コアテストを実行します。
+
+```bash
+node tests/core.test.js
+```
+
+リリース用 ZIP を生成します。
+
+```bash
+node tools/build-release.js
+```
+
+ビルドスクリプトは 2 つのテストスイートを実行し、次のファイルを生成します。
+
+```text
+dist/doi-direct-v<version>.zip
+```
+
+`tools/hooks/pre-commit` に任意で利用できる pre-commit hook があります。
+
+`v*` tag を push すると、GitHub Actions が GitHub Release を自動作成します。tag の数値部分は `manifest.json` のバージョンと一致している必要があり、`-dev.1` のようなプレリリース用サフィックスにも対応しています。Release の本文には [`CHANGELOG.md`](CHANGELOG.md) の該当バージョンの内容が使われます。
+
+</div>
+
+---
+
+<a id="ko-kr"></a>
+
+<div lang="ko-KR">
+
+## 한국어
+
+DOI Direct는 검색어 전체가 DOI일 때 설정된 DOI 리졸버로 바로 이동하도록 하는 Chromium 기반 브라우저 확장 프로그램입니다. 지원되는 검색 엔진에서 DOI만 검색하면 현재 탭이 해당 DOI 리졸버로 이동합니다.
+
+```text
+10.1038/s41559-022-01925-6
+            ↓
+https://doi.org/10.1038/s41559-022-01925-6
+```
+
+검색어에 다른 내용이 함께 들어 있으면 리디렉션하지 않습니다. 예를 들어 `10.1038/xxxxx pdf`는 일반 검색으로 처리됩니다.
+
+### 주요 기능
+
+- Google, Bing, Baidu, DuckDuckGo, Sogou, 360, Brave, Yahoo, Ecosia 기본 지원
+- 기본 제공 검색 엔진을 각각 켜거나 끌 수 있음
+- 사용자 지정 검색 엔진 추가 지원. 사이트 접근 권한은 해당 사이트에 대해서만 요청
+- DOI 리졸버 URL 변경 가능. 기본값은 `https://doi.org/`
+- DOI 매칭 규칙 변경 가능. 실시간 예시와 테스트 입력 제공
+- 23개 언어 인터페이스 제공. 브라우저 언어를 자동으로 따르거나 직접 선택 가능
+
+### 설치
+
+DOI Direct는 GitHub Releases를 통해 배포됩니다.
+
+1. [Releases](https://github.com/SiyeW/doi-direct/releases)에서 `doi-direct-v*.zip`을 다운로드합니다.
+2. 압축 파일을 계속 보관할 폴더에 풉니다.
+3. `chrome://extensions`를 엽니다.
+4. **개발자 모드**를 사용 설정합니다.
+5. **압축해제된 확장 프로그램을 로드합니다**를 선택하고 압축을 푼 폴더를 지정합니다.
+
+Chrome 108 이상과 Edge 등 호환되는 Chromium 기반 브라우저를 대상으로 합니다. 압축해제된 확장 프로그램으로 설치되므로 브라우저에서 개발자 모드 관련 안내가 표시될 수 있습니다.
+
+업데이트할 때는 새 버전의 파일로 기존 파일을 교체한 뒤 `chrome://extensions`에서 확장 프로그램을 다시 로드하면 됩니다.
+
+### 알려진 제한 사항
+
+- 현재 Firefox는 지원하지 않습니다.
+- POST 방식으로 검색어를 전송하는 검색 엔진은 처리할 수 없습니다. 검색어가 URL에 포함되지 않기 때문입니다. Startpage와 DuckDuckGo의 JavaScript 미사용 버전 등이 여기에 해당합니다.
+- `history.pushState`만으로 검색 결과를 갱신하는 흐름은 현재 처리할 수 없습니다.
+
+### 개발
+
+핵심 테스트 실행:
+
+```bash
+node tests/core.test.js
+```
+
+릴리스 패키지 생성:
+
+```bash
+node tools/build-release.js
+```
+
+빌드 스크립트는 두 개의 테스트 스위트를 실행하고 다음 파일을 생성합니다.
+
+```text
+dist/doi-direct-v<version>.zip
+```
+
+`tools/hooks/pre-commit`에 선택적으로 사용할 수 있는 pre-commit hook이 있습니다.
+
+`v*` tag를 push하면 GitHub Actions가 GitHub Release를 자동으로 생성합니다. tag의 숫자 버전 부분은 `manifest.json`과 일치해야 하며, `-dev.1` 같은 프리릴리스 접미사도 지원합니다. Release 본문은 [`CHANGELOG.md`](CHANGELOG.md)의 해당 버전 항목에서 가져옵니다.
 
 </div>
