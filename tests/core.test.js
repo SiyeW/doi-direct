@@ -298,6 +298,32 @@ while ((entryMatch = entryRe.exec(i18nSource)) !== null) listed.push(entryMatch[
 eq(listed.slice().sort(), LOCALES, 'the language picker lists every catalogue');
 eq(listed.length, new Set(listed).size, 'the language picker lists none of them twice');
 
+/* ---------- documentation ---------- */
+/* The documents carry a language navigation made of in-page links. A link whose
+ * brackets do not match its target is not a link at all - it renders as text with
+ * the target hanging off the end - and nothing else would notice. */
+function headingAnchor(text) {
+  return text.trim().toLowerCase()
+    .replace(/[^\p{L}\p{N}\s-]/gu, '')
+    .replace(/\s+/g, '-');
+}
+
+['README.md', 'poc/README.md'].forEach(function (rel) {
+  const doc = fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+  const anchors = new Set(Array.from(doc.matchAll(/^#{1,6} (.+)$/gm)).map(m => headingAnchor(m[1])));
+  const links = Array.from(doc.matchAll(/\[([^\]]+)\]\(#([^)]+)\)/g));
+
+  ok(links.length >= 5, rel + ' has a language navigation');
+  eq(links.filter(function (m) {
+    let target = m[2];
+    try { target = decodeURIComponent(target); } catch (e) { /* leave it */ }
+    return !anchors.has(target);
+  }).map(m => m[2]), [], rel + ': every in-page link resolves to a heading');
+
+  const leftovers = doc.replace(/\[[^\]]+\]\([^)]*\)/g, '');
+  eq(leftovers.indexOf('](#'), -1, rel + ': no link is left half-written');
+});
+
 /* ---------- report ---------- */
 console.log('');
 console.log(pass + ' passed, ' + fail + ' failed');
